@@ -30,7 +30,6 @@ typedef struct		s_map
 {
 	int				start;
 	int				end;
-	int				size;
 	int				**matrix;
 	int				**matrix_road;
 }					t_map;

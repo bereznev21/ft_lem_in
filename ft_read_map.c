@@ -10,19 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lem_in.h"
+#include "lem_in.h"
+//#include "libft.h"
+# include "libft/includes/libft.h"
 
-int		ft_read_map1(t_start *start, char *line)
+
+int		ft_read_map1(t_start *start, int fd, char *line)
 {
 	if (ft_strstr(line, "##end"))
 	{
 		free(line);
-		ft_get_next_line(0, &line);
-		start->end = ft_strdup(line);
+		ft_get_next_line(fd, &line);
+		start->end = ft_atoi(line);
 		free(line);
 		while (1)
 		{
-			if (ft_get_next_line(0, &line) == 0)
+			if (ft_get_next_line(fd, &line) == 0)
 				return (1);
 			else if (ft_strstr(line, "#"))
 				free(line);
@@ -37,23 +40,21 @@ int		ft_read_map1(t_start *start, char *line)
 	return (0);
 }
 
-int		ft_read_map(t_start *start)
+int		ft_read_map(t_start *start, int fd)
 {
 	char	*line;
-	int		i;
 
-	i = 0;
-	ft_get_next_line(0, &line);
+	ft_get_next_line(fd, &line);
 	if (ft_strstr(line, "##start"))
 	{
 		free(line);
-		ft_get_next_line(0, &line);
-		start->start = ft_strdup(line);
+		ft_get_next_line(fd, &line);
+		start->start = ft_atoi(line);
 		start->rooms = ft_strjoin_right(start->rooms, line);
 		free(line);
 		while (1)
 		{
-			if (ft_get_next_line(0, &line) == 0)
+			if (ft_get_next_line(fd, &line) == 0)
 				return (0);
 			else if (ft_strstr(line, "##end"))
 				break ;
@@ -67,5 +68,5 @@ int		ft_read_map(t_start *start)
 			}
 		}
 	}
-	return (ft_read_map1(start, line));
+	return (ft_read_map1(start, fd, line));
 }
