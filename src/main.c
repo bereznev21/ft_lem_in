@@ -96,11 +96,66 @@ void ft_zero_map(int **map, int width)
 	}
 }
 
+void	ft_print_int_map(t_matrix *roads)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < roads->n)
+	{
+		while (j < roads->n)
+		{
+			//printf("%d", map[i][j]);
+			ft_putnbr(roads->data[i][j]);
+			j++;
+		}
+		//printf("\n");
+		ft_putchar('\n');
+		j = 0;
+		i++;
+	}
+}
+
+void ft_put_end(t_matrix *roads, int i, int j)
+{
+	int n;
+
+	n = 0;
+	while (roads->data[i][n] > 0)
+		n++;
+	roads->data[i][n] = j;
+}
+
+void ft_wrt_ans_map(t_matrix *map, t_matrix *ans)
+{
+	int i;
+	int j;
+	i = 0;
+	j = 0;
+	while (i < ans->n)
+	{
+		while (j < ans->n)
+		{
+			if (ans->data[i][j] == 1)
+			{
+				//ft_src_roads(map, i, j);
+				ft_put_end(map, i, j);
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
 int main(void)
 {
 	t_start start;
 	t_matrix cap;
-	t_matrix flow;
+	t_matrix ans;
+	t_matrix roads;
 	int fd;
 
 	ft_init_struct(&start);
@@ -112,7 +167,12 @@ int main(void)
 	ft_wrt_map_leaks(&start, &cap); //fill matrix;
 	t_matrix_print(&cap);
 
-	flow = push_relabel(&cap, start.start, start.end);
-	t_matrix_print(&flow);
+	ans = push_relabel(&cap, start.start, start.end);
+	t_matrix_print(&ans);
+
+	t_matrix_init(&roads, start.num_rooms);
+	ft_wrt_ans_map(&roads, &ans);
+	t_matrix_print(&roads);
+	ft_print_int_map(&roads);
 	return (0);
 }

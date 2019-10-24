@@ -32,7 +32,7 @@ typedef struct		s_map
 	int				start;
 	int				end;
 	t_matrix		matrix;
-	t_matrix		matrix_road;
+	int				**map_road;
 }					t_map;
 
 void t_matrix_init(t_matrix *m, int n);

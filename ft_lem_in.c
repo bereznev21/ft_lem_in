@@ -205,7 +205,7 @@ void	ft_take_ans(t_map *map)
 	}
 	ft_zero_map(map->map_road, map->size);
 	ft_wrt_ans_map(map);
-	//ft_print_int_map(map->map_road, map->size);
+	ft_print_int_map(map->map_road, map->size);
 }
 
 int		main(void)

@@ -20,6 +20,7 @@ add_executable(push_relabel
         src/push_relabel.c
         ft_read_map.c
         ft_crt_map.c
+
         libft/ft_memset.c
         libft/ft_bzero.c
         libft/ft_memcpy.c
