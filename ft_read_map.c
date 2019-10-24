@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoetess <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 21:06:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/22 21:06:06 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:04:38 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int		ft_read_map(t_start *start)
 		free(line);
 		ft_get_next_line(0, &line);
 		start->start = ft_strdup(line);
+		start->rooms = ft_strjoin_right(start->rooms, line);
 		free(line);
 		while (1)
 		{

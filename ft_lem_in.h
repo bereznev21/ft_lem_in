@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 21:15:05 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/22 22:27:38 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/23 21:11:43 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ typedef struct		s_map
 {
 	int				start;
 	int				end;
-	int				**map;
+	int				size;
+	int				**matrix;
+	int				**matrix_road;
 }					t_map;
 
 int		ft_read_map(t_start *start);
 void	ft_crt_map_room(t_start *start, t_map *map);
 void	ft_wrt_map_leaks(t_start *start, t_map *map);
 void	ft_free_char(char **map, int width);
+void	ft_zero_map(int **map, int width);
 
 #endif

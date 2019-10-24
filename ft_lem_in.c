@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/22 22:38:40 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/23 21:28:33 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,82 @@ int		ft_init_struct(t_start *start)
 	return (1);
 }
 
+void	ft_print_matrix(int **map, int width)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < width)
+	{
+		while (j < width)
+		{
+			//printf("%d", map[i][j]);
+			ft_putnbr(map[i][j]);
+			j++;
+		}
+		//printf("\n");
+		ft_putchar('\n');
+		j = 0;
+		i++;
+	}
+}
+
+void	ft_zero_map(int **map, int width)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < width)
+	{
+		while (j < width)
+		{
+			map[i][j] = 0;
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
+/*
+void	ft_src_roads(t_map *map, int i, int j)
+{
+	
+}
+
+void	ft_start_algo(t_start *start, t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < map->size)
+	{
+		while (j < map->size)
+		{
+			if (map->matrix[i][j] == 1)
+				ft_src_roads(map, i, j);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+*/
+
+void	ft_start_algo(t_start *start, t_map *map)
+{
+	int	i;
+	int	j;
+
+	
+}
+
 int		main(void)
 {
 	t_start	*start;
@@ -72,7 +148,9 @@ int		main(void)
 	//printf("%s\n", start->end);
 	ft_crt_map_room(start, map);
 	ft_wrt_map_leaks(start, map);
-	ft_free_int(map->map, start->num_rooms);
+	ft_print_matrix(map->matrix, map->size);
+	ft_start_algo(start, map);
+	ft_free_int(map->matrix, map->size);
 	ft_free(start);
 	free(map);
 	return (0);

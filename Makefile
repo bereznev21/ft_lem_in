@@ -5,7 +5,7 @@ SRC = ft_lem_in.c \
 	ft_read_map.c \
 	ft_crt_map.c \
 
-FLS = -Wall -Wextra -Werror
+FLS = -g -Wall -Wextra -Werror
 
 OBJ = $(SRC:.c=.o)
 

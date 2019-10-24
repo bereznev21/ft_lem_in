@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 21:48:19 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/22 23:03:39 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/23 20:03:14 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,21 @@ void	ft_crt_map_room(t_start *start, t_map *map)
 	res = ft_strsplit(start->rooms, ' ');
 	while (res[i])
 		i++;
-	start->num_rooms = i / 3;
+	start->num_rooms = i / 3 + 1;
+	map->size = start->num_rooms;
+	//printf("%d\n", start->num_rooms);
 	i = 0;
-	if (!(map->map = (int**)malloc(sizeof(int*) * (start->num_rooms + 1))))
+	if (!(map->matrix = (int**)malloc(sizeof(int*) * (map->size))))
 		return ;
-	while (i < start->num_rooms)
+	while (i < map->size)
 	{
-		if (!(map->map[i] = (int*)malloc(sizeof(int) * (start->num_rooms + 1))))
+		if (!(map->matrix[i] = (int*)malloc(sizeof(int) * (map->size))))
 			return ;
+		//ft_bzero(map->map[i], start->num_rooms);
 		i++;
 	}
-	printf("%d\n", start->num_rooms);
-	ft_free_char(res, start->num_rooms * 3);
+	ft_zero_map(map->matrix, map->size);
+	//ft_free_char(res, start->num_rooms * 3);
 }
 
 void	ft_wrt_map_leaks(t_start *start, t_map *map)
@@ -48,13 +51,19 @@ void	ft_wrt_map_leaks(t_start *start, t_map *map)
 	{
 		a = res[i][0] - '0';
 		b = res[i][2] - '0';
-		printf("%d %d\n", a, b);
-		map->map[a][b] = 1; // seg fault here
+		//printf("%d %d\n", a, b);
+	/*	ft_putnbr(a);
+		ft_putchar(' ');
+		ft_putnbr(a);
+		ft_putchar('\n');
+	*/
+		map->matrix[a][b] = 1;
+		map->matrix[b][a] = 1;
 		i++;
 	}
 	start->num_leaks = i;
 	map->start = 0;
 	i = 0;
-	printf("%d\n", start->num_leaks);
+	//printf("%d\n", start->num_leaks);
 	ft_free_char(res, start->num_leaks);
 }
