@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 21:15:05 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/23 21:11:43 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/24 21:33:33 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct		s_map
 	int				start;
 	int				end;
 	int				**matrix;
-	int				**matrix_road;
+	int				**map_road;
+	char			**ans;
 }					t_map;
 
 int		ft_read_map(t_start *start);
