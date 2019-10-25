@@ -112,8 +112,8 @@ int node_conn_cnt(t_matrix *aj, int k)
 t_matrix expand_junctions(t_matrix *aj)
 {
 	t_matrix r;
-	int i;
-	int cnt;
+	//int i;
+	//int cnt;
 
 
 	t_matrix_init_identity(&r, aj->n);

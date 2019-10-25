@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/25 16:25:07 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:43:34 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ int main(void)
 	int fd;
 
 	ft_init_struct(&start);
-	fd = open("maps/map02", O_RDONLY);
+	fd = open("maps/map01", O_RDONLY);
 	ft_read_map(&start, fd);
 	close(fd);
 	ft_crt_map_room(&start);

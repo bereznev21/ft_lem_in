@@ -1,7 +1,7 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-typedef struct
+typedef	struct
 {
 	int m;
 	int n;
@@ -10,13 +10,13 @@ typedef struct
 
 typedef struct
 {
-	int *excess;
-	int *height;
-	int *list;
-	int *seen;
-	t_matrix *cap;
-	t_matrix *flow;
-} t_pr_state;
+	int				*excess;
+	int				*height;
+	int				*list;
+	int				*seen;
+	t_matrix		*cap;
+	t_matrix		*flow;
+}					t_pr_state;
 
 typedef struct		s_start
 {
@@ -26,6 +26,7 @@ typedef struct		s_start
 	int				end;
 	char			*rooms;
 	char			*leaks;
+	char			**names_rooms_table;
 }					t_start;
 
 typedef struct		s_map
@@ -47,6 +48,7 @@ int			ft_read_map(t_start *start, int fd);
 void		ft_crt_map_room(t_start *start);
 void		ft_wrt_map_leaks(t_start *start, t_matrix *leaks);
 void		t_matrix_print(t_matrix *m);
+void 		ft_crt_names_rooms_table(t_start *start, char **res, int i);
 void		t_matrix_print_w_headers(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
 #endif

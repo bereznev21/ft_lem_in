@@ -6,12 +6,26 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 21:48:19 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/24 22:22:32 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:39:52 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "libft/includes/libft.h"
+#include <stdio.h>
+
+void	ft_crt_names_rooms_table(t_start *start, char **res, int i)
+{
+	int	k;
+
+	k = -1;
+	start->names_rooms_table = (char**)malloc(sizeof(char*) * i);
+	while (++k < i)
+	{
+		start->names_rooms_table[k] = ft_strdup(res[k * 3]);
+		//printf("%s\n", start->names_rooms_table[k]);
+	}
+}
 
 void	ft_crt_map_room(t_start *start)
 {
@@ -22,6 +36,10 @@ void	ft_crt_map_room(t_start *start)
 	res = ft_strsplit(start->rooms, ' ');
 	while (res[i])
 		i++;
+	if (i % 3 != 0)
+		return ;
+		//streeror
+	ft_crt_names_rooms_table(start, res, i / 3);
 	start->num_rooms = i / 3 + 1;
 }
 
