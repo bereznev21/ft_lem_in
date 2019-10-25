@@ -13,6 +13,7 @@
 //#include "libft.h"
 #include <stdlib.h>
 #include <fcntl.h>
+#include <stdio.h>
 #include "lem_in.h"
 # include "libft/includes/libft.h"
 
@@ -193,20 +194,23 @@ int		main(void)
 	int fd;
 
 	ft_init_struct(&start);
-	fd = open("map", O_RDONLY);
+	fd = open("maps/map01", O_RDONLY);
 	ft_read_map(&start, fd);
 	close(fd);
 	ft_crt_map_room(&start);
 	t_matrix_init(&cap, start.num_rooms); // create empty matrix
 	ft_wrt_map_leaks(&start, &cap); //fill matrix;
+	printf("Adjacency matrix:\n");
 	t_matrix_print(&cap);
 
 	ans = push_relabel(&cap, start.start, start.end);
 	//ft_brake_ans_map(&ans);
+	printf("Max flow solution:\n");
 	t_matrix_print(&ans);
 
 	t_matrix_init(&roads, start.num_rooms);
 	ft_wrt_ans_map(&roads, &ans, start.start);
+	printf("Roads:\n");
 	ft_print_int_map(&roads);
 	return (0);
 }
