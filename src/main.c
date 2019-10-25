@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/25 21:43:34 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/25 23:29:07 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int ft_init_struct(t_start *start)
 {
 	start->num_rooms = 0;
 	start->num_leaks = 0;
+	start->end = -1;
 	start->rooms = ft_strdup("");
 	start->leaks = ft_strdup("");
 	return (1);
