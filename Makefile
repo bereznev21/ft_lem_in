@@ -23,6 +23,9 @@ $(LIBFT):
 $(NAME): $(OBJ)
 	gcc $(FLS) $(OBJ) -o $(NAME) -I. -L libft -lft
 
+run : $(NAME)
+	./$(NAME)
+
 clean:
 	make clean -C libft
 	@/bin/rm -f $(OBJ)
