@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/24 21:36:11 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/25 22:38:29 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_free(t_start *start)
 {
-	free(start->start);
 	free(start->leaks);
 	free(start->rooms);
 	free(start->end);

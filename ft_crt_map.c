@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 21:48:19 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/25 21:39:52 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/25 23:26:36 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ void	ft_crt_map_room(t_start *start)
 
 	i = 0;
 	res = ft_strsplit(start->rooms, ' ');
+	//ft_putstr(start->rooms);
+	//ft_putchar('\n');
+	start->start = ft_atoi(res[0]);
+	//ft_putnbr(start->start);
 	while (res[i])
 		i++;
 	if (i % 3 != 0)
@@ -50,6 +54,7 @@ void	ft_wrt_map_leaks(t_start *start, t_matrix *leaks)
 
 	i = 0;
 	res = ft_strsplit(start->leaks, ' ');
+	//ft_putnbr(start->end);
 	while (res[i])
 	{
 		t_matrix_set(leaks, res[i][0] - '0', res[i][2] - '0', 1);
