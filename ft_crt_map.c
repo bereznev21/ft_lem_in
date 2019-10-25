@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 21:48:19 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/25 20:41:03 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:39:52 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/includes/libft.h"
 #include <stdio.h>
 
-void	ft_crt_rooms_table(t_start *start, char **res, int i)
+void	ft_crt_names_rooms_table(t_start *start, char **res, int i)
 {
 	int	k;
 
@@ -52,7 +52,7 @@ void	ft_wrt_map_leaks(t_start *start, t_matrix *leaks)
 	res = ft_strsplit(start->leaks, ' ');
 	while (res[i])
 	{
-		t_matrix_set(leaks, res[i][0] - '0', res[i][2] - '0');
+		t_matrix_set(leaks, res[i][0] - '0', res[i][2] - '0', 1);
 		i++;
 	}
 	start->num_leaks = i;

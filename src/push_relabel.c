@@ -89,7 +89,7 @@ t_matrix push_relabel(t_matrix *cap, int src, int dst)
 
 	s.cap = cap;
 	s.flow = &flow;
-	t_matrix_init(&flow, cap->n);
+	t_matrix_init(&flow, cap->n, cap->n);
 	t_pr_init(&s, cap->n, src, dst);
 
 	p = 0;

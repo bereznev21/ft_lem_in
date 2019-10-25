@@ -3,9 +3,10 @@
 
 typedef	struct
 {
-	int			n;
-	int			**data;
-} 				t_matrix;
+	int m;
+	int n;
+	int **data;
+} t_matrix;
 
 typedef struct
 {
@@ -36,12 +37,18 @@ typedef struct		s_map
 	int				**map_road;
 }					t_map;
 
-void		t_matrix_init(t_matrix *m, int n);
+void		t_matrix_init(t_matrix *mat, int m, int n);
+void		t_matrix_init_identity(t_matrix *mat, int n);
+t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b);
+void		t_matrix_t(t_matrix *a);
+t_matrix	expand_junctions(t_matrix *aj);
 t_matrix	push_relabel(t_matrix *cap, int src, int dst);
-void		t_matrix_set(t_matrix *m, int i, int j);
+void		t_matrix_set(t_matrix *m, int i, int j, int v);
 int			ft_read_map(t_start *start, int fd);
 void		ft_crt_map_room(t_start *start);
 void		ft_wrt_map_leaks(t_start *start, t_matrix *leaks);
 void		t_matrix_print(t_matrix *m);
-
+void 		ft_crt_names_rooms_table(t_start *start, char **res, int i);
+void		t_matrix_print_w_headers(t_matrix *m);
+void		t_matrix_del(t_matrix *m);
 #endif
