@@ -34,7 +34,7 @@ void	ft_wrt_map_leaks(t_start *start, t_matrix *leaks)
 	res = ft_strsplit(start->leaks, ' ');
 	while (res[i])
 	{
-		t_matrix_set(leaks, res[i][0] - '0', res[i][2] - '0');
+		t_matrix_set(leaks, res[i][0] - '0', res[i][2] - '0', 1);
 		i++;
 	}
 	start->num_leaks = i;

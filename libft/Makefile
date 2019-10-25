@@ -63,6 +63,7 @@ SRCS = ft_memset.c \
 	ft_lstmap.c \
 	ft_get_next_line.c \
 	ft_strjoin_free.c \
+	ft_realloc.c \
 
 OBJS = ft_*.o
 

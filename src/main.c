@@ -188,7 +188,7 @@ void	ft_wrt_ans_map(t_matrix *map, t_matrix *ans, int start)
 int		main(void)
 {
 	t_start start;
-	t_matrix cap;
+	t_matrix aj;
 	t_matrix ans;
 	t_matrix roads;
 	int fd;
@@ -198,17 +198,24 @@ int		main(void)
 	ft_read_map(&start, fd);
 	close(fd);
 	ft_crt_map_room(&start);
-	t_matrix_init(&cap, start.num_rooms); // create empty matrix
-	ft_wrt_map_leaks(&start, &cap); //fill matrix;
+	t_matrix_init(&aj, start.num_rooms, start.num_rooms); // create empty matrix
+	ft_wrt_map_leaks(&start, &aj); //fill matrix;
 	printf("Adjacency matrix:\n");
-	t_matrix_print_w_headers(&cap);
+	t_matrix_print_w_headers(&aj);
+	expand_junctions(&aj);
+	printf("duplicate 2nd node:\n");
+	t_matrix_print_w_headers(&aj);
+	t_matrix_del(&aj);
+	return 0;
 
-	ans = push_relabel(&cap, start.start, start.end);
+
+
+	ans = push_relabel(&aj, start.start, start.end);
 	//ft_brake_ans_map(&ans);
 	printf("Max flow solution:\n");
 	t_matrix_print(&ans);
 
-	t_matrix_init(&roads, start.num_rooms);
+	t_matrix_init(&roads, start.num_rooms, start.num_rooms);
 	ft_wrt_ans_map(&roads, &ans, start.start);
 	printf("Roads:\n");
 	ft_print_int_map(&roads);

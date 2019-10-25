@@ -18,6 +18,7 @@ add_executable(push_relabel
         src/main.c
         src/matrix.c
         src/push_relabel.c
+		src/expand_junctions.c
         ft_read_map.c
         ft_crt_map.c
 
@@ -83,6 +84,7 @@ add_executable(push_relabel
         libft/ft_lstmap.c
         libft/ft_get_next_line.c
         libft/ft_strjoin_free.c
+		libft/ft_realloc.c
         )
 
 #        libft.ksticks/src/string/ft_atoi.c

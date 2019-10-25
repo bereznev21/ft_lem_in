@@ -23,3 +23,12 @@ char	*ft_strdup(const char *str)
 	n_str = ft_strcpy(n_str, str);
 	return (n_str);
 }
+
+void	*ft_memdup(void *s1, size_t n)
+{
+	char	*ret;
+
+	if (!(ret = malloc(sizeof(char) * n)))
+		return (0);
+	return (ft_memcpy(ret, s1, n));
+}

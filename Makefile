@@ -5,6 +5,7 @@ SRC = \
 		src/main.c \
         src/matrix.c \
         src/push_relabel.c \
+        src/expand_junctions.c \
         ft_read_map.c \
         ft_crt_map.c
 
