@@ -1,6 +1,5 @@
 .DS_Store
 .idea
-.vscode
 *.dSYM
 cmake-build-debug
 *.o
