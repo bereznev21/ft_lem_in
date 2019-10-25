@@ -1,16 +1,19 @@
 NAME = lem-in
 LIBFT = $(addprefix libft/, libft.a)
 
-SRC = ft_lem_in.c \
-	ft_read_map.c \
-	ft_crt_map.c \
+SRC = \
+		src/main.c \
+        src/matrix.c \
+        src/push_relabel.c \
+        ft_read_map.c \
+        ft_crt_map.c
 
 FLS = -g -Wall -Wextra -Werror
 
 OBJ = $(SRC:.c=.o)
 
 %.o:%.c
-		gcc $(FLS) -c $< -o $@
+		gcc -I. $(FLS) -c $< -o $@
 
 all: $(LIBFT) $(NAME)
 
@@ -18,7 +21,7 @@ $(LIBFT):
 	make -C libft
 
 $(NAME): $(OBJ)
-	gcc $(FLS) $(OBJ) -o $(NAME) -L libft -lft
+	gcc $(FLS) $(OBJ) -o $(NAME) -I. -L libft -lft
 
 clean:
 	make clean -C libft

@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 21:06:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/23 16:04:38 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/25 15:37:51 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 //#include "libft.h"
 # include "libft/includes/libft.h"
 
-
 int		ft_read_map1(t_start *start, int fd, char *line)
 {
 	if (ft_strstr(line, "##end"))
 	{
 		free(line);
 		ft_get_next_line(fd, &line);
-		start->end = ft_atoi(line);
+		//ft_srch_nbr(start, line);
 		free(line);
 		while (1)
 		{
@@ -67,6 +66,10 @@ int		ft_read_map(t_start *start, int fd)
 				free(line);
 			}
 		}
+	}
+	else
+	{
+		return (0);
 	}
 	return (ft_read_map1(start, fd, line));
 }
