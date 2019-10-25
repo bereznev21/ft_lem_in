@@ -194,14 +194,14 @@ int		main(void)
 	int fd;
 
 	ft_init_struct(&start);
-	fd = open("maps/map01", O_RDONLY);
+	fd = open("maps/map02", O_RDONLY);
 	ft_read_map(&start, fd);
 	close(fd);
 	ft_crt_map_room(&start);
 	t_matrix_init(&cap, start.num_rooms); // create empty matrix
 	ft_wrt_map_leaks(&start, &cap); //fill matrix;
 	printf("Adjacency matrix:\n");
-	t_matrix_print(&cap);
+	t_matrix_print_w_headers(&cap);
 
 	ans = push_relabel(&cap, start.start, start.end);
 	//ft_brake_ans_map(&ans);

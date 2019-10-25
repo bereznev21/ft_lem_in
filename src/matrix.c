@@ -27,9 +27,34 @@ void t_matrix_print(t_matrix *m)
 	{
 		j = -1;
 		while (++j < m->n)
-		{
-			printf("%d\t", m->data[i][j]);
-		}
+			printf("% 3d ", m->data[i][j]);
+		printf("\n");
+	}
+	printf("\n");
+}
+void t_matrix_print_w_headers(t_matrix *m)
+
+{
+	int i;
+	int j;
+
+	printf("   |");
+	j = -1;
+	while (++j < m->n)
+		printf("% 3d ", j);
+	printf("\n");
+	printf("---+");
+	j = -1;
+	while (++j < m->n)
+		printf("----");
+	printf("\n");
+	i = -1;
+	while (++i < m->n)
+	{
+		printf("% 3d|", i);
+		j = -1;
+		while (++j < m->n)
+			printf("% 3d ", m->data[i][j]);
 		printf("\n");
 	}
 	printf("\n");

@@ -42,5 +42,6 @@ int		ft_read_map(t_start *start, int fd);
 void	ft_crt_map_room(t_start *start);
 void	ft_wrt_map_leaks(t_start *start, t_matrix *leaks);
 void	t_matrix_print(t_matrix *m);
+void	t_matrix_print_w_headers(t_matrix *m);
 
 #endif
