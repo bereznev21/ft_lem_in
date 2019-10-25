@@ -115,19 +115,17 @@ t_matrix expand_junctions(t_matrix *aj)
 	int i;
 	int cnt;
 
-/*	t_matrix_init(&r, aj->m, aj->n);
-	//after the algorithm aj_initial = r * aj; r reverses the expansion
+
+	t_matrix_init_identity(&r, aj->n);
+	// after the splitting rT * aj * r reverses the expansion
 	for (i = 0; i < aj->n; ++i)
 	{
 		cnt = node_conn_cnt(aj, i);
 		if (cnt >= 4)
 		{
-			split_node(aj, i, cnt);
+			split_node(aj, i, cnt, &r);
 			i += cnt - 1;
 		}
 	}
-	t_matrix_duplicate_node(aj, 2, 3);*/
-	t_matrix_init_identity(&r, aj->n);
-	split_node(aj, 2, 4, &r);
 	return (r);
 }
