@@ -34,7 +34,7 @@ void t_matrix_init_identity(t_matrix *mat, int n)
 	}
 }
 
-void t_matrix_print(t_matrix *m)
+void t_matrix_print_no_headers(t_matrix *m)
 {
 	int i;
 	int j;
@@ -50,28 +50,28 @@ void t_matrix_print(t_matrix *m)
 	printf("\n");
 }
 
-void t_matrix_print_w_headers(t_matrix *m)
+void t_matrix_print(t_matrix *m)
 {
 	int i;
 	int j;
 
-	printf("   |");
+	printf("  |");
 	j = -1;
 	while (++j < m->n)
-		printf("% 3d ", j);
+		printf("% 2d ", j);
 	printf("\n");
-	printf("---+");
+	printf("--+");
 	j = -1;
 	while (++j < m->n)
-		printf("----");
+		printf("---");
 	printf("\n");
 	i = -1;
 	while (++i < m->m)
 	{
-		printf("% 3d|", i);
+		printf("% 2d|", i);
 		j = -1;
 		while (++j < m->n)
-			printf("% 3d ", m->data[i][j]);
+			m->data[i][j] ? printf("% 2d ", m->data[i][j]) : printf(" . ");
 		printf("\n");
 	}
 	printf("\n");
@@ -155,7 +155,7 @@ void lem_in_test()
 	t_matrix_init(&map, 6, 6);
 
 	t_matrix_fill(&map);
-	t_matrix_print(&map);
+	t_matrix_print_no_headers(&map);
 	flow = push_relabel(&map, 0, 5);
-	t_matrix_print(&flow);
+	t_matrix_print_no_headers(&flow);
 }

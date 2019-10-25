@@ -219,17 +219,18 @@ int main(void)
 	ft_crt_map_room(&start);
 	t_matrix_init(&aj, start.num_rooms, start.num_rooms); // create empty matrix
 	ft_wrt_map_leaks(&start, &aj); //fill matrix;
+	printf("start, end: %d->%d\n", start.start, start.end);
 	printf("Adjacency matrix:\n");
-	t_matrix_print_w_headers(&aj);
+	t_matrix_print(&aj);
 	printf("Expanded graph:\n");
 	collapse_m = expand_junctions(&aj);
-	t_matrix_print_w_headers(&aj);
+	t_matrix_print(&aj);
 	ans = push_relabel(&aj, start.start, start.end);
 	printf("Max flow solution:\n");
-	t_matrix_print_w_headers(&ans);
+	t_matrix_print(&ans);
 	collapse_roads(&ans, &collapse_m);
 	printf("collapsed solution:\n");
-	t_matrix_print_w_headers(&ans);
+	t_matrix_print(&ans);
 	//ft_brake_ans_map(&ans);
 
 	return (0); // next is segfault;

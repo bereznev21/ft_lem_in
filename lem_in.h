@@ -47,8 +47,8 @@ void		t_matrix_set(t_matrix *m, int i, int j, int v);
 int			ft_read_map(t_start *start, int fd);
 void		ft_crt_map_room(t_start *start);
 void		ft_wrt_map_leaks(t_start *start, t_matrix *leaks);
-void		t_matrix_print(t_matrix *m);
+void		t_matrix_print_no_headers(t_matrix *m);
 void 		ft_crt_names_rooms_table(t_start *start, char **res, int i);
-void		t_matrix_print_w_headers(t_matrix *m);
+void		t_matrix_print(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
 #endif
