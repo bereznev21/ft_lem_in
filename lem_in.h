@@ -38,6 +38,8 @@ typedef struct		s_map
 
 void		t_matrix_init(t_matrix *mat, int m, int n);
 void		t_matrix_init_identity(t_matrix *mat, int n);
+t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b);
+void		t_matrix_t(t_matrix *a);
 t_matrix	expand_junctions(t_matrix *aj);
 t_matrix	push_relabel(t_matrix *cap, int src, int dst);
 void		t_matrix_set(t_matrix *m, int i, int j, int v);

@@ -94,6 +94,49 @@ void t_matrix_fill(t_matrix *m)
 	t_matrix_set(m, 4, 5, 1);
 }
 
+void t_matrix_t(t_matrix *a)
+{
+	int i;
+	int j;
+	t_matrix b;
+
+	t_matrix_init(&b, a->n, a->m);
+	i = -1;
+	while (++i < a->m)
+	{
+		j = -1;
+		while (++j < a->n)
+			b.data[j][i] = a->data[i][j];
+	}
+	t_matrix_del(a);
+	ft_memcpy(a, &b, sizeof(t_matrix));
+}
+
+t_matrix t_matrix_mul(t_matrix *a, t_matrix *b)
+{
+	t_matrix r;
+	int i;
+	int j;
+	int k;
+
+	t_matrix_init(&r, a->m, b->n);
+	i = -1;
+	while (++i < a->m)
+	{
+		j = -1;
+		while (++j < b->n)
+		{
+			r.data[i][j] = 0;
+			k = -1;
+			while (++k < a->n)
+			{
+				r.data[i][j] += a->data[i][k] * b->data[k][j];
+			}
+		}
+	}
+	return (r);
+}
+
 void t_matrix_del(t_matrix *m)
 {
 	int i;

@@ -29,6 +29,19 @@ void t_matrix_duplicate_col(t_matrix *aj, int k)
 	aj->n++;
 }
 
+void t_matrix_collapse_col(t_matrix *aj, int k)
+{
+	int i;
+
+	aj->n--;
+	i = -1;
+	while (++i < aj->m)
+	{
+		ft_memmove(&aj->data[i][k], &aj->data[i][k + 1],
+				   sizeof(int) * (aj->n - k));
+	}
+}
+
 void t_matrix_duplicate_node(t_matrix *aj, int k)
 {
 	t_matrix_duplicate_row(aj, k);
@@ -59,7 +72,7 @@ void wipe_cross(t_matrix *aj, int k)
 	}
 }
 
-void split_node(t_matrix *aj, int k, int cnt)
+void split_node(t_matrix *aj, int k, int cnt, t_matrix *r)
 {
 	int i;
 	int j;
@@ -71,6 +84,7 @@ void split_node(t_matrix *aj, int k, int cnt)
 		while (!aj->data[i][j])
 			j++;
 		t_matrix_duplicate_node(aj, i);
+		t_matrix_duplicate_row(r, i);
 		if (j > i)
 			j++;
 		wipe_cross(aj, i);
@@ -113,6 +127,7 @@ t_matrix expand_junctions(t_matrix *aj)
 		}
 	}
 	t_matrix_duplicate_node(aj, 2, 3);*/
-	split_node(aj, 2, 4);
+	t_matrix_init_identity(&r, aj->n);
+	split_node(aj, 2, 4, &r);
 	return (r);
 }
