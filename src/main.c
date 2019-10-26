@@ -243,24 +243,24 @@ void lem_in_v2(int fd)
 {
 	int start;
 	int end;
-	int **paths;
-	int **selected_paths;
+//	int **paths;
+//	int **selected_paths;
 	t_matrix aj;
 
 	aj = lem_in_read(fd, &start, &end);
 	t_matrix_print(&aj);
-	paths = find_paths(&aj, start.start, start.end);
-	selected_paths = select_paths(paths);
-	lem_in_output(selected_paths);
+//	paths = find_paths(&aj, start.start, start.end);
+//	selected_paths = select_paths(paths);
+//	lem_in_output(selected_paths);
 }
 
 int main(void)
 {
 	int fd;
 
-	fd = open("maps/map02", O_RDONLY);
-	lem_in_v1(fd);
-//	lem_in_v2(fd);
+	fd = open("maps/map", O_RDONLY);
+//	lem_in_v1(fd);
+	lem_in_v2(fd);
 	close(fd);
 	return (0);
 }

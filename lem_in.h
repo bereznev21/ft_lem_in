@@ -1,41 +1,48 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-typedef	struct
+typedef struct
 {
 	int m;
 	int n;
 	int **data;
 } t_matrix;
 
-typedef struct
+typedef struct s_room
 {
-	int				*excess;
-	int				*height;
-	int				*list;
-	int				*seen;
-	t_matrix		*cap;
-	t_matrix		*flow;
-}					t_pr_state;
+	char	*name;
+	int		x;
+	int		y;
+} 				t_room;
 
-typedef struct		s_start
+typedef struct	s_pr_state
 {
-	int				num_rooms;
-	int				num_leaks;
-	int				start;
-	int				end;
-	char			*rooms;
-	char			*leaks;
-	char			**names_rooms_table;
-}					t_start;
+	int			*excess;
+	int			*height;
+	int			*list;
+	int			*seen;
+	t_matrix	*cap;
+	t_matrix	*flow;
+}				t_pr_state;
 
-typedef struct		s_map
+typedef struct	s_start
 {
-	int				start;
-	int				end;
-	t_matrix		matrix;
-	int				**map_road;
-}					t_map;
+	int		num_rooms;
+	int		num_leaks;
+	int		start;
+	int		end;
+	char	*rooms;
+	char	*leaks;
+	char	**names_rooms_table;
+}				t_start;
+
+typedef struct s_map
+{
+	int			start;
+	int			end;
+	t_matrix	matrix;
+	int			**map_road;
+}				t_map;
 
 void		t_matrix_init(t_matrix *mat, int m, int n);
 void		t_matrix_init_identity(t_matrix *mat, int n);
