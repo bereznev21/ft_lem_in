@@ -72,11 +72,10 @@ t_matrix read_roads(int fd, t_room *rooms, int cnt)
 	return (aj);
 }
 
-t_matrix lem_in_read(int fd, int *start, int *end)
+t_matrix lem_in_read(int fd, int *start, int *end, t_room **rooms)
 {
 	char *line;
 	int cnt;
-	t_room *rooms;
 
 	(void)fd;
 	(void)start;
@@ -86,6 +85,6 @@ t_matrix lem_in_read(int fd, int *start, int *end)
 	cnt = ft_atoi(line);
 	free(line);
 	assert(cnt > 1, "expected more then 1 rooms");
-	rooms = read_rooms(fd, cnt, start, end);
-	return read_roads(fd, rooms, cnt);
+	*rooms = read_rooms(fd, cnt, start, end);
+	return read_roads(fd, *rooms, cnt);
 }

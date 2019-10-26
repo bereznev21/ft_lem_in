@@ -243,11 +243,12 @@ void lem_in_v2(int fd)
 {
 	int start;
 	int end;
+	t_room *rooms;
 //	int **paths;
 //	int **selected_paths;
 	t_matrix aj;
 
-	aj = lem_in_read(fd, &start, &end);
+	aj = lem_in_read(fd, &start, &end, &rooms);
 	t_matrix_print(&aj);
 //	paths = find_paths(&aj, start.start, start.end);
 //	selected_paths = select_paths(paths);
