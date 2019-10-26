@@ -51,4 +51,10 @@ void		t_matrix_print_no_headers(t_matrix *m);
 void 		ft_crt_names_rooms_table(t_start *start, char **res, int i);
 void		t_matrix_print(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
+
+void		lem_in_read(t_start *s, t_matrix* aj);
+int			**find_paths(t_matrix* aj, int start, int end);
+int			**select_paths(int **paths);
+void		lem_in_output(int **paths);
+
 #endif
