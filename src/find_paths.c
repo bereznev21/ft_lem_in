@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/26 18:32:11 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/26 18:42:14 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,15 @@ int		ft_get_node(int *nodes, int num)
 	return (node);
 }
 
-void	find_paths(t_matrix *mat, int start, int end)
+int		**find_paths(t_matrix *mat, int start, int end)
 {
 //	int		i;
 	int		node;
 	int		*nodes;
 	int		num;
+	int		**paths;
 
+	paths = NULL;
 	nodes = (int*)malloc(sizeof(int) * mat->n);
 	ft_bminus(nodes, mat->n);
 	ft_put_endl(nodes, start);
@@ -86,4 +88,5 @@ void	find_paths(t_matrix *mat, int start, int end)
 		printf("%d\n", node);
 	}
 	printf("%d %d %d\n", mat->n, start, end);
+	return (paths);
 }

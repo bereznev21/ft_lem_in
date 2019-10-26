@@ -13,10 +13,12 @@ include_directories(headers)
 #---------------------------------------------------
 
 #add_library(libft.a
-include_directories(libft.ksticks)
+include_directories(libft/includes)
 add_executable(push_relabel
         src/main.c
         src/matrix.c
+        src/lem_in_read.c
+        src/select_paths.c
         src/push_relabel.c
 		src/expand_junctions.c
         ft_read_map.c

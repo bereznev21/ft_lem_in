@@ -30,7 +30,7 @@ static size_t	ft_quantity(const char *s, char c)
 	return (count);
 }
 
-static size_t	ft_len(const char *s, char c)
+static size_t	ft_len2(const char *s, char c)
 {
 	size_t	len;
 
@@ -65,7 +65,7 @@ char			**ft_strsplit(char const *s, char c)
 			s++;
 		if (*s && *s != c)
 		{
-			if (!(arr[i] = (char *)malloc(sizeof(char) * (ft_len(s, c) + 1))))
+			if (!(arr[i] = (char *)malloc(sizeof(char) * (ft_len2(s, c) + 1))))
 				return (ft_arrdel(arr, i));
 			j = 0;
 			while (*s && *s != c)

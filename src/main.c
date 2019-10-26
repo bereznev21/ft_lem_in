@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/26 17:13:36 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/26 18:44:52 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,23 +200,20 @@ void collapse_roads(t_matrix *aj, t_matrix *collapse)
 	t_matrix_del(aj);
 	*aj = r;
 	i = -1;
-	while(++i < aj->n)
+	while (++i < aj->n)
 		aj->data[i][i] = 0;
 }
 
-int lem_in_v1(void)
+void lem_in_v1(int fd)
 {
 	t_start start;
 	t_matrix aj;
 	t_matrix ans;
 	t_matrix roads;
 	t_matrix collapse_m;
-	int fd;
 
 	ft_init_struct(&start);
-	fd = open("maps/map02", O_RDONLY);
 	ft_read_map(&start, fd);
-	close(fd);
 	ft_crt_map_room(&start);
 	t_matrix_init(&aj, start.num_rooms, start.num_rooms); // create empty matrix
 	ft_wrt_map_leaks(&start, &aj); //fill matrix;
@@ -234,14 +231,15 @@ int lem_in_v1(void)
 	t_matrix_print(&ans);
 	//ft_brake_ans_map(&ans);
 
-	return (0); // next is segfault;
+	return ; // next is segfault;
 	t_matrix_init(&roads, start.num_rooms, start.num_rooms);
 	ft_wrt_ans_map(&roads, &ans, start.start);
 	printf("Roads:\n");
 	ft_print_int_map(&roads);
-	return (0);
+	return;
 }
 
+/*
 int main(void)
 {
 	t_start start;
@@ -265,7 +263,7 @@ int main(void)
 	find_paths(&aj, start.start, start.end);
 	//collapse_m = expand_junctions(&aj);
 	//t_matrix_print(&aj);
-/*	
+
 	ans = push_relabel(&aj, start.start, start.end);
 	printf("Max flow solution:\n");
 	t_matrix_print(&ans);
@@ -279,22 +277,39 @@ int main(void)
 	ft_wrt_ans_map(&roads, &ans, start.start);
 	printf("Roads:\n");
 	ft_print_int_map(&roads);
-*/
+
 	return (0);
 }
+*/
 /*
 int main(void)
 {
 //	return lem_in_v1();
+*/
+void lem_in_v2(int fd)
+{
+	int start;
+	int end;
+	t_room *rooms;
 	int **paths;
 	int **selected_paths;
 	t_matrix aj;
 
-	t_start start;
-	lem_in_read(&start, &aj);
-	paths = find_paths(&aj, start.start, start.end);
+	paths = NULL;
+	aj = lem_in_read(fd, &start, &end, &rooms);
+	t_matrix_print(&aj);
+	paths = find_paths(&aj, start, end);
 	selected_paths = select_paths(paths);
-	lem_in_output(selected_paths);
+//	lem_in_output(selected_paths);
+}
+
+int main(void)
+{
+	int fd;
+
+	fd = open("maps/map", O_RDONLY);
+//	lem_in_v1(fd);
+	lem_in_v2(fd);
+	close(fd);
 	return (0);
 }
-*/
