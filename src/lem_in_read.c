@@ -81,7 +81,12 @@ t_matrix lem_in_read(int fd, int *start, int *end, t_room **rooms)
 	(void)start;
 	(void)end;
 
-	assert(ft_get_next_line(fd, &line) > 0, "bad data");
+	while(1)
+	{
+		assert(ft_get_next_line(fd, &line) > 0, "bad data");
+		if (line[0] != '#')
+			break ;
+	}
 	cnt = ft_atoi(line);
 	free(line);
 	assert(cnt > 1, "expected more then 1 rooms");
