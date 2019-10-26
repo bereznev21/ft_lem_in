@@ -204,7 +204,7 @@ void collapse_roads(t_matrix *aj, t_matrix *collapse)
 		aj->data[i][i] = 0;
 }
 
-int main(void)
+int lem_in_v1(void)
 {
 	t_start start;
 	t_matrix aj;
@@ -239,5 +239,19 @@ int main(void)
 	ft_wrt_ans_map(&roads, &ans, start.start);
 	printf("Roads:\n");
 	ft_print_int_map(&roads);
+	return (0);
+}
+
+int main(void){
+//	return lem_in_v1();
+	int **paths;
+	int **selected_paths;
+	t_matrix aj;
+
+	t_start start;
+	lem_in_read(&start, &aj);
+	paths = find_paths(&aj, start.start, start.end);
+	selected_paths = select_paths(paths);
+	lem_in_output(selected_paths);
 	return (0);
 }
