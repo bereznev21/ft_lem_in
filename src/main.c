@@ -250,8 +250,8 @@ void lem_in_v2(int fd)
 
 	aj = lem_in_read(fd, &start, &end, &rooms);
 	t_matrix_print(&aj);
-	paths = find_paths(&aj, start, end);
-	selected_paths = select_paths(paths);
+	paths = find_paths_mock(&aj, start, end);
+	selected_paths = select_paths(paths, aj.n);
 //	lem_in_output(selected_paths);
 }
 

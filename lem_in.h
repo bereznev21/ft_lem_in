@@ -61,7 +61,8 @@ void		t_matrix_del(t_matrix *m);
 
 t_matrix	lem_in_read(int fd, int *start, int *end, t_room **rooms);
 int			**find_paths(t_matrix* aj, int start, int end);
-int			**select_paths(int **paths);
+int			**select_paths(int **paths, int size);
+int			**find_paths_mock(t_matrix *aj, int start, int end);
 void		lem_in_output(int **paths);
 
 #endif
