@@ -9,6 +9,7 @@ SRC = \
         src/push_relabel.c \
         src/expand_junctions.c \
         src/lem_in_read.c \
+        src/select_paths.c \
         ft_read_map.c \
         ft_crt_map.c
 

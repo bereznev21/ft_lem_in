@@ -36,7 +36,7 @@ t_room *read_rooms(int fd, int cnt, int *start, int *end)
 		assert(ft_get_next_line(fd, &line) > 0, "failed read room");
 		if (!ft_strcmp(line, "##start"))
 			*start = i;
-		else if (!ft_strcmp(line, "##end"))
+		if (!ft_strcmp(line, "##end"))
 			*end = i;
 		if (line[0] == '#')
 			continue;
