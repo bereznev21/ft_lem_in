@@ -1,14 +1,14 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-typedef struct
+typedef struct	s_matrix
 {
 	int m;
 	int n;
 	int **data;
-} t_matrix;
+}				t_matrix;
 
-typedef struct s_room
+typedef struct	s_room
 {
 	char	*name;
 	int		x;
