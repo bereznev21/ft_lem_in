@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/26 18:42:14 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/27 17:49:55 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include "libft/includes/libft.h"
 
+/*
 void	ft_bminus(void *s, size_t n)
 {
 	unsigned char	*buffer;
@@ -27,66 +28,107 @@ void	ft_bminus(void *s, size_t n)
 		i++;
 	}
 }
+*/
 
-void	ft_put_endl(int *nodes, int i)
+void	ft_bminus(int **s, size_t n)
+{
+	size_t	i;
+
+	i = -1;
+	while (++i < n)
+		(*s)[i] = -1;
+}
+
+void	ft_push(int **nodes, int i)
 {
 	int	n;
 
 	n = 0;
-	while (nodes[n] > -1)
+	while ((*nodes)[n] > -1)
 		n++;
-	nodes[n] = i;
+	(*nodes)[n] = i;
+	//ft_putnbr((*nodes)[n]);
+	//ft_putchar('\n');
 }
 
 int		ft_check_node(int *nodes, int num)
 {
 	int	i;
 
-	i = 0;
-	while (i < num)
-		if (nodes[i] != 0)
-			return (0);
-	return (1);
+	i = -1;
+	while (++i < num)
+	{
+		//ft_putnbr(nodes[i]);
+		//ft_putchar('\n');
+		if (nodes[i] != -1)
+			return (1);
+	}
+	return (0);
 }
 
-int		ft_get_node(int *nodes, int num)
+int		ft_get_node(int **stack, int num)
 {
 	int		node;
 	int		i;
 	int		*new_nodes;
 
-	i = -1;
-	node = nodes[0];
+	i = 0;
+	node = *stack[0];
 	new_nodes = (int*)malloc(sizeof(int) * num);
-	ft_bminus(new_nodes, num);
-	while (++i < num)
-	{
-		new_nodes[i] = nodes[i + 1];
-		//printf("%d\n", new_nodes[i]);
-	}
+	ft_bminus(&new_nodes, num);
+	ft_memmove(new_nodes, *stack + 1, num);
+	free(*stack);
+	*stack = new_nodes;
+	//ft_putnbr(**stack);
+	//ft_putchar('\n');
 	return (node);
 }
 
 int		**find_paths(t_matrix *mat, int start, int end)
 {
-//	int		i;
 	int		node;
-	int		*nodes;
 	int		num;
+	int		*nodes;
+	int		*stack;
 	int		**paths;
+	int		j;
 
 	paths = NULL;
+	(void)end;
 	nodes = (int*)malloc(sizeof(int) * mat->n);
-	ft_bminus(nodes, mat->n);
-	ft_put_endl(nodes, start);
-	//printf("%d\n", nodes[0]);
+	stack = (int*)malloc(sizeof(int) * mat->n);
+	ft_bminus(&nodes, mat->n);
+	ft_bminus(&stack, mat->n);
+	ft_push(&stack, start);
+	//printf("%d\n",  [0]);
 	//printf("%d\n", start);
-	//while (ft_check_node(nodes, mat->n) == 1)
+	num = mat->n;
+	while (ft_check_node(stack, num) == 1)
 	{
 		num = mat->n;
-		node = ft_get_node(nodes, --num);
-		printf("%d\n", node);
+		node = ft_get_node(&stack, --num);
+		if (node < 0)
+			continue;
+		if (nodes[node] == 2)
+			continue;
+		nodes[node] = 2;
+		j = num;
+		while (j >= 0)
+		{
+			if (mat->data[node][j] == 1 && nodes[j] != 2)
+			{
+				ft_push(&stack, j);
+				nodes[j] = 1;
+			}
+			j--;
+		}
+		ft_putnbr(node);
+		if (node == end)
+			continue;
+		ft_putstr("->");
 	}
-	printf("%d %d %d\n", mat->n, start, end);
+	printf("\n%d %d %d\n", mat->n, start, end);
+	free(stack);
+	free(nodes);
 	return (paths);
 }

@@ -90,3 +90,35 @@ int **select_paths(int **paths, int size)
 		printf("%lu\n", bpaths[i]);
 	return paths;
 }
+/*
+unsigned long *paths_to_bit_masks(int **paths_arrays, int size)
+{
+	int i;
+	int j;
+	unsigned long *bpaths;
+
+	i = -1;
+	bpaths = ft_memalloc(sizeof(unsigned long) * size);
+	while (paths_arrays[++i])
+	{
+		j = -1;
+		while (paths_arrays[i][++j] >= 0)
+			bpaths[i] |= 1 << paths_arrays[i][j];
+	}
+	return (bpaths);
+
+
+int **select_paths(int **paths, int size)
+{
+	int i;
+	unsigned long *bpaths;
+
+	size = 4;
+	print_paths(paths);
+	bpaths = paths_to_bit_masks(paths, size);
+	i = -1;
+	while (++i < size)
+		printf("%lu\n", bpaths[i]);
+	return paths;
+}
+*/

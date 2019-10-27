@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/26 18:44:52 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/27 17:58:46 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,18 +288,19 @@ int main(void)
 */
 void lem_in_v2(int fd)
 {
-	int start;
-	int end;
-	t_room *rooms;
-	int **paths;
-	int **selected_paths;
-	t_matrix aj;
+	int			start;
+	int			end;
+	t_room		*rooms;
+	int			**paths;
+//	int			**selected_paths;
+	t_matrix	aj;
 
 	paths = NULL;
 	aj = lem_in_read(fd, &start, &end, &rooms);
 	t_matrix_print(&aj);
 	paths = find_paths(&aj, start, end);
-	selected_paths = select_paths(paths);
+//	paths = find_paths_mock(&aj, start, end);
+//	selected_paths = select_paths(paths, aj.n);
 //	lem_in_output(selected_paths);
 }
 
