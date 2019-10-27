@@ -302,6 +302,7 @@ void lem_in_v2(int fd)
 	ft_print_matrix(paths, aj.n);
 	paths = find_paths_mock(&aj, start, end);
 	selected_paths = select_paths(paths, aj.n);
+	(void)selected_paths;
 	//lem_in_output(selected_paths);
 }
 
