@@ -63,5 +63,7 @@ int			**find_paths(t_matrix* aj, int start, int end);
 int			**select_paths(int **paths, int size);
 int			**find_paths_mock(t_matrix *aj, int start, int end);
 void		lem_in_output(int **paths);
+void 		ft_print_matrix(int **map, int width);
+
 
 #endif

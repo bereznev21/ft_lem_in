@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/27 17:49:55 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/27 19:06:49 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,21 @@ int		ft_get_node(int **stack, int num)
 	return (node);
 }
 
+int		**ft_crt_map(int **map, int n)
+{
+	int	i;
+
+	i = -1;
+	map = (int**)malloc(sizeof(int *) * n);
+	while (++i < n)
+	{
+		map[i] = malloc(sizeof(int) * n);
+		ft_bzero(map[i], n * sizeof(int));
+	}
+	return(map);
+}
+
+
 int		**find_paths(t_matrix *mat, int start, int end)
 {
 	int		node;
@@ -97,6 +112,7 @@ int		**find_paths(t_matrix *mat, int start, int end)
 	(void)end;
 	nodes = (int*)malloc(sizeof(int) * mat->n);
 	stack = (int*)malloc(sizeof(int) * mat->n);
+	paths = ft_crt_map(paths, mat->n);
 	ft_bminus(&nodes, mat->n);
 	ft_bminus(&stack, mat->n);
 	ft_push(&stack, start);
@@ -107,8 +123,8 @@ int		**find_paths(t_matrix *mat, int start, int end)
 	{
 		num = mat->n;
 		node = ft_get_node(&stack, --num);
-		if (node < 0)
-			continue;
+		//if (node < 0)
+		//	continue;
 		if (nodes[node] == 2)
 			continue;
 		nodes[node] = 2;
@@ -117,17 +133,24 @@ int		**find_paths(t_matrix *mat, int start, int end)
 		{
 			if (mat->data[node][j] == 1 && nodes[j] != 2)
 			{
+				/*ft_putchar('|');
+				ft_putnbr(node);
+				ft_putchar('-');
+				ft_putnbr(j);
+				ft_putchar('|');*/
+				paths[node][j] = 1;
+				paths[j][node] = -1;
 				ft_push(&stack, j);
 				nodes[j] = 1;
 			}
 			j--;
 		}
-		ft_putnbr(node);
+		//ft_putnbr(node);
 		if (node == end)
 			continue;
-		ft_putstr("->");
 	}
-	printf("\n%d %d %d\n", mat->n, start, end);
+	//ft_print_matrix(paths, mat->n);
+	//printf("\n%d %d %d\n", mat->n, start, end);
 	free(stack);
 	free(nodes);
 	return (paths);

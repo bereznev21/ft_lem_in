@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/27 17:58:46 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/27 19:10:41 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ void ft_print_matrix(int **map, int width)
 	{
 		while (j < width)
 		{
-			//printf("%d", map[i][j]);
-			ft_putnbr(map[i][j]);
+			printf("%2d", map[i][j]);
+			//ft_putnbr(map[i][j]);
 			j++;
 		}
-		//printf("\n");
-		ft_putchar('\n');
+		printf("\n");
+		//ft_putchar('\n');
 		j = 0;
 		i++;
 	}
@@ -292,16 +292,17 @@ void lem_in_v2(int fd)
 	int			end;
 	t_room		*rooms;
 	int			**paths;
-//	int			**selected_paths;
+	int			**selected_paths;
 	t_matrix	aj;
 
 	paths = NULL;
 	aj = lem_in_read(fd, &start, &end, &rooms);
 	t_matrix_print(&aj);
 	paths = find_paths(&aj, start, end);
-//	paths = find_paths_mock(&aj, start, end);
-//	selected_paths = select_paths(paths, aj.n);
-//	lem_in_output(selected_paths);
+	ft_print_matrix(paths, aj.n);
+	paths = find_paths_mock(&aj, start, end);
+	selected_paths = select_paths(paths, aj.n);
+	//lem_in_output(selected_paths);
 }
 
 int main(void)
