@@ -66,6 +66,8 @@ t_matrix read_roads(int fd, t_room *rooms, int cnt)
 		split = ft_strsplit(line, '-');
 		assert(ft_len((void *)split) == 2, "invalid road");
 		free(line);
+		assert(get_room_idx(rooms, cnt, split[0]) >= 0, "room not found");
+		assert(get_room_idx(rooms, cnt, split[1]) >= 0, "room not found");
 		t_matrix_set(&aj,
 					 get_room_idx(rooms, cnt, split[0]),
 					 get_room_idx(rooms, cnt, split[1]), 1);
