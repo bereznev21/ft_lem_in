@@ -31,7 +31,7 @@ t_array read_rooms(int fd, int *start, int *end, char **line)
 
 	t_array_init(&rooms, sizeof(t_room));
 	i = 0;
-	while (++i)
+	while (1)
 	{
 		assert(ft_get_next_line(fd, line) > 0, "failed read room");
 		if (!ft_strcmp(*line, "##start"))
@@ -40,6 +40,7 @@ t_array read_rooms(int fd, int *start, int *end, char **line)
 			*end = i;
 		if (*line[0] == '#')
 			continue;
+		++i;
 		split = ft_strsplit(*line, ' ');
 		if (ft_len((void **)split) != 3)
 			break;
