@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/28 16:50:12 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/28 19:29:24 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ void		lem_in_output(int **paths, int num_patchs, int lems)
 	len = 0;
 	//ft_sort_paths(paths);
 	size_paths = ft_srh_num_paths(paths, &len, num_patchs);
-	//ft_ptint_paths(paths, size_paths, num_patchs, lems);
+	//ft_print_paths(paths, size_paths, num_patchs, lems);
 }
