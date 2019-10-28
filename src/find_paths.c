@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/28 15:52:08 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/28 19:19:45 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int		**ft_crt_map(int **map, int n)
 	return(map);
 }
 
-
 int		**find_paths(t_matrix *mat, int start, int end) // BFS
 {
 	int		node;
@@ -121,6 +120,8 @@ int		**find_paths(t_matrix *mat, int start, int end) // BFS
 	{
 		num = mat->n;
 		node = ft_get_node(&stack, --num);
+		if (node == end)
+			continue;
 		if (nodes[node] == 2)
 			continue;
 		nodes[node] = 2;
@@ -132,13 +133,14 @@ int		**find_paths(t_matrix *mat, int start, int end) // BFS
 				paths[node][j] = 1;
 				paths[j][node] = -1;
 				ft_push(&stack, j);
+				num++;
 				nodes[j] = 1;
 			}
 			j--;
 		}
 		//ft_putnbr(node);
-		if (node == end)
-			continue;
+	//	if (node == end)
+	//		continue;
 	}
 	//ft_print_matrix(paths, mat->n);
 	//printf("\n%d %d %d\n", mat->n, start, end);

@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/28 16:52:12 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/28 19:20:51 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,27 @@ void ft_print_matrix(int **map, int width)
 	int i;
 	int j;
 
-	i = 0;
-	j = 0;
-	while (i < width)
+	printf("  |");
+	j = -1;
+	while (++j < width)
+		printf("% 2d ", j);
+	printf("\n");
+	printf("--+");
+	j = -1;
+	while (++j < width)
+		printf("---");
+	printf("\n");
+	i = -1;
+	while (++i < width)
 	{
-		while (j < width)
-		{
-			printf("%2d", map[i][j]);
-			//ft_putnbr(map[i][j]);
-			j++;
-		}
+		printf("% 2d|", i);
+		j = -1;
+		while (++j < width)
+			map[i][j] ? printf("% 2d ", map[i][j]) : printf(" . ");
 		printf("\n");
-		//ft_putchar('\n');
-		j = 0;
-		i++;
 	}
+	printf("\n");
+
 }
 
 void ft_zero_map(int **map, int width)
@@ -296,6 +302,7 @@ void lem_in_v2(int fd)
 	paths = NULL;
 	aj = lem_in_read(fd, &lem_in);
 	t_matrix_print(&aj);
+	printf("Start :%d End :%d\n\n", lem_in.start, lem_in.end);
 	paths = find_paths(&aj, lem_in.start, lem_in.end);
 	ft_print_matrix(paths, aj.n);
 	paths = find_paths_mock(&aj, lem_in.start, lem_in.end);
