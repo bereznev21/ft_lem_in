@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/28 19:29:12 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/28 23:25:58 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void ft_brake_ans_map(t_matrix *ans)
 		i++;
 	}
 }
-
+/*
 void ft_put_end(t_matrix *roads, int i, int j)
 {
 	int n;
@@ -178,7 +178,8 @@ void ft_src_roads(t_matrix *ans, t_matrix *map, int k)
 		j = 0;
 	}
 }
-
+*/
+/*
 void ft_wrt_ans_map(t_matrix *map, t_matrix *ans, int start)
 {
 	int j;
@@ -191,7 +192,7 @@ void ft_wrt_ans_map(t_matrix *map, t_matrix *ans, int start)
 			ft_src_roads(ans, map, j);
 		}
 }
-
+*/
 void collapse_roads(t_matrix *aj, t_matrix *collapse)
 {
 	int i;
@@ -239,7 +240,7 @@ void lem_in_v1(int fd)
 
 	return ; // next is segfault;
 	t_matrix_init(&roads, start.num_rooms, start.num_rooms);
-	ft_wrt_ans_map(&roads, &ans, start.start);
+	//ft_wrt_ans_map(&roads, &ans, start.start);
 	printf("Roads:\n");
 	ft_print_int_map(&roads);
 	return;
@@ -295,20 +296,21 @@ int main(void)
 void lem_in_v2(int fd)
 {
 	t_lem_in	lem_in;
-	int			**paths;
+	t_matrix	paths;
 	int			**selected_paths;
 	t_matrix	aj;
 
-	paths = NULL;
 	aj = lem_in_read(fd, &lem_in);
 	t_matrix_print(&aj);
 	printf("Start :%d End :%d\n\n", lem_in.start, lem_in.end);
-	paths = find_paths(&aj, lem_in.start, lem_in.end);
-	ft_print_matrix(paths, aj.n);
-	paths = find_paths_mock(&aj, lem_in.start, lem_in.end);
-	selected_paths = select_paths(paths, aj.n);
+
+	(void)paths;
+//	paths = find_paths(&aj, lem_in.start, lem_in.end);
+
+//	paths = find_paths_mock(&aj, lem_in.start, lem_in.end);
+//	selected_paths = select_paths(paths, aj.n);
 	(void)selected_paths;
-	lem_in_output(selected_paths, 2, 54);
+//	lem_in_output(selected_paths, 2, 54);
 }
 
 int main(void)

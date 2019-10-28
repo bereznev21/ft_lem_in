@@ -77,7 +77,7 @@ void 		ft_crt_names_rooms_table(t_start *start, char **res, int i);
 void		t_matrix_print(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in);
-int			**find_paths(t_matrix* aj, int start, int end);
+t_matrix	find_paths(t_matrix* aj, int start, int end);
 int			**select_paths(int **paths, int size);
 int			**find_paths_mock(t_matrix *aj, int start, int end);
 void		lem_in_output(int **paths, int num_paths, int lems);
@@ -86,5 +86,10 @@ void 		ft_print_matrix(int **map, int width);
 void		t_array_init(t_array *a, size_t item_size);
 void		*t_array_get(t_array *a, int i);
 void		*t_array_push(t_array *a, void *content);
+t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start);
+void		ft_put_end(int *roads, int end);
+void		ft_src_roads(t_matrix *ans, t_matrix *map, int k);
+void		ft_src_roads1(t_matrix	*res, t_matrix *map, int frst_room, int num_room);
+void		ft_bminus(int **s, size_t n);
 
 #endif
