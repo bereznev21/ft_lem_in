@@ -78,13 +78,9 @@ t_matrix read_roads(int fd, t_array rooms, char **line)
 	return (aj);
 }
 
-t_matrix lem_in_read(int fd, int *start, int *end, t_array *rooms, int *ants)
+t_matrix lem_in_read(int fd, t_lem_in *lem_in)
 {
 	char *line;
-
-	(void)fd;
-	(void)start;
-	(void)end;
 
 	while (1)
 	{
@@ -92,8 +88,8 @@ t_matrix lem_in_read(int fd, int *start, int *end, t_array *rooms, int *ants)
 		if (line[0] != '#')
 			break;
 	}
-	*ants = ft_atoi(line);
+	lem_in->ants = ft_atoi(line);
 	free(line);
-	*rooms = read_rooms(fd, start, end, &line);
-	return read_roads(fd, *rooms, &line);
+	lem_in->rooms = read_rooms(fd, &lem_in->start, &lem_in->end, &line);
+	return read_roads(fd, lem_in->rooms, &line);
 }
