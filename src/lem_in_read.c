@@ -64,7 +64,10 @@ t_matrix read_roads(int fd, t_room *rooms, int cnt)
 	{
 		assert(ft_get_next_line(fd, &line) > 0, "failed read road");
 		split = ft_strsplit(line, '-');
+		assert(ft_len((void *)split) == 2, "invalid road");
 		free(line);
+		assert(get_room_idx(rooms, cnt, split[0]) >= 0, "room not found");
+		assert(get_room_idx(rooms, cnt, split[1]) >= 0, "room not found");
 		t_matrix_set(&aj,
 					 get_room_idx(rooms, cnt, split[0]),
 					 get_room_idx(rooms, cnt, split[1]), 1);
@@ -81,7 +84,7 @@ t_matrix lem_in_read(int fd, int *start, int *end, t_room **rooms)
 	(void)start;
 	(void)end;
 
-	while(1)
+	while (1)
 	{
 		assert(ft_get_next_line(fd, &line) > 0, "bad data");
 		if (line[0] != '#')

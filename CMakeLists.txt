@@ -20,6 +20,7 @@ add_executable(push_relabel
         src/lem_in_read.c
         src/select_paths.c
         src/push_relabel.c
+		src/find_paths.c
 		src/expand_junctions.c
         ft_read_map.c
         ft_crt_map.c
