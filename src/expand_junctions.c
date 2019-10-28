@@ -109,7 +109,6 @@ int node_conn_cnt(t_matrix *aj, int k)
 	return (r);
 }
 
-
 t_matrix expand_junctions(t_matrix *aj)
 {
 	t_matrix r;
