@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/28 12:11:19 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/28 16:52:12 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,7 +303,7 @@ void lem_in_v2(int fd)
 	paths = find_paths_mock(&aj, start, end);
 	selected_paths = select_paths(paths, aj.n);
 	(void)selected_paths;
-	//lem_in_output(selected_paths);
+	lem_in_output(selected_paths, 2, 54);
 }
 
 int main(void)

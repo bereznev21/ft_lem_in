@@ -62,7 +62,7 @@ t_matrix	lem_in_read(int fd, int *start, int *end, t_room **rooms);
 int			**find_paths(t_matrix* aj, int start, int end);
 int			**select_paths(int **paths, int size);
 int			**find_paths_mock(t_matrix *aj, int start, int end);
-void		lem_in_output(int **paths);
+void		lem_in_output(int **paths, int num_paths, int lems);
 void 		ft_print_matrix(int **map, int width);
 
 
