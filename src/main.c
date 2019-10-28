@@ -288,19 +288,17 @@ int main(void)
 */
 void lem_in_v2(int fd)
 {
-	int			start;
-	int			end;
-	t_room		*rooms;
+	t_lem_in	lem_in;
 	int			**paths;
 	int			**selected_paths;
 	t_matrix	aj;
 
 	paths = NULL;
-	aj = lem_in_read(fd, &start, &end, &rooms);
+	aj = lem_in_read(fd, &lem_in);
 	t_matrix_print(&aj);
-	paths = find_paths(&aj, start, end);
+	paths = find_paths(&aj, lem_in.start, lem_in.end);
 	ft_print_matrix(paths, aj.n);
-	paths = find_paths_mock(&aj, start, end);
+	paths = find_paths_mock(&aj, lem_in.start, lem_in.end);
 	selected_paths = select_paths(paths, aj.n);
 	(void)selected_paths;
 	lem_in_output(selected_paths, 2, 54);

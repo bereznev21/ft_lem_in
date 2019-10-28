@@ -6,6 +6,7 @@ OPTIONS = -I. -Ilibft/includes
 SRC = \
 		src/main.c \
         src/matrix.c \
+        src/array.c \
         src/push_relabel.c \
         src/expand_junctions.c \
 		src/find_paths.c \
