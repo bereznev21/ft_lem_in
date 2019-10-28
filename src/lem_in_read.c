@@ -57,13 +57,12 @@ t_array read_rooms(int fd, int *start, int *end, char **line)
 t_matrix read_roads(int fd, t_array rooms, char **line)
 {
 	t_matrix aj;
-	int i;
 	char **split;
 
 	t_matrix_init(&aj, rooms.count, rooms.count);
-	i = 0;
 	while (1)
 	{
+		//todo: what if road count is 0 in map
 		split = ft_strsplit(*line, '-');
 		assert(ft_len((void *)split) == 2, "invalid road");
 		free(*line);
@@ -72,9 +71,8 @@ t_matrix read_roads(int fd, t_array rooms, char **line)
 		t_matrix_set(&aj,
 					 get_room_idx(rooms, split[0]),
 					 get_room_idx(rooms, split[1]), 1);
-		if (++i >= rooms.count)
+		if(ft_get_next_line(fd, line) <= 0)
 			break;
-		assert(ft_get_next_line(fd, line) > 0, "failed read road");
 	}
 	return (aj);
 }
