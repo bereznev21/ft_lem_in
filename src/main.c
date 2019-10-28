@@ -290,13 +290,14 @@ void lem_in_v2(int fd)
 {
 	int			start;
 	int			end;
-	t_room		*rooms;
+	int			ants;
+	t_array		rooms;
 	int			**paths;
 	int			**selected_paths;
 	t_matrix	aj;
 
 	paths = NULL;
-	aj = lem_in_read(fd, &start, &end, &rooms);
+	aj = lem_in_read(fd, &start, &end, &rooms, &ants);
 	t_matrix_print(&aj);
 	paths = find_paths(&aj, start, end);
 	ft_print_matrix(paths, aj.n);

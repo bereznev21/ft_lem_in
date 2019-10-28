@@ -16,6 +16,7 @@ include_directories(headers)
 include_directories(libft/includes)
 add_executable(push_relabel
         src/main.c
+		src/array.c
         src/matrix.c
         src/lem_in_read.c
         src/select_paths.c

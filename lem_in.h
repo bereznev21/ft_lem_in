@@ -1,6 +1,8 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
+# include <stdlib.h>
+
 typedef struct	s_matrix
 {
 	int m;
@@ -44,6 +46,14 @@ typedef struct s_map
 	int			**map_road;
 }				t_map;
 
+typedef struct	s_array
+{
+	size_t item_size;
+	int count;
+	int size;
+	void *data;
+}				t_array;
+
 void		t_matrix_init(t_matrix *mat, int m, int n);
 void		t_matrix_init_identity(t_matrix *mat, int n);
 t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b);
@@ -58,12 +68,15 @@ void		t_matrix_print_no_headers(t_matrix *m);
 void 		ft_crt_names_rooms_table(t_start *start, char **res, int i);
 void		t_matrix_print(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
-t_matrix	lem_in_read(int fd, int *start, int *end, t_room **rooms);
+t_matrix	lem_in_read(int fd, int *start, int *end, t_array *rooms, int *ants);
 int			**find_paths(t_matrix* aj, int start, int end);
 int			**select_paths(int **paths, int size);
 int			**find_paths_mock(t_matrix *aj, int start, int end);
 void		lem_in_output(int **paths);
 void 		ft_print_matrix(int **map, int width);
 
+void		t_array_init(t_array *a, size_t item_size);
+void		*t_array_get(t_array *a, int i);
+void		*t_array_push(t_array *a, void *content);
 
 #endif
