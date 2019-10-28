@@ -98,27 +98,26 @@ int		**ft_crt_map(int **map, int n)
 	return(map);
 }
 
-int		**find_paths(t_matrix *mat, int start, int end) // BFS
+t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
 {
-	int		node;
-	int		num;
-	int		*nodes;
-	int		*stack;
-	int		**paths;
-	int		j;
+	int			node;
+	int			num;
+	int			*nodes;
+	int			*stack;
+	t_matrix	paths;
+	int			j;
 
-	paths = NULL;
 	(void)end;
-	nodes = (int*)malloc(sizeof(int) * mat->n);
-	stack = (int*)malloc(sizeof(int) * mat->n);
-	paths = ft_crt_map(paths, mat->n);
-	ft_bminus(&nodes, mat->n);
-	ft_bminus(&stack, mat->n);
+	nodes = (int*)malloc(sizeof(int) * aj->n);
+	stack = (int*)malloc(sizeof(int) * aj->n);
+	t_matrix_init(&paths, aj->n, aj->n);
+	ft_bminus(&nodes, aj->n);
+	ft_bminus(&stack, aj->n);
 	ft_push(&stack, start);
-	num = mat->n;
+	num = aj->n;
 	while (ft_check_node(stack, num) == 1)
 	{
-		num = mat->n;
+		num = aj->n;
 		node = ft_get_node(&stack, --num);
 		if (node == end)
 			continue;
@@ -128,10 +127,10 @@ int		**find_paths(t_matrix *mat, int start, int end) // BFS
 		j = num;
 		while (j >= 0)
 		{
-			if (mat->data[node][j] == 1 && nodes[j] != 2)
+			if (aj->data[node][j] == 1 && nodes[j] != 2)
 			{
-				paths[node][j] = 1;
-				paths[j][node] = -1;
+				paths.data[node][j] = 1;
+				paths.data[j][node] = -1;
 				ft_push(&stack, j);
 				num++;
 				nodes[j] = 1;
@@ -142,8 +141,8 @@ int		**find_paths(t_matrix *mat, int start, int end) // BFS
 	//	if (node == end)
 	//		continue;
 	}
-	//ft_print_matrix(paths, mat->n);
-	//printf("\n%d %d %d\n", mat->n, start, end);
+	//ft_print_matrix(paths, aj->n);
+	//printf("\n%d %d %d\n", aj->n, start, end);
 	free(stack);
 	free(nodes);
 	return (paths);

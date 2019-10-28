@@ -295,20 +295,21 @@ int main(void)
 void lem_in_v2(int fd)
 {
 	t_lem_in	lem_in;
-	int			**paths;
+	t_matrix	paths;
 	int			**selected_paths;
 	t_matrix	aj;
 
-	paths = NULL;
 	aj = lem_in_read(fd, &lem_in);
 	t_matrix_print(&aj);
 	printf("Start :%d End :%d\n\n", lem_in.start, lem_in.end);
+
 	paths = find_paths(&aj, lem_in.start, lem_in.end);
-	ft_print_matrix(paths, aj.n);
-	paths = find_paths_mock(&aj, lem_in.start, lem_in.end);
-	selected_paths = select_paths(paths, aj.n);
+	t_matrix_print(&paths);
+
+//	paths = find_paths_mock(&aj, lem_in.start, lem_in.end);
+//	selected_paths = select_paths(paths, aj.n);
 	(void)selected_paths;
-	lem_in_output(selected_paths, 2, 54);
+//	lem_in_output(selected_paths, 2, 54);
 }
 
 int main(void)
