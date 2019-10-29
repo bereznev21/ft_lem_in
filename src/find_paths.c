@@ -188,16 +188,12 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
 }
 */
 
-void	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end)
+int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end)
 {
 	int	i;
 	int	ends;
 
-	least_patch->m = 1;
-	least_patch->n = paths_map.n;
-	least_patch->data = (int**)malloc(sizeof(int*) * 1);
-	least_patch->data[0] = (int*)malloc(sizeof(int) * paths_map.n);
-	ft_bminus(least_patch->data, paths_map.n);
+	t_matrix_init(least_patch, 1, paths_map.n);
 	ends = end;
 	while (ends != start)
 	{
@@ -207,12 +203,18 @@ void	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int 
 			if (paths_map.data[i][ends] == 1)
 			{
 				if (ends != end)
-					ft_put_end(least_patch->data[0], ends);
+				{
+					least_patch->data[0][ends] = 1;
+				}
 				ends = i;
+				break;
 			}
 			i++;
 		}
+		if (i == paths_map.m)
+			return (0);
 	}
+	return (1);
 }
 
 t_matrix	find_paths(t_matrix *aj, int start, int end) // Dijkstra
@@ -222,9 +224,6 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // Dijkstra
 	int			*nodes;
 	int			*stack;
 	t_matrix	paths_map;
-	t_matrix	least_patch;
-//	t_leaks		leaks;
-//	t_leaks		*leaks_arr;
 	int			j;
 
 	(void)end;
@@ -261,8 +260,7 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // Dijkstra
 			j++;
 		}
 	}
-	ft_restore_patch(&least_patch, paths_map, start, end);
 	free(stack);
 	free(nodes);
-	return (least_patch);
+	return paths_map;
 }

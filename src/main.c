@@ -238,7 +238,7 @@ void lem_in_v1(int fd)
 	t_matrix_print(&ans);
 	//ft_brake_ans_map(&ans);
 
-	return ; // next is segfault;
+	return; // next is segfault;
 	t_matrix_init(&roads, start.num_rooms, start.num_rooms);
 	//ft_wrt_ans_map(&roads, &ans, start.start);
 	printf("Roads:\n");
@@ -295,11 +295,11 @@ int main(void)
 */
 void lem_in_v2(int fd)
 {
-	t_lem_in	lem_in;
+	t_lem_in lem_in;
 //	t_array		paths;
-	t_matrix	paths_matrix;
+	t_matrix paths_matrix;
 //	ULONG		selected_paths;
-	t_matrix	aj;
+	t_matrix aj;
 
 	aj = lem_in_read(fd, &lem_in);
 	t_matrix_print(&aj);
@@ -315,13 +315,30 @@ void lem_in_v2(int fd)
 //	lem_in_output(selected_paths, 2, 54);
 }
 
+void lem_in_v3(int fd)
+{
+	t_lem_in lem_in;
+	t_matrix aj;
+//	t_matrix paths;
+
+	aj = lem_in_read(fd, &lem_in);
+	t_matrix_print(&aj);
+	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
+	printf("paths:\n");
+//	paths = find_paths(&aj, lem_in.start, lem_in.end);
+//	t_matrix_print(&paths);
+//	t_matrix_init(&aj, aj.m, aj.n);
+	printf("suu: %d\n", suurballe(&aj, lem_in.start, lem_in.end));
+}
+
 int main(void)
 {
 	int fd;
 
-	fd = open("maps/map01", O_RDONLY);
+	fd = open("maps/qqq", O_RDONLY);
 //	lem_in_v1(fd);
-	lem_in_v2(fd);
+//	lem_in_v2(fd);
+	lem_in_v3(fd);
 	close(fd);
 	return (0);
 }

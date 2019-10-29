@@ -85,7 +85,8 @@ void 		ft_crt_names_rooms_table(t_start *start, char **res, int i);
 void		t_matrix_print(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in);
-t_matrix	find_paths(t_matrix* aj, int start, int end);
+t_matrix	find_paths(t_matrix *aj, int start, int end);
+int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end);
 ULONG		select_paths(t_array *arr);
 int			**find_paths_mock(t_matrix *aj, int start, int end);
 void		lem_in_output(int **paths, int num_paths, int lems);
@@ -100,5 +101,6 @@ void		ft_put_end(int *roads, int end);
 void		ft_src_roads(t_matrix *ans, t_matrix *map, int k);
 void		ft_src_roads1(t_matrix	*res, t_matrix *map, int frst_room, int num_room);
 void		ft_bminus(int **s, size_t n);
+int			suurballe(t_matrix *aj, int start, int end);
 
 #endif
