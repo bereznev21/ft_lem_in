@@ -137,11 +137,9 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
 			j--;
 		}
 	}
-	t_matrix_print(&paths_map);
 	free(stack);
 	free(nodes);
-	//return(paths_map);
-	return (ft_trnsfr_paths(paths_map, start));
+	return (paths_map);
 }
 /*
 int		**find_paths(t_matrix *mat, int start, int end) // Dijkstra

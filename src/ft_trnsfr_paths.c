@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include "libft/includes/libft.h"
 
-void	t_matrix_init_minus(t_matrix *mat, int m, int n)
+void t_matrix_init_minus(t_matrix *mat, int m, int n)
 {
 	int i;
-	int	j;
+	int j;
 
 	mat->m = m;
 	mat->n = n;
@@ -42,7 +42,7 @@ void	ft_src_roads(t_matrix *ans, t_matrix *map, int k)
 	}
 }
 */
-void	ft_put_end(int *roads, int end)
+void ft_put_end(int *roads, int end)
 {
 	int n;
 
@@ -52,10 +52,10 @@ void	ft_put_end(int *roads, int end)
 	(roads)[n] = end;
 }
 
-void	ft_src_roads1(t_matrix *res, t_matrix *map, int frst_room, int num_room)
+void ft_src_roads1(t_matrix *res, t_matrix *map, int frst_room, int num_room)
 {
-	int	j;
-	int	room;
+	int j;
+	int room;
 
 	room = frst_room;
 	j = 0;
@@ -77,7 +77,8 @@ void	ft_src_roads1(t_matrix *res, t_matrix *map, int frst_room, int num_room)
 	}
 }
 
-t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start)
+/*
+t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end)
 {
 	int			j;
 	int			n;
@@ -107,4 +108,49 @@ t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start)
 		ft_src_roads1(&paths, &paths_map, paths.data[j][0], j);
 	t_matrix_print(&paths);
 	return (paths);
+}
+*/
+
+void matrix_to_bits_recur(t_matrix *m, int i, int end, unsigned long *path, t_array *a)
+{
+	int j;
+
+	if (i == end)
+	{
+		t_array_push(a, path);
+		return;
+	}
+	for (j = 0; j < m->n; ++j)
+	{
+		if (m->data[i][j] == 1)
+		{
+			*path |= 1 << j;
+			matrix_to_bits_recur(m, j, end, path, a);
+			*path ^= 1 << j;
+		}
+	}
+}
+
+void printf_bin_ulong(unsigned long n, int k);
+
+
+t_array path_matrix_to_bit_masks(t_matrix *paths_map, int start, int end)
+{
+	t_array a;
+	unsigned long path;
+
+	(void)paths_map;
+	(void)start;
+	(void)end;
+	t_array_init(&a, sizeof(unsigned long));
+	matrix_to_bits_recur(paths_map, start, end, &path, &a);
+
+	int i;
+	for (i = 0; i < a.count; ++i)
+	{
+		path = *(unsigned long *)t_array_get(&a, i);
+		printf_bin_ulong(path, 10);
+	}
+
+	return (a);
 }
