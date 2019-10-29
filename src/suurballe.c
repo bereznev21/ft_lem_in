@@ -7,6 +7,10 @@ void t_matrix_duplicate_node(t_matrix *aj, int k);
 
 int find_shortest_path(t_matrix *aj, t_matrix *path, int start, int end)
 {
+	(void)aj;
+	(void)path;
+	(void)start;
+	(void)end;
 	return 0; //store 1*n matrix into path; values are 0 and 1;
 }
 /*
