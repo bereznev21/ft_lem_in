@@ -1,5 +1,6 @@
 #include "lem_in.h"
 #include <limits.h>
+#include <stdio.h>
 
 void t_matrix_duplicate_row(t_matrix *aj, int k);
 void t_matrix_duplicate_col(t_matrix *aj, int k);
@@ -13,7 +14,6 @@ int find_shortest_path(t_matrix *aj, t_matrix *path, int start, int end)
 	p = find_paths(aj, start, end);
 	ret = ft_restore_patch(path, p, start, end);
 	(void)ret;
-	t_matrix_print(path);
 	return ret; //store 1*n matrix into path; values are 0 and 1;
 //	return (0);
 }
@@ -26,6 +26,8 @@ void reverse_path(t_matrix *path, int start, int end)
 void split_node(t_matrix *aj, int k, t_matrix *coll)
 {
 	int i;
+
+	printf("split!\n");
 	t_matrix_duplicate_node(aj, k);
 	t_matrix_duplicate_row(coll, k);
 	// k'th is IN; k+1'th us OUT
@@ -77,8 +79,10 @@ int suurballe(t_matrix *aj, int start, int end)
 	while (find_shortest_path(aj, &path, start, end))
 	{
 		i++;
+		t_matrix_print(&path);
 		t_matrix_t(&path);
 		split_path_nodes(aj, &path, &collapser, start, end);
+		t_matrix_print(aj);
 		t_matrix_del(&path);
 	}
 	collapse(aj, &collapser);
