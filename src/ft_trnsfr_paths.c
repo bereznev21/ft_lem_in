@@ -115,15 +115,15 @@ void matrix_to_bits_recur(t_matrix *m, int i, int end, unsigned long *path, t_ar
 {
 	int j;
 
-	if (i == end)
-	{
-		t_array_push(a, path);
-		return;
-	}
 	for (j = 0; j < m->n; ++j)
 	{
 		if (m->data[i][j] == 1)
 		{
+			if (j == end)
+			{
+				t_array_push(a, path);
+				return;
+			}
 			*path |= 1 << j;
 			matrix_to_bits_recur(m, j, end, path, a);
 			*path ^= 1 << j;

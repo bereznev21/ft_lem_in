@@ -73,6 +73,8 @@ t_matrix read_roads(int fd, t_array rooms, char **line)
 					 get_room_idx(rooms, split[1]), 1);
 		if(ft_get_next_line(fd, line) <= 0)
 			break;
+
+		//todo: handle comments
 	}
 	return (aj);
 }
