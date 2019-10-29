@@ -143,14 +143,11 @@ t_array path_matrix_to_bit_masks(t_matrix *paths_map, int start, int end)
 	(void)start;
 	(void)end;
 	t_array_init(&a, sizeof(unsigned long));
+	path = 0;
 	matrix_to_bits_recur(paths_map, start, end, &path, &a);
 
 	int i;
 	for (i = 0; i < a.count; ++i)
-	{
-		path = *(unsigned long *)t_array_get(&a, i);
-		printf_bin_ulong(path, 10);
-	}
-
+		printf_bin_ulong(*(unsigned long *)t_array_get(&a, i), 10);
 	return (a);
 }
