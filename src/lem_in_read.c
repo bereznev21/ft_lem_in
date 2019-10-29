@@ -63,18 +63,19 @@ t_matrix read_roads(int fd, t_array rooms, char **line)
 	while (1)
 	{
 		//todo: what if road count is 0 in map
-		split = ft_strsplit(*line, '-');
-		assert(ft_len((void *)split) == 2, "invalid road");
+		if (**line != '#')
+		{
+			split = ft_strsplit(*line, '-');
+			assert(ft_len((void *)split) == 2, "invalid road");
+			assert(get_room_idx(rooms, split[0]) >= 0, "room not found");
+			assert(get_room_idx(rooms, split[1]) >= 0, "room not found");
+			t_matrix_set(&aj,
+						 get_room_idx(rooms, split[0]),
+						 get_room_idx(rooms, split[1]), 1);
+		}
 		free(*line);
-		assert(get_room_idx(rooms, split[0]) >= 0, "room not found");
-		assert(get_room_idx(rooms, split[1]) >= 0, "room not found");
-		t_matrix_set(&aj,
-					 get_room_idx(rooms, split[0]),
-					 get_room_idx(rooms, split[1]), 1);
-		if(ft_get_next_line(fd, line) <= 0)
+		if (ft_get_next_line(fd, line) <= 0)
 			break;
-
-		//todo: handle comments
 	}
 	return (aj);
 }

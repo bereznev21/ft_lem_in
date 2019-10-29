@@ -72,7 +72,7 @@ void wipe_cross(t_matrix *aj, int k)
 	}
 }
 
-void split_node(t_matrix *aj, int k, int cnt, t_matrix *r)
+void split_node_(t_matrix *aj, int k, int cnt, t_matrix *r)
 {
 	int i;
 	int j;
@@ -122,7 +122,7 @@ t_matrix expand_junctions(t_matrix *aj)
 		cnt = node_conn_cnt(aj, i);
 		if (cnt >= 4)
 		{
-			split_node(aj, i, cnt, &r);
+			split_node_(aj, i, cnt, &r);
 			i += cnt - 1;
 		}
 	}
