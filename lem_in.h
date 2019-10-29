@@ -2,6 +2,7 @@
 # define LEM_IN_H
 
 # define ULONG unsigned long
+# define DISJ -9
 # include <stdlib.h>
 
 typedef struct	s_matrix

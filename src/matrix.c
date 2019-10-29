@@ -6,6 +6,7 @@
 void t_matrix_init(t_matrix *mat, int m, int n)
 {
 	int i;
+	int j;
 
 	mat->m = m;
 	mat->n = n;
@@ -14,7 +15,9 @@ void t_matrix_init(t_matrix *mat, int m, int n)
 	while (++i < mat->m)
 	{
 		mat->data[i] = malloc(sizeof(int) * mat->n);
-		ft_bzero(mat->data[i], mat->n * sizeof(int));
+		j = -1;
+		while (++j < mat->n)
+			mat->data[i][j] = DISJ;
 	}
 }
 
@@ -71,7 +74,7 @@ void t_matrix_print(t_matrix *m)
 		printf("% 2d|", i);
 		j = -1;
 		while (++j < m->n)
-			m->data[i][j] ? printf("% 2d ", m->data[i][j]) : printf(" . ");
+			m->data[i][j] != DISJ ? printf("% 2d ", m->data[i][j]) : printf(" . ");
 		printf("\n");
 	}
 	printf("\n");
