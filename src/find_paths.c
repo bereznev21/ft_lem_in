@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/28 23:23:32 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/29 18:44:17 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ int		**ft_crt_map(int **map, int n)
 	return(map);
 }
 
-t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
+/*
+t_matrix	find_paths(t_matrix *aj, int start, int end) // DFS
 {
 	int			node;
 	int			num;
@@ -117,7 +118,6 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
 	while (ft_check_node(stack, num) == 1)
 	{
 		num = aj->n;
-		node = ft_get_node(&stack, --num);
 		if (node == end)
 			continue;
 		if (nodes[node] == 2)
@@ -141,6 +141,51 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
 	free(nodes);
 	return (paths_map);
 }
+*/
+
+t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
+{
+	int			node;
+	int			num;
+	int			*nodes;
+	int			*stack;
+	t_matrix	paths_map;
+	int			j;
+
+	nodes = (int*)malloc(sizeof(int) * aj->n);
+	stack = (int*)malloc(sizeof(int) * aj->n);
+	t_matrix_init(&paths_map, aj->n, aj->n);
+	ft_bminus(&nodes, aj->n);
+	ft_bminus(&stack, aj->n);
+	ft_push(&stack, start);
+	num = aj->n;
+	while (ft_check_node(stack, num) == 1)
+	{
+		num = aj->n;
+		if (node == end)
+			continue;
+		if (nodes[node] == 2)
+			continue;
+		nodes[node] = 2;
+		j = num;
+		while (j >= 0)
+		{
+			if (aj->data[node][j] == 1 && nodes[j] != 2)
+			{
+				paths_map.data[node][j] = 1;
+				paths_map.data[j][node] = -1;
+				ft_push(&stack, j);
+				num++;
+				nodes[j] = 1;
+			}
+			j--;
+		}
+	}
+	free(stack);
+	free(nodes);
+	return (paths_map);
+}
+
 /*
 int		**find_paths(t_matrix *mat, int start, int end) // Dijkstra
 {
