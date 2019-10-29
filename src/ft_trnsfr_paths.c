@@ -124,6 +124,8 @@ void matrix_to_bits_recur(t_matrix *m, int i, int end, unsigned long *path, t_ar
 				t_array_push(a, path);
 				return;
 			}
+			if (*path & 1 << j)
+				continue; //node is already in path
 			*path |= 1 << j;
 			matrix_to_bits_recur(m, j, end, path, a);
 			*path ^= 1 << j;

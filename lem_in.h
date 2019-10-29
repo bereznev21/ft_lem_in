@@ -1,6 +1,7 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
+# define ULONG unsigned long
 # include <stdlib.h>
 
 typedef struct	s_matrix
@@ -78,7 +79,7 @@ void		t_matrix_print(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in);
 t_matrix	find_paths(t_matrix* aj, int start, int end);
-int			**select_paths(int **paths, int size);
+ULONG		select_paths(t_array *arr);
 int			**find_paths_mock(t_matrix *aj, int start, int end);
 void		lem_in_output(int **paths, int num_paths, int lems);
 void 		ft_print_matrix(int **map, int width);

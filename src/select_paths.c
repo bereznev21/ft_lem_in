@@ -38,7 +38,7 @@ int **find_paths_mock(t_matrix *aj, int start, int end)
 
 void printf_bin_ulong(unsigned long n, int k)
 {
-	printf("%lu: ", n);
+	printf("%6lu:\t", n);
 	while (k--)
 	{
 		printf(n & 1 ? "1" : "0");
@@ -100,7 +100,7 @@ void iter_paths_recur(const unsigned long *bpaths, unsigned long *set,
 	int i;
 	unsigned long bpath;
 
-	i = (int)offset-1;
+	i = (int)offset - 1;
 	while ((bpath = bpaths[++i]))
 	{
 		if (*set & 1 << i)  //path is already in set
@@ -112,7 +112,8 @@ void iter_paths_recur(const unsigned long *bpaths, unsigned long *set,
 		if (!depth)
 			t_array_push(ret, set); //we found set of n paths; add to result
 		else
-			iter_paths_recur(bpaths, set, ret, intersection_mask, depth - 1, offset + i + 1);
+			iter_paths_recur(bpaths, set, ret, intersection_mask, depth - 1,
+							 offset + i + 1);
 		*intersection_mask ^= bpath;
 		*set ^= 1 << i;  //remove path from set
 	}
@@ -131,37 +132,32 @@ t_array select_n_paths(unsigned long *bpaths, int n)
 	return ret;
 }
 
-int **select_paths(int **paths, int size)
+ULONG select_paths(t_array *arr)
 {
 	int i;
 	int j;
-	unsigned long *bpaths;
-	unsigned long bpath;
-	t_array selected_paths;
+	ULONG paths_mask;
+	ULONG *bpaths;
+	t_array path_sets;
 
-	(void)selected_paths;
+	(void)path_sets;
 	(void)j;
-	size = 4;
-	print_paths(paths);
-	bpaths = paths_to_bit_masks(paths, size);
 
-//	printf("bpath:\n");
-//	i = -1;
-//	while (++i < size)
-//		printf_bin_ulong(bpaths[i], 10);
-
-
-	printf("non-intersecting paths:\n");
-	selected_paths = select_n_paths(bpaths, 2);
+	paths_mask = 0;
+	t_array_push(arr, &paths_mask); //terminate
+	bpaths = arr->data;
+	path_sets = select_n_paths(bpaths, 2);
 	i = -1;
-	while (++i < selected_paths.count)
+	printf("non-intersecting paths:\n");
+	while (++i < path_sets.count)
 	{
 		j = -1;
-		bpath = *(unsigned long *)t_array_get(&selected_paths, i);
+		paths_mask = *(ULONG *)t_array_get(&path_sets, i);
 		while (bpaths[++j])
-			if (bpath & 1 << j)
-				print_path(paths[j]);
+			if (paths_mask & 1 << j)
+				printf_bin_ulong(bpaths[j], 10);
+//				printf("%lu ", bpaths[j]);
 		printf("\n");
 	}
-	return paths;
+	return 0;
 }

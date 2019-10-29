@@ -297,21 +297,20 @@ void lem_in_v2(int fd)
 {
 	t_lem_in	lem_in;
 	t_array		paths;
-	t_matrix	paths_matrix;
-	int			**selected_paths;
+//	t_matrix	paths_matrix;
+	ULONG		selected_paths;
 	t_matrix	aj;
 
 	aj = lem_in_read(fd, &lem_in);
 	t_matrix_print(&aj);
 	printf("Start :%d End :%d\n\n", lem_in.start, lem_in.end);
 
-	(void)paths;
-	paths_matrix = find_paths(&aj, lem_in.start, lem_in.end);
-	t_matrix_print(&paths_matrix);
-	paths = path_matrix_to_bit_masks(&paths_matrix, lem_in.start, lem_in.end);
+//	paths_matrix = find_paths(&aj, lem_in.start, lem_in.end);
+//	t_matrix_print(&paths_matrix);
+	paths = path_matrix_to_bit_masks(&aj, lem_in.start, lem_in.end);
 
 //	paths = find_paths_mock(&aj, lem_in.start, lem_in.end);
-//	selected_paths = select_paths(paths, aj.n);
+	selected_paths = select_paths(&paths);
 	(void)selected_paths;
 //	lem_in_output(selected_paths, 2, 54);
 }
@@ -320,7 +319,7 @@ int main(void)
 {
 	int fd;
 
-	fd = open("maps/map", O_RDONLY);
+	fd = open("maps/qqq", O_RDONLY);
 //	lem_in_v1(fd);
 	lem_in_v2(fd);
 	close(fd);
