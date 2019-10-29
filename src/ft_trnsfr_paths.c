@@ -133,15 +133,11 @@ void matrix_to_bits_recur(t_matrix *m, int i, int end, unsigned long *path, t_ar
 
 void printf_bin_ulong(unsigned long n, int k);
 
-
 t_array path_matrix_to_bit_masks(t_matrix *paths_map, int start, int end)
 {
 	t_array a;
 	unsigned long path;
 
-	(void)paths_map;
-	(void)start;
-	(void)end;
 	t_array_init(&a, sizeof(unsigned long));
 	path = 0;
 	matrix_to_bits_recur(paths_map, start, end, &path, &a);
