@@ -24,6 +24,7 @@ add_executable(push_relabel
 		src/find_paths.c
 		src/expand_junctions.c
 		src/ft_trnsfr_paths.c
+		src/suurballe.c
         ft_read_map.c
         ft_crt_map.c
 

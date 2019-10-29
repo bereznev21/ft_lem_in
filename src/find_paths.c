@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/29 18:44:17 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/29 20:24:42 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // DFS
 }
 */
 
+/*
 t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
 {
 	int			node;
@@ -152,6 +153,7 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
 	t_matrix	paths_map;
 	int			j;
 
+	(void)end;
 	nodes = (int*)malloc(sizeof(int) * aj->n);
 	stack = (int*)malloc(sizeof(int) * aj->n);
 	t_matrix_init(&paths_map, aj->n, aj->n);
@@ -162,15 +164,14 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
 	while (ft_check_node(stack, num) == 1)
 	{
 		num = aj->n;
-		if (node == end)
-			continue;
-		if (nodes[node] == 2)
-			continue;
+		node = ft_get_node(&stack, --num);
+		//if (node == end)
+		//	continue;
 		nodes[node] = 2;
-		j = num;
-		while (j >= 0)
+		j = 0;
+		while (j < num)
 		{
-			if (aj->data[node][j] == 1 && nodes[j] != 2)
+			if (aj->data[node][j] == 1 && nodes[j] == -1)
 			{
 				paths_map.data[node][j] = 1;
 				paths_map.data[j][node] = -1;
@@ -178,63 +179,90 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
 				num++;
 				nodes[j] = 1;
 			}
-			j--;
+			j++;
 		}
 	}
 	free(stack);
 	free(nodes);
 	return (paths_map);
 }
+*/
 
-/*
-int		**find_paths(t_matrix *mat, int start, int end) // Dijkstra
+void	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end)
 {
-	int		node;
-	int		num;
-	int		*nodes;
-	int		*stack;
-	int		**paths;
-	int		j;
-	int		start1;
-	int		end1;
+	int	i;
+	int	ends;
 
-	start1 = 0;
-	end1 = 0;
-	j = 0;
-	paths = NULL;
+	least_patch->m = 1;
+	least_patch->n = paths_map.n;
+	least_patch->data = (int**)malloc(sizeof(int*) * 1);
+	least_patch->data[0] = (int*)malloc(sizeof(int) * paths_map.n);
+	ft_bminus(least_patch->data, paths_map.n);
+	ends = end;
+	while (ends != start)
+	{
+		i = 0;
+		while (i < paths_map.n)
+		{
+			if (paths_map.data[i][ends] == 1)
+			{
+				if (ends != end)
+					ft_put_end(least_patch->data[0], ends);
+				ends = i;
+			}
+			i++;
+		}
+	}
+}
+
+t_matrix	find_paths(t_matrix *aj, int start, int end) // Dijkstra
+{
+	int			node;
+	int			num;
+	int			*nodes;
+	int			*stack;
+	t_matrix	paths_map;
+	t_matrix	least_patch;
+//	t_leaks		leaks;
+//	t_leaks		*leaks_arr;
+	int			j;
+
 	(void)end;
-	nodes = (int*)malloc(sizeof(int) * mat->n);
-	stack = (int*)malloc(sizeof(int) * mat->n);
-	paths = ft_crt_map(paths, mat->n);
-	ft_bminus(&nodes, mat->n);
-	ft_bminus(&stack, mat->n);
+	nodes = (int*)malloc(sizeof(int) * aj->n);
+	stack = (int*)malloc(sizeof(int) * aj->n);
+	t_matrix_init(&paths_map, aj->n, aj->n);
+	ft_bminus(&nodes, aj->n);
+	ft_bminus(&stack, aj->n);
 	ft_push(&stack, start);
-	num = mat->n;
+	num = aj->n;
+	//printf("%d\n", num);
 	while (ft_check_node(stack, num) == 1)
 	{
-		num = 0;
+		num = aj->n;
 		node = ft_get_node(&stack, --num);
+		//if (node == end)
+		//	continue;
 		nodes[node] = 2;
-		while (num < mat->n)
+		j = 0;
+		while (j < num)
 		{
-			if (mat->data[node][j] == 1 && nodes[j] == -1)
+			if (aj->data[node][j] == 1 && nodes[j] == -1)
 			{
-				//paths[node][j] = 1;
-				//paths[j][node] = -1;
+				paths_map.data[node][j] = 1;
+				//paths_map.data[j][node] = -1;
 				ft_push(&stack, j);
+				//leaks.start = node;
+				//leaks.end = j;
 				nodes[j] = 1;
-				start1 = node;
-				end1 = j;
-				ft_push()
-				if (node == mat->n)
+				if (node == aj->n)
 					break ;
+				num++;
 			}
-			num++;
+			j++;
 		}
-		//printf("%d\n", node);
-		ft_putnbr(node);
-		ft_putchar('\n');
 	}
-	return (paths);
+	ft_restore_patch(&least_patch, paths_map, start, end);
+	free(stack);
+	free(nodes);
+	return (least_patch);
 }
-*/

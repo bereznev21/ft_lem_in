@@ -14,6 +14,7 @@ SRC = \
 		src/lem_in_output.c \
         src/select_paths.c \
 		src/ft_trnsfr_paths.c \
+		src/suurballe.c \
         ft_read_map.c \
         ft_crt_map.c \
 

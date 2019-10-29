@@ -2,6 +2,7 @@
 # define LEM_IN_H
 
 # define ULONG unsigned long
+# define DISJ -9
 # include <stdlib.h>
 
 typedef struct	s_matrix
@@ -10,6 +11,12 @@ typedef struct	s_matrix
 	int n;
 	int **data;
 }				t_matrix;
+
+typedef struct	s_leaks
+{
+	int	start;
+	int end;
+}				t_leaks;
 
 typedef struct	s_room
 {
