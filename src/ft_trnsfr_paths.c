@@ -59,6 +59,9 @@ void	ft_src_roads1(t_matrix *res, t_matrix *map, int frst_room, int num_room)
 
 	room = frst_room;
 	j = 0;
+	(void)frst_room;
+	(void)num_room;
+	(void)res;
 	//while (1)
 	{
 		while (j < map->m)
@@ -67,13 +70,11 @@ void	ft_src_roads1(t_matrix *res, t_matrix *map, int frst_room, int num_room)
 			{
 				ft_put_end(res->data[num_room], j);
 				ft_src_roads1(res, map, j, num_room);
-				//room = j;
+				room = j;
 			}
 			j++;
 		}
-		//printf("%d:%d ", room, map->data[room][j]);
 	}
-//	printf("\n");
 }
 
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start)
@@ -92,13 +93,17 @@ t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start)
 	j = -1;
 	t_matrix_init_minus(&paths, num_paths, paths_map.n);
 	while (++j < paths_map.m)
-		if (paths.data[start][j] == 1)
+	{
+		if (paths_map.data[start][j] == 1)
 		{
+			//printf("%d\n", j);
 			paths.data[n][0] = j;
 			n++;
 		}
+	}
 	j = -1;
 	while (++j < num_paths)
+	//	printf("%d\n", paths.data[j][0]);
 		ft_src_roads1(&paths, &paths_map, paths.data[j][0], j);
 	t_matrix_print(&paths);
 	return (paths);
