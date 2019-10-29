@@ -111,13 +111,13 @@ t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end)
 }
 */
 
-void matrix_to_bits_recur(t_matrix *m, int i, int end, unsigned long *path, t_array *a)
+void matrix_to_bits_recur(t_matrix *aj, int i, int end, unsigned long *path, t_array *a)
 {
 	int j;
 
-	for (j = 0; j < m->n; ++j)
+	for (j = 0; j < aj->n; ++j)
 	{
-		if (m->data[i][j] == 1)
+		if (aj->data[i][j] == 1)
 		{
 			if (j == end)
 			{
@@ -127,7 +127,7 @@ void matrix_to_bits_recur(t_matrix *m, int i, int end, unsigned long *path, t_ar
 			if (*path & 1 << j)
 				continue; //node is already in path
 			*path |= 1 << j;
-			matrix_to_bits_recur(m, j, end, path, a);
+			matrix_to_bits_recur(aj, j, end, path, a);
 			*path ^= 1 << j;
 		}
 	}
@@ -135,14 +135,14 @@ void matrix_to_bits_recur(t_matrix *m, int i, int end, unsigned long *path, t_ar
 
 void printf_bin_ulong(unsigned long n, int k);
 
-t_array path_matrix_to_bit_masks(t_matrix *paths_map, int start, int end)
+t_array path_matrix_to_bit_masks(t_matrix *aj, int start, int end)
 {
 	t_array a;
 	unsigned long path;
 
 	t_array_init(&a, sizeof(unsigned long));
 	path = 0;
-	matrix_to_bits_recur(paths_map, start, end, &path, &a);
+	matrix_to_bits_recur(aj, start, end, &path, &a);
 
 	int i;
 	for (i = 0; i < a.count; ++i)
