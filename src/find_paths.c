@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/30 16:26:22 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:16:17 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int e
 	int	i;
 	int	ends;
 
-	t_matrix_init(least_patch, 1, paths_map.n);
+	t_matrix_init_zero(least_patch, paths_map.m, paths_map.n);
 	ends = end;
 	while (ends != start)
 	{
@@ -205,17 +205,17 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int e
 		{
 			if (paths_map.data[i][ends] == 1)
 			{
-				if (ends != end)
+				//if (ends != end)
 				{
-					printf("%d ", ends);
-					least_patch->data[0][ends] = 1;
+					//printf("%d ", ends);
+					least_patch->data[i][ends] = 1;
 				}
 				ends = i;
 				break;
 			}
 			i++;
 		}
-		printf("\n");
+		//printf("\n");
 		if (i == paths_map.m)
 			return (0);
 	}
@@ -223,7 +223,7 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int e
 }
 
 
-int	find_paths(t_matrix *paths_map, t_matrix *aj, int start, int end) // Dijkstra
+int	find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end) // Dijkstra
 {
 	int			node;
 	int			num;
