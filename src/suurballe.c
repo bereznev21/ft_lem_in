@@ -6,19 +6,17 @@ void t_matrix_duplicate_row(t_matrix *aj, int k);
 void t_matrix_duplicate_col(t_matrix *aj, int k);
 void t_matrix_duplicate_node(t_matrix *aj, int k);
 
-/*
+
 int find_shortest_path(t_matrix *aj, t_matrix *path, int start, int end)
 {
-	int ret;
+	t_matrix paths_map;
 
-	t_matrix p;
-	p = find_paths(aj, start, end);
-	ret = ft_restore_patch(path, p, start, end);
-	(void)ret;
-	return ret; //store 1*n matrix into path; values are 0 and 1;
-//	return (0);
+	if (find_paths(aj, &paths_map, start, end) == 1)
+		if (ft_restore_patch(path, paths_map, start, end) == 1)
+			return (1);
+	return (0);
 }
-*/
+
 /*
 void reverse_path(t_matrix *path, int start, int end)
 {
@@ -80,7 +78,7 @@ int suurballe(t_matrix *aj, int start, int end)
 
 	t_matrix_init_identity(&collapser, aj->m);
 	i = 0;
-	while (find_paths(&path, aj, start, end))
+	while (find_shortest_path(aj, &path, start, end))
 	{
 		i++;
 		t_matrix_print(&path);

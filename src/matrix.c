@@ -25,7 +25,6 @@ t_matrix t_matrix_copy(t_matrix *m)
 {
 	int i;
 	int j;
-
 	t_matrix ret;
 	ret.m = m->m;
 	ret.n = m->n;
@@ -39,6 +38,23 @@ t_matrix t_matrix_copy(t_matrix *m)
 			ret.data[i][j] = m->data[i][j];
 	}
 	return ret;
+}
+
+void t_matrix_init_zero(t_matrix *mat, int m, int n)
+{
+	int i;
+	int j;
+	mat->m = m;
+	mat->n = n;
+	mat->data = malloc(sizeof(int *) * mat->m);
+	i = -1;
+	while (++i < mat->m)
+	{
+		mat->data[i] = malloc(sizeof(int) * mat->n);
+		j = -1;
+		while (++j < mat->n)
+			mat->data[i][j] = 0;
+	}
 }
 
 void t_matrix_init_identity(t_matrix *mat, int n)
@@ -94,7 +110,8 @@ void t_matrix_print(t_matrix *m)
 		printf("% 2d|", i);
 		j = -1;
 		while (++j < m->n)
-			m->data[i][j] != DISJ ? printf("% 2d ", m->data[i][j]) : printf(" . ");
+			m->data[i][j] != DISJ ? printf("% 2d ", m->data[i][j]) : printf(
+					" . ");
 		printf("\n");
 	}
 	printf("\n");
