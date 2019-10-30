@@ -21,6 +21,26 @@ void t_matrix_init(t_matrix *mat, int m, int n)
 	}
 }
 
+t_matrix t_matrix_copy(t_matrix *m)
+{
+	int i;
+	int j;
+
+	t_matrix ret;
+	ret.m = m->m;
+	ret.n = m->n;
+	ret.data = malloc(sizeof(int *) * ret.m);
+	i = -1;
+	while (++i < ret.m)
+	{
+		ret.data[i] = malloc(sizeof(int) * ret.n);
+		j = -1;
+		while (++j < ret.n)
+			ret.data[i][j] = m->data[i][j];
+	}
+	return ret;
+}
+
 void t_matrix_init_identity(t_matrix *mat, int n)
 {
 	int i;

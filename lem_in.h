@@ -72,6 +72,7 @@ typedef struct	s_lem_in
 
 void		t_matrix_init(t_matrix *mat, int m, int n);
 void		t_matrix_init_identity(t_matrix *mat, int n);
+t_matrix	t_matrix_copy(t_matrix *m);
 t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b);
 void		t_matrix_t(t_matrix *a);
 t_matrix	expand_junctions(t_matrix *aj);
