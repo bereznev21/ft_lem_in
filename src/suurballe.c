@@ -23,33 +23,52 @@ void reverse_path(t_matrix *path, int start, int end)
  t_matrix_t(path)
 }
 */
-void split_node(t_matrix *aj, int k, t_matrix *coll)
+void split_node(t_matrix *aj, int k)
 {
 	int i;
 
+//	printf("dup %d'th node\n", k);
 	t_matrix_duplicate_node(aj, k);
-	t_matrix_duplicate_row(coll, k);
+//	t_matrix_duplicate_node(path, k);
+//	t_matrix_print(aj);
 	// k'th is IN; k+1'th us OUT
 	for (i = 0; i < aj->n; i++)
 	{
 		aj->data[k][i] = DISJ; // remove all outs for input node
 		aj->data[i][k + 1] = DISJ; //remove all inputs from output node
+//		path->data[k][i] = DISJ;
+//		path->data[i][k + 1] = DISJ;
 	}
 	aj->data[k][k + 1] = 0; // link between split
+//	path->data[k][k + 1] = 1;
+//	t_matrix_print(aj);
 }
 
 void split_path_nodes(t_matrix *aj, t_matrix *path,
-					  t_matrix *collapser, int start, int end)
+					  t_matrix *collapser, int *start, int *end)
 {
 	int i;
-	int j;
+	t_matrix path_diag;
 
-	printf("split!\n");
+//	printf("split!\n");
+	path_diag = t_matrix_copy(path);
+	t_matrix_t(&path_diag);
+	path_diag = t_matrix_mul(&path_diag, path);
+//	t_matrix_print(&path_diag);
+//	fflush(stdout);
 	i = -1;
-	j = 0;
-	while (++i < aj->m)
-		if (path->data[0][i] > 0 && i != start && i != end)
-			split_node(aj, i + j++, collapser);
+	while (++i < path_diag.n)
+		if (path_diag.data[i][i] == 1 && i != *start && i != *end)
+		{
+			if (*start > i)
+				(*start)++;
+			if (*end > i)
+				(*end)++;
+			t_matrix_duplicate_node(&path_diag, i);
+			t_matrix_duplicate_row(collapser, i);
+			split_node(aj, i);
+			i++;
+		}
 }
 
 void collapse(t_matrix *aj, t_matrix *collapser)
@@ -69,27 +88,83 @@ void collapse(t_matrix *aj, t_matrix *collapser)
 		aj->data[i][i] = 0;
 }
 
+void suurballe_reverse_path(t_matrix *aj, t_matrix *path)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < aj->m)
+	{
+		j = -1;
+		while (++j < aj->n)
+		{
+			if (path->data[i][j])
+			{
+				aj->data[j][i] = -aj->data[i][j];
+				aj->data[i][j] = DISJ;
+			}
+		}
+	}
+}
+
+void remove_sym(t_matrix *path)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < path->m)
+	{
+		j = i - 1;
+		while (++j < path->n)
+		{
+			if (path->data[i][j] == 1 && path->data[j][i] == 1)
+			{
+				path->data[i][j] = 0;
+				path->data[j][i] = 0;
+			}
+		}
+	}
+
+}
 
 int suurballe(t_matrix *aj, int start, int end)
 {
 	t_matrix collapser;
-	t_matrix path;
+	t_matrix path1;
+	t_matrix path2;
+	t_matrix path_sum;
 	int i;
 
 	t_matrix_init_identity(&collapser, aj->m);
 	i = 0;
-	while (find_shortest_path(aj, &path, start, end))
+	while (1)
 	{
+		if (!find_shortest_path(aj, &path1, start, end))
+			break;
 		i++;
-		t_matrix_print(&path);
-		fflush(stdout);
-//		t_matrix_t(&path);
-		split_path_nodes(aj, &path, &collapser, start, end);
+		suurballe_reverse_path(aj, &path1);
+		split_path_nodes(aj, &path1, &collapser, &start, &end);
+		if (!find_shortest_path(aj, &path2, start, end))
+			break;
+		printf("path1:\n");
+		t_matrix_print(&path1);
+		printf("path2:\n");
+		t_matrix_print(&path2);
+		printf("collapse...:\n");
+		collapse(&path2, &collapser);
+		t_matrix_print(&path2);
+		path_sum = t_matrix_add(&path1, &path2);
+		remove_sym(&path_sum);
+		printf("path sum:\n");
+		t_matrix_print(&path_sum);
+		printf("aj:\n");
 		t_matrix_print(aj);
-		fflush(stdout);
-		t_matrix_del(&path);
+		t_matrix_init_identity(&collapser, aj->m);
+		t_matrix_del(&path2);
 	}
-	collapse(aj, &collapser);
 	t_matrix_del(&collapser);
+	t_matrix_print(aj);
 	return (i);
 }

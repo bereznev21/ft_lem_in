@@ -1,6 +1,6 @@
 #include "lem_in.h"
 #include <stdio.h>
-#include "libft/includes/libft.h"
+#include "libft.h"
 
 
 void t_matrix_init(t_matrix *mat, int m, int n)
@@ -26,6 +26,7 @@ t_matrix t_matrix_copy(t_matrix *m)
 	int i;
 	int j;
 	t_matrix ret;
+
 	ret.m = m->m;
 	ret.n = m->n;
 	ret.data = malloc(sizeof(int *) * ret.m);
@@ -38,6 +39,25 @@ t_matrix t_matrix_copy(t_matrix *m)
 			ret.data[i][j] = m->data[i][j];
 	}
 	return ret;
+}
+
+t_matrix t_matrix_add(t_matrix *a, t_matrix *b)
+{
+	int i;
+	int j;
+	t_matrix r;
+
+	t_matrix_init(&r, a->m, a->n);
+	i = -1;
+	while (++i < a->m)
+	{
+		j = -1;
+		while (++j < a->n)
+		{
+			r.data[i][j] = a->data[i][j] + b->data[i][j];
+		}
+	}
+	return r;
 }
 
 void t_matrix_init_zero(t_matrix *mat, int m, int n)
@@ -115,6 +135,7 @@ void t_matrix_print(t_matrix *m)
 		printf("\n");
 	}
 	printf("\n");
+	fflush(stdout);
 }
 
 void t_matrix_set(t_matrix *m, int i, int j, int v)
