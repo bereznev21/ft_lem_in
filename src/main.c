@@ -319,18 +319,13 @@ void lem_in_v3(int fd)
 {
 	t_lem_in lem_in;
 	t_matrix aj;
-//	t_matrix paths;
-//	t_matrix path;
+	t_matrix paths;
 
 	aj = lem_in_read(fd, &lem_in);
-//	t_matrix_print(&aj);
-	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
-	printf("paths:\n");
-//	paths = find_paths(&aj, lem_in.start, lem_in.end);
-//	find_shortest_path(&aj, &path, lem_in.start, lem_in.end);
 	t_matrix_print(&aj);
-//	t_matrix_init(&aj, aj.m, aj.n);
-	printf("suu: %d\n", suurballe(&aj, lem_in.start, lem_in.end));
+	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
+	suurballe(&aj, &paths, lem_in.start, lem_in.end);
+	t_matrix_print(&paths);
 }
 
 int main(void)

@@ -103,7 +103,7 @@ void		ft_put_end(int *roads, int end);
 void		ft_src_roads(t_matrix *ans, t_matrix *map, int k);
 void		ft_src_roads1(t_matrix	*res, t_matrix *map, int frst_room, int num_room);
 void		ft_bminus(int **s, size_t n);
-int			suurballe(t_matrix *aj, int start, int end);
+int			suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end);
 int			 find_shortest_path(t_matrix *aj, t_matrix *path, int start, int end);
 void 		t_matrix_init_zero(t_matrix *mat, int m, int n);
 

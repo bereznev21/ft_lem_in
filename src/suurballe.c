@@ -115,34 +115,33 @@ void remove_sym(t_matrix *path)
 	}
 }
 
-int suurballe(t_matrix *aj, int start, int end)
+int suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
 {
 	t_matrix collapser;
 	t_matrix path;
-	t_matrix all_paths;
 	t_matrix aj2;
 	int i;
 
-	t_matrix_init_zero(&all_paths, aj->m, aj->n);
+	t_matrix_init_zero(all_paths, aj->m, aj->n);
 	i = 0;
 	while (1)
 	{
-		suurballe_reverse_path(aj, &all_paths);
-		t_matrix_init_identity(&collapser, aj->m);
 		aj2 = t_matrix_copy(aj);
-		split_path_nodes(&aj2, &all_paths, &collapser, &start, &end);
+		suurballe_reverse_path(&aj2, all_paths);
+		t_matrix_init_identity(&collapser, aj2.m);
+		split_path_nodes(&aj2, all_paths, &collapser, &start, &end);
 		if (!find_shortest_path(&aj2, &path, start, end))
 			break;
 		i++;
 		collapse(&path, &collapser);
-		all_paths = t_matrix_add(&all_paths, &path);
-		remove_sym(&all_paths);
+		*all_paths = t_matrix_add(all_paths, &path);
+		remove_sym(all_paths);
 
 		t_matrix_del(&aj2);
 		t_matrix_del(&collapser);
 		t_matrix_del(&path);
 	}
+	t_matrix_del(&aj2);
 	t_matrix_del(&collapser);
-	t_matrix_print(&all_paths);
 	return (i);
 }
