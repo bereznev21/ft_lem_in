@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/30 16:15:13 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/30 18:14:38 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,6 +331,7 @@ void lem_in_v3(int fd)
 	t_matrix_print(&aj);
 //	t_matrix_init(&aj, aj.m, aj.n);
 	printf("suu: %d\n", suurballe(&aj, lem_in.start, lem_in.end));
+	lem_in_output(&aj, 2, lem_in.ants);
 }
 
 int main(void)
