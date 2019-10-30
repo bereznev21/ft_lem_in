@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/29 20:24:42 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/30 15:13:45 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // DFS
 	while (ft_check_node(stack, num) == 1)
 	{
 		num = aj->n;
+		node = ft_get_node(&stack, --num);
 		if (node == end)
 			continue;
 		if (nodes[node] == 2)
@@ -189,6 +190,7 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // BFS
 }
 */
 
+
 int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end)
 {
 	int	i;
@@ -205,6 +207,7 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int e
 			{
 				if (ends != end)
 				{
+					printf("%d ", ends);
 					least_patch->data[0][ends] = 1;
 				}
 				ends = i;
@@ -217,6 +220,7 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int e
 	}
 	return (1);
 }
+
 
 t_matrix	find_paths(t_matrix *aj, int start, int end) // Dijkstra
 {
@@ -240,23 +244,22 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // Dijkstra
 	{
 		num = aj->n;
 		node = ft_get_node(&stack, --num);
-		//if (node == end)
-		//	continue;
+//		printf("%d\n", node);
+		if (node == end)
+			break ;
 		nodes[node] = 2;
 		j = 0;
-		while (j < num)
+		while (j < aj->n)
 		{
 			if (aj->data[node][j] == 1 && nodes[j] == -1)
 			{
+				ft_push(&stack, j);
+				num++;
 				paths_map.data[node][j] = 1;
 				//paths_map.data[j][node] = -1;
-				ft_push(&stack, j);
-				//leaks.start = node;
-				//leaks.end = j;
 				nodes[j] = 1;
-				if (node == aj->n)
-					break ;
-				num++;
+				//if (node == end)
+				//	break ;
 			}
 			j++;
 		}
