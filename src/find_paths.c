@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/30 15:13:45 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/30 16:26:22 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_bminus(int **s, size_t n)
 
 	i = -1;
 	while (++i < n)
-		(*s)[i] = -1;
+		(*s)[i] = DISJ;
 }
 
 void	ft_push(int **nodes, int i)
@@ -44,7 +44,7 @@ void	ft_push(int **nodes, int i)
 	int	n;
 
 	n = 0;
-	while ((*nodes)[n] > -1)
+	while ((*nodes)[n] > DISJ)
 		n++;
 	(*nodes)[n] = i;
 	//ft_putnbr((*nodes)[n]);
@@ -60,7 +60,7 @@ int		ft_check_node(int *nodes, int num)
 	{
 		//ft_putnbr(nodes[i]);
 		//ft_putchar('\n');
-		if (nodes[i] != -1)
+		if (nodes[i] != DISJ)
 			return (1);
 	}
 	return (0);
@@ -84,7 +84,7 @@ int		ft_get_node(int **stack, int num)
 	//ft_putchar('\n');
 	return (node);
 }
-
+/*
 int		**ft_crt_map(int **map, int n)
 {
 	int	i;
@@ -98,7 +98,7 @@ int		**ft_crt_map(int **map, int n)
 	}
 	return(map);
 }
-
+*/
 /*
 t_matrix	find_paths(t_matrix *aj, int start, int end) // DFS
 {
@@ -215,6 +215,7 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int e
 			}
 			i++;
 		}
+		printf("\n");
 		if (i == paths_map.m)
 			return (0);
 	}
@@ -222,19 +223,19 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int e
 }
 
 
-t_matrix	find_paths(t_matrix *aj, int start, int end) // Dijkstra
+int	find_paths(t_matrix *paths_map, t_matrix *aj, int start, int end) // Dijkstra
 {
 	int			node;
 	int			num;
 	int			*nodes;
 	int			*stack;
-	t_matrix	paths_map;
+	//t_matrix	paths_map;
 	int			j;
 
 	(void)end;
 	nodes = (int*)malloc(sizeof(int) * aj->n);
 	stack = (int*)malloc(sizeof(int) * aj->n);
-	t_matrix_init(&paths_map, aj->n, aj->n);
+	t_matrix_init(paths_map, aj->n, aj->n);
 	ft_bminus(&nodes, aj->n);
 	ft_bminus(&stack, aj->n);
 	ft_push(&stack, start);
@@ -246,16 +247,16 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // Dijkstra
 		node = ft_get_node(&stack, --num);
 //		printf("%d\n", node);
 		if (node == end)
-			break ;
+			return (1);
 		nodes[node] = 2;
 		j = 0;
 		while (j < aj->n)
 		{
-			if (aj->data[node][j] == 1 && nodes[j] == -1)
+			if (aj->data[node][j] != DISJ && nodes[j] == DISJ)
 			{
 				ft_push(&stack, j);
 				num++;
-				paths_map.data[node][j] = 1;
+				paths_map->data[node][j] = 1;
 				//paths_map.data[j][node] = -1;
 				nodes[j] = 1;
 				//if (node == end)
@@ -266,5 +267,5 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // Dijkstra
 	}
 	free(stack);
 	free(nodes);
-	return paths_map;
+	return (0);
 }

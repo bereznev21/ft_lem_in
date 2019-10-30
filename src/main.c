@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/30 15:12:46 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/30 16:15:13 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,7 +305,7 @@ void lem_in_v2(int fd)
 	t_matrix_print(&aj);
 	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
 
-	paths_matrix = find_paths(&aj, lem_in.start, lem_in.end);
+//	paths_matrix = find_paths(&aj, lem_in.start, lem_in.end);
 	t_matrix_print(&paths_matrix);
 //	paths = path_matrix_to_bit_masks(&aj, lem_in.start, lem_in.end);
 
@@ -320,24 +320,24 @@ void lem_in_v3(int fd)
 	t_lem_in lem_in;
 	t_matrix aj;
 //	t_matrix paths;
-	t_matrix path;
+//	t_matrix path;
 
 	aj = lem_in_read(fd, &lem_in);
 //	t_matrix_print(&aj);
 	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
 	printf("paths:\n");
 //	paths = find_paths(&aj, lem_in.start, lem_in.end);
-	find_shortest_path(&aj, &path, lem_in.start, lem_in.end);
-//	t_matrix_print(&paths);
+//	find_shortest_path(&aj, &path, lem_in.start, lem_in.end);
+	t_matrix_print(&aj);
 //	t_matrix_init(&aj, aj.m, aj.n);
-//	printf("suu: %d\n", suurballe(&aj, lem_in.start, lem_in.end));
+	printf("suu: %d\n", suurballe(&aj, lem_in.start, lem_in.end));
 }
 
 int main(void)
 {
 	int fd;
 
-	fd = open("maps/10K", O_RDONLY);
+	fd = open("maps/qqq_ordered", O_RDONLY);
 //	lem_in_v1(fd);
 //	lem_in_v2(fd);
 	lem_in_v3(fd);
