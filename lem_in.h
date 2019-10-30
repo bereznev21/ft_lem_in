@@ -72,6 +72,8 @@ typedef struct	s_lem_in
 
 void		t_matrix_init(t_matrix *mat, int m, int n);
 void		t_matrix_init_identity(t_matrix *mat, int n);
+t_matrix	t_matrix_copy(t_matrix *m);
+t_matrix	t_matrix_add(t_matrix *a, t_matrix *b);
 t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b);
 void		t_matrix_t(t_matrix *a);
 t_matrix	expand_junctions(t_matrix *aj);
@@ -89,19 +91,19 @@ int			find_paths(t_matrix *p, t_matrix *aj, int start, int end);
 int			ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end);
 ULONG		select_paths(t_array *arr);
 int			**find_paths_mock(t_matrix *aj, int start, int end);
-void		lem_in_output(int **paths, int num_paths, int lems);
+void		lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in);
 void 		ft_print_matrix(int **map, int width);
 
 void		t_array_init(t_array *a, size_t item_size);
 void		*t_array_get(t_array *a, int i);
 void		*t_array_push(t_array *a, void *content);
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end);
-t_array	path_matrix_to_bit_masks(t_matrix *aj, int start, int end);
+t_array		path_matrix_to_bit_masks(t_matrix *aj, int start, int end);
 void		ft_put_end(int *roads, int end);
 void		ft_src_roads(t_matrix *ans, t_matrix *map, int k);
 void		ft_src_roads1(t_matrix	*res, t_matrix *map, int frst_room, int num_room);
 void		ft_bminus(int **s, size_t n);
-int			suurballe(t_matrix *aj, int start, int end);
+int			suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end);
 int			 find_shortest_path(t_matrix *aj, t_matrix *path, int start, int end);
 void 		t_matrix_init_zero(t_matrix *mat, int m, int n);
 

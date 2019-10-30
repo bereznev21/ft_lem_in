@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/30 18:56:05 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/30 21:30:18 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,67 @@ int			*ft_srh_num_paths(int **paths, int *len, int num_patchs)
 	return (size_paths);
 }
 
-void	ft_crt_len_table(int **rooms_table, int *len_table)
+int		ft_got_path(t_lem_in lem_in, t_matrix paths, int *rooms_table, int i)
 {
-	int i;
+	int	j;
+	int	begin;
+	int len_path;
 
-	i = 0;
-	while (i < )
+	len_path = 0;
+	begin = i;
+	while (begin != lem_in.end)
 	{
-		/* code */
+		j = 0;
+		while (j < paths.m)
+		{
+			if (paths.data[begin][j] == 1)
+			{
+				ft_put_end(rooms_table, begin);
+				begin = j;
+				len_path++;
+				break;
+			}
+			j++;
+		}
+		if (j == paths.m)
+			return (0);
 	}
-		
+	return (j);
 }
 
-void	lem_in_output(t_matrix *aj, int num_patchs, int lems)
+void	ft_crt_len_table(t_matrix paths, t_lem_in lem_in, t_matrix *rooms_table, int *len_table)
 {
-	int	i;
-	int	*len_table;
-	int	**rooms_table;
+	int j;
+	int	num_path;
+
+	j = 0;
+	num_path = 0;
+	//t_matrix_init(len_table, paths.m, paths.n);
+	len_table = (int*)malloc(sizeof(int) * paths.m);
+	while (j < paths.n)
+	{
+		if (paths.data[lem_in.start][j] == 1)
+		{
+			//ft_strjoin_str();
+			len_table[num_path] = ft_got_path(lem_in , paths, rooms_table->data[num_path], j);
+			num_path++;
+		}
+		j++;
+	}
+}
+
+void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
+{
+	int			i;
+	int			*len_table;
+	t_matrix	rooms_table;
 
 	i = 0;
-	ft_crt_len_table(rooms_table, len_table);
+	(void)aj;
+	len_table = NULL;
+	t_matrix_init(&rooms_table, aj.m, aj.n);
+	ft_crt_len_table(paths, lem_in, &rooms_table, len_table);
+	t_matrix_print(&rooms_table);
 	//ft_sort_paths(paths);
 	//size_paths = ft_srh_num_paths(paths, &len, num_patchs);
 	//ft_print_paths(paths, size_paths, num_patchs, lems);
