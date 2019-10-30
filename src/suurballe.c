@@ -17,31 +17,18 @@ int find_shortest_path(t_matrix *aj, t_matrix *path, int start, int end)
 	return (0);
 }
 
-/*
-void reverse_path(t_matrix *path, int start, int end)
-{
- t_matrix_t(path)
-}
-*/
 void split_node(t_matrix *aj, int k)
 {
 	int i;
 
-//	printf("dup %d'th node\n", k);
 	t_matrix_duplicate_node(aj, k);
-//	t_matrix_duplicate_node(path, k);
-//	t_matrix_print(aj);
 	// k'th is IN; k+1'th us OUT
 	for (i = 0; i < aj->n; i++)
 	{
 		aj->data[k][i] = DISJ; // remove all outs for input node
 		aj->data[i][k + 1] = DISJ; //remove all inputs from output node
-//		path->data[k][i] = DISJ;
-//		path->data[i][k + 1] = DISJ;
 	}
 	aj->data[k][k + 1] = 0; // link between split
-//	path->data[k][k + 1] = 1;
-//	t_matrix_print(aj);
 }
 
 void split_path_nodes(t_matrix *aj, t_matrix *path,
@@ -126,45 +113,36 @@ void remove_sym(t_matrix *path)
 			}
 		}
 	}
-
 }
 
 int suurballe(t_matrix *aj, int start, int end)
 {
 	t_matrix collapser;
-	t_matrix path1;
-	t_matrix path2;
-	t_matrix path_sum;
+	t_matrix path;
+	t_matrix all_paths;
+	t_matrix aj2;
 	int i;
 
-	t_matrix_init_identity(&collapser, aj->m);
+	t_matrix_init_zero(&all_paths, aj->m, aj->n);
 	i = 0;
 	while (1)
 	{
-		if (!find_shortest_path(aj, &path1, start, end))
+		suurballe_reverse_path(aj, &all_paths);
+		t_matrix_init_identity(&collapser, aj->m);
+		aj2 = t_matrix_copy(aj);
+		split_path_nodes(&aj2, &all_paths, &collapser, &start, &end);
+		if (!find_shortest_path(&aj2, &path, start, end))
 			break;
 		i++;
-		suurballe_reverse_path(aj, &path1);
-		split_path_nodes(aj, &path1, &collapser, &start, &end);
-		if (!find_shortest_path(aj, &path2, start, end))
-			break;
-		printf("path1:\n");
-		t_matrix_print(&path1);
-		printf("path2:\n");
-		t_matrix_print(&path2);
-		printf("collapse...:\n");
-		collapse(&path2, &collapser);
-		t_matrix_print(&path2);
-		path_sum = t_matrix_add(&path1, &path2);
-		remove_sym(&path_sum);
-		printf("path sum:\n");
-		t_matrix_print(&path_sum);
-		printf("aj:\n");
-		t_matrix_print(aj);
-		t_matrix_init_identity(&collapser, aj->m);
-		t_matrix_del(&path2);
+		collapse(&path, &collapser);
+		all_paths = t_matrix_add(&all_paths, &path);
+		remove_sym(&all_paths);
+
+		t_matrix_del(&aj2);
+		t_matrix_del(&collapser);
+		t_matrix_del(&path);
 	}
 	t_matrix_del(&collapser);
-	t_matrix_print(aj);
+	t_matrix_print(&all_paths);
 	return (i);
 }
