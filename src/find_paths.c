@@ -72,6 +72,7 @@ int		ft_get_node(int **stack, int num)
 	int		i;
 	int		*new_nodes;
 
+	(void)i;
 	i = 0;
 	node = *stack[0];
 	new_nodes = (int*)malloc(sizeof(int) * num);

@@ -335,7 +335,7 @@ int main(void)
 {
 	int fd;
 
-	fd = open("maps/qqq", O_RDONLY);
+	fd = open("maps/qqq_ordered", O_RDONLY);
 //	lem_in_v1(fd);
 //	lem_in_v2(fd);
 	lem_in_v3(fd);

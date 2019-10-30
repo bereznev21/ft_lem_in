@@ -17,6 +17,7 @@ int find_shortest_path(t_matrix *aj, t_matrix *path, int start, int end)
 	return ret; //store 1*n matrix into path; values are 0 and 1;
 //	return (0);
 }
+
 /*
 void reverse_path(t_matrix *path, int start, int end)
 {
@@ -27,7 +28,6 @@ void split_node(t_matrix *aj, int k, t_matrix *coll)
 {
 	int i;
 
-	printf("split!\n");
 	t_matrix_duplicate_node(aj, k);
 	t_matrix_duplicate_row(coll, k);
 	// k'th is IN; k+1'th us OUT
@@ -43,11 +43,14 @@ void split_path_nodes(t_matrix *aj, t_matrix *path,
 					  t_matrix *collapser, int start, int end)
 {
 	int i;
+	int j;
 
+	printf("split!\n");
 	i = -1;
+	j = 0;
 	while (++i < aj->m)
 		if (path->data[0][i] > 0 && i != start && i != end)
-			split_node(aj, i, collapser);
+			split_node(aj, i + j++, collapser);
 }
 
 void collapse(t_matrix *aj, t_matrix *collapser)
@@ -80,9 +83,11 @@ int suurballe(t_matrix *aj, int start, int end)
 	{
 		i++;
 		t_matrix_print(&path);
-		t_matrix_t(&path);
+		fflush(stdout);
+//		t_matrix_t(&path);
 		split_path_nodes(aj, &path, &collapser, start, end);
 		t_matrix_print(aj);
+		fflush(stdout);
 		t_matrix_del(&path);
 	}
 	collapse(aj, &collapser);

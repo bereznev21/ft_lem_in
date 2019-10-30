@@ -56,6 +56,7 @@ void		lem_in_output(int **paths, int num_patchs, int lems)
 	int	len;
 
 	(void)lems;
+	(void)size_paths;
 	len = 0;
 	//ft_sort_paths(paths);
 	size_paths = ft_srh_num_paths(paths, &len, num_patchs);
