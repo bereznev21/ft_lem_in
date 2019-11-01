@@ -15,6 +15,7 @@ SRC = \
         src/select_paths.c \
 		src/ft_trnsfr_paths.c \
 		src/suurballe.c \
+		src/bellman_ford.c \
         ft_read_map.c \
         ft_crt_map.c \
 

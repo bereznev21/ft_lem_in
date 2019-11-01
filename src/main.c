@@ -331,6 +331,42 @@ void lem_in_v3(int fd)
 	lem_in_output(paths, aj, lem_in);
 }
 
+void test_bf(int fd)
+{
+	t_lem_in lem_in;
+	t_matrix aj;
+	t_matrix paths;
+	int n_paths;
+	int k;
+	int i;
+
+	aj = lem_in_read(fd, &lem_in);
+	t_matrix_print(&aj);
+	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
+	bf_shortest_path(&aj, &paths, lem_in.start, lem_in.end);
+	t_matrix_print(&paths);
+
+	k = lem_in.start;
+	while (k != lem_in.end)
+	{
+		i = -1;
+		while (++i < aj.m)
+		{
+			if (paths.data[k][i])
+			{
+				k = i;
+				break;
+			}
+		}
+		if (i == aj.m)
+		{
+			printf("path not found\n");
+			exit(1);
+		}
+	}
+	printf("path exists\n");
+}
+
 int main(void)
 {
 	int fd;
@@ -339,6 +375,7 @@ int main(void)
 //	lem_in_v1(fd);
 //	lem_in_v2(fd);
 	lem_in_v3(fd);
+//	test_bf(fd);
 	close(fd);
 	return (0);
 }

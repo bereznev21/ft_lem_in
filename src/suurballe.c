@@ -35,12 +35,9 @@ void split_path_nodes(t_matrix *aj, t_matrix *path,
 	int i;
 	t_matrix path_diag;
 
-//	printf("split!\n");
 	path_diag = t_matrix_copy(path);
 	t_matrix_t(&path_diag);
 	path_diag = t_matrix_mul(&path_diag, path);
-//	t_matrix_print(&path_diag);
-//	fflush(stdout);
 	i = -1;
 	while (++i < path_diag.n)
 		if (path_diag.data[i][i] == 1 && i != *start && i != *end)
@@ -133,7 +130,8 @@ int suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
 		suurballe_reverse_path(&aj2, all_paths);
 		t_matrix_init_identity(&collapser, aj2.m);
 		split_path_nodes(&aj2, all_paths, &collapser, &s, &e);
-		if (!find_shortest_path(&aj2, &path, s, e))
+//		if (!find_shortest_path(&aj2, &path, s, e))
+		if (!bf_shortest_path(&aj2, &path, s, e))
 			break;
 		i++;
 		s = start;
