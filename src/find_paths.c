@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/30 21:37:24 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/10/31 14:01:49 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,10 +233,10 @@ int	find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end) // Dijkstr
 	int			j;
 
 	(void)end;
-	nodes = (int*)malloc(sizeof(int) * aj->n);
+	nodes = (int*)malloc(sizeof(int) * aj->n * 2);
 	stack = (int*)malloc(sizeof(int) * aj->n);
 	t_matrix_init(paths_map, aj->n, aj->n);
-	ft_bminus(&nodes, aj->n);
+	ft_bminus(&nodes, aj->n * 2);
 	ft_bminus(&stack, aj->n);
 	ft_push(&stack, start);
 	num = aj->n;
@@ -245,14 +245,16 @@ int	find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end) // Dijkstr
 	{
 		num = aj->n;
 		node = ft_get_node(&stack, --num);
-//		printf("%d\n", node);
+		//if (node <= 0)
+		//	continue ;
+	//	printf("%d\n", node);
 		if (node == end)
 			return (1);
 		nodes[node] = 2;
 		j = 0;
 		while (j < aj->n)
 		{
-			if (aj->data[node][j] != DISJ && nodes[j] == DISJ)
+			if (nodes[j] == DISJ && aj->data[node][j] != DISJ)
 			{
 				ft_push(&stack, j);
 				num++;
