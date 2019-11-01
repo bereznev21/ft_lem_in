@@ -320,11 +320,13 @@ void lem_in_v3(int fd)
 	t_lem_in lem_in;
 	t_matrix aj;
 	t_matrix paths;
+	int n_paths;
 
 	aj = lem_in_read(fd, &lem_in);
 	t_matrix_print(&aj);
 	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
-	suurballe(&aj, &paths, lem_in.start, lem_in.end);
+	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
+	printf("total disjoint paths: %d\n", n_paths);
 	t_matrix_print(&paths);
 	lem_in_output(paths, aj, lem_in);
 }
