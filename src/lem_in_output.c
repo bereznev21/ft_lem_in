@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/01 15:48:36 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/01 22:56:28 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,21 +103,30 @@ void	ft_crt_len_table(t_matrix paths, t_lem_in lem_in, t_matrix *rooms_table, in
 void	ft_srch_border(int *len_table, int ants, int *border)
 {
 	int	i;
+	int	sum;
+	int	k;
 
+	sum = 0;
 	i = 0;
+	k = 0;
+	(void)border;
+	(void)len_table;	
 	if (ants > 0)
 	{
-		//	return ;
-		while (len_table[i] != -1 && len_table[i] < ants)
+		while (len_table[i] > 0)
 		{
 			//printf("%d\n", len_table[i]);
+			//printf("%d\n", i);
+			if (len_table[i] < ants - k)
+				k++;
+			//sum++;
 			i++;
 		}
-		printf("%d", i);
-		*border = i;
+		*border = k;
 	}
 }
 
+/*
 void	ft_calc_lems(t_matrix paths, t_lem_in lem_in, t_matrix rooms_table, int *len_table)
 {
 	int			sum;
@@ -130,18 +139,17 @@ void	ft_calc_lems(t_matrix paths, t_lem_in lem_in, t_matrix rooms_table, int *le
 	i = 0;
 	j = 0;
 	sum = 0;
-	(void)rooms_table;
 	(void)len_table;
-	(void)lem_in;
+	(void)rooms_table;
 	(calc_table) = (int*)malloc(sizeof(int) * paths.m);
 	t_matrix_init_zero(&matrix_patch, paths.m, paths.n);
 	ft_bzero(calc_table, paths.n);
-	border = 2;
+	border = 0;
 	while (sum < lem_in.ants)
 	{
-		if (lem_in.ants < sum)
-			return ;
-		//ft_srch_border(len_table, lem_in.ants - sum, &border);
+		ft_srch_border(len_table, lem_in.ants - sum, &border);
+		printf("%d\n", border);
+		//exit(0);
 		while (sum < lem_in.ants && j < border)
 		{
 			matrix_patch.data[i][j] = 1;
@@ -149,9 +157,70 @@ void	ft_calc_lems(t_matrix paths, t_lem_in lem_in, t_matrix rooms_table, int *le
 			j++;
 		}
 		i++;
+		if (i == paths.m)
+			continue ;
 		j = 0;
 	}
 	t_matrix_print(&matrix_patch);
+}
+*/
+
+int		ft_srch_min(int *len_table)
+{
+	int min;
+	int i;
+	int	i_min;
+
+	i = -1;
+	i_min = 0;
+	min = len_table[0];
+	//printf("min %d", min);
+	while (len_table[++i] != -1)
+	{
+		//printf("%d ", len_table[i]);
+		if (len_table[i] < min)
+		{
+			min = len_table[i];
+			i_min = i;
+		}
+	}
+	return (i_min);
+}
+
+void	ft_calc_lems(t_matrix paths, t_lem_in lem_in, t_matrix rooms_table, int *len_table)
+{
+	(void)rooms_table;
+	(void)paths;
+
+	int		lems;
+	int		min;
+	int		i;
+	int		*lems_in_rooms;
+	int		j;
+
+	j = -1;
+	i = 0;
+	min = 0;
+	lems = lem_in.ants;
+	lems_in_rooms = (int*)malloc(sizeof(int) * paths.n);
+	while (++j < paths.n)
+		lems_in_rooms[j] = 0;
+	while (lems)
+	{
+		while (len_table[i] != -1 && lems)
+		{	
+			min = ft_srch_min(len_table);
+			lems_in_rooms[min]++;
+			len_table[min]++;
+			//printf("%d ", min);
+			i++;
+			lems--;
+		}
+		//printf("\n");
+		i = 0;
+	}
+	printf("%d\n", lems_in_rooms[0]);
+	printf("%d\n", lems_in_rooms[1]);
 }
 
 void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
@@ -168,6 +237,7 @@ void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
 	//ft_sort_paths(paths);
 	t_matrix_print(&rooms_table);
 	ft_calc_lems(paths, lem_in, rooms_table, len_table);
+	//ft_calc_lems(paths, lem_in, rooms_table, len_table);
 	//size_paths = ft_srh_num_paths(paths, &len, num_patchs);
 	//ft_print_paths(paths, size_paths, num_patchs, lems);
 }
