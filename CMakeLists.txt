@@ -25,8 +25,10 @@ add_executable(push_relabel
 		src/expand_junctions.c
 		src/ft_trnsfr_paths.c
 		src/suurballe.c
+		src/bellman_ford.c
         ft_read_map.c
         ft_crt_map.c
+		src/lem_in_output.c
 
         libft/ft_memset.c
         libft/ft_bzero.c
