@@ -42,16 +42,18 @@ void	ft_src_roads(t_matrix *ans, t_matrix *map, int k)
 	}
 }
 */
-void ft_put_end(int *roads, int end)
+
+void ft_put_end(int **roads, int end)
 {
 	int n;
 
 	n = 0;
-	while ((roads)[n] > -1)
+	while ((*roads)[n] != DISJ)
 		n++;
-	(roads)[n] = end;
+	(*roads)[n] = end;
 }
 
+/*
 void ft_src_roads1(t_matrix *res, t_matrix *map, int frst_room, int num_room)
 {
 	int j;
@@ -76,7 +78,7 @@ void ft_src_roads1(t_matrix *res, t_matrix *map, int frst_room, int num_room)
 		}
 	}
 }
-
+*/
 /*
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end)
 {

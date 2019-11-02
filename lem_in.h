@@ -101,7 +101,7 @@ void		*t_array_get(t_array *a, int i);
 void		*t_array_push(t_array *a, void *content);
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end);
 t_array		path_matrix_to_bit_masks(t_matrix *aj, int start, int end);
-void		ft_put_end(int *roads, int end);
+void		ft_put_end(int **roads, int end);
 void		ft_src_roads(t_matrix *ans, t_matrix *map, int k);
 void		ft_src_roads1(t_matrix	*res, t_matrix *map, int frst_room, int num_room);
 void		ft_bminus(int **s, size_t n);
