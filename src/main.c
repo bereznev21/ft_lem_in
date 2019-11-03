@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/02 15:16:45 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/03 17:26:21 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -371,7 +371,7 @@ int main(void)
 {
 	int fd;
 
-	fd = open("maps/map3", O_RDONLY);
+	fd = open("maps/map", O_RDONLY);
 //	lem_in_v1(fd);
 //	lem_in_v2(fd);
 	lem_in_v3(fd);
