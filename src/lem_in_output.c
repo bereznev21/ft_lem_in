@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/04 11:26:19 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/04 19:58:57 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,19 @@ void	ft_print_arr(int *lems_in_rooms, int n)
 	}
 }
 
+
+void	ft_print_rooms(int *lems_in_rooms, int n, t_lem_in lem_in)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		printf("%s ", ((t_room*)t_array_get(&lem_in.rooms, lems_in_rooms[i]))->name);
+		i++;
+	}
+}
+
 void	ft_calc_lems(t_matrix paths, t_lem_in lem_in, int *len_table, int **lems_in_rooms)
 {
 	int		lems;
@@ -327,10 +340,11 @@ void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
 	ft_crt_len_table(paths, lem_in, &paths_table, &len_table);
 //	t_matrix_print(&paths_table);
 //	printf("\n");
-	//ft_print_arr(len_table, paths.n);
+//	((t_room*)t_array_get(&lem_in.rooms, num))->name;
+//	ft_print_rooms(len_table, paths.n, lem_in);
 	ft_calc_lems(paths, lem_in, len_table, &lems_in_rooms);
-//	printf("\n");
-	//ft_print_arr(lems_in_rooms, paths.n);
+	printf("\n");
+//	ft_print_arr(lems_in_rooms, paths.n);
 	ft_print_lems(lems_in_rooms, paths, paths_table, lem_in);
 	//size_paths = ft_srh_num_paths(paths, &len, num_patchs);
 	//ft_print_paths(paths, size_paths, num_patchs, lems);

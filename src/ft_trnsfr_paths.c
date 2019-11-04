@@ -43,7 +43,7 @@ void	ft_src_roads(t_matrix *ans, t_matrix *map, int k)
 }
 */
 
-void ft_put_end(int **roads, int end)
+void	ft_put_end(int **roads, int end)
 {
 	int n;
 

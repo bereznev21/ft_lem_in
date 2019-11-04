@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/03 20:52:54 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/04 20:10:10 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,11 +323,11 @@ void lem_in_v3(int fd)
 	int n_paths;
 
 	aj = lem_in_read(fd, &lem_in);
-	t_matrix_print(&aj);
-	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
+	//t_matrix_print(&aj);
+	//printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
 	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
-	printf("total disjoint paths: %d\n", n_paths);
-	t_matrix_print(&paths);
+	//printf("total disjoint paths: %d\n", n_paths);
+	//t_matrix_print(&paths);
 	lem_in_output(paths, aj, lem_in);
 }
 
@@ -341,10 +341,10 @@ void test_bf(int fd)
 	int i;
 
 	aj = lem_in_read(fd, &lem_in);
-	t_matrix_print(&aj);
-	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
+	//t_matrix_print(&aj);
+	//printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
 	bf_shortest_path(&aj, &paths, lem_in.start, lem_in.end);
-	t_matrix_print(&paths);
+	//t_matrix_print(&paths);
 
 	k = lem_in.start;
 	while (k != lem_in.end)
@@ -371,7 +371,7 @@ int main(void)
 {
 	int fd;
 
-	fd = open("maps/map4", O_RDONLY);
+	fd = open("test_map", O_RDONLY);
 //	lem_in_v1(fd);
 //	lem_in_v2(fd);
 	lem_in_v3(fd);
