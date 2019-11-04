@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/03 20:40:09 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/04 11:26:19 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,9 +256,11 @@ void	ft_print_ants(t_matrix	condition_of_ants, t_matrix paths_table, t_lem_in le
 {
 	int	i;
 	int	j;
+	int num;
 
 	i = 0;
 	j = 0;
+	num = 0;
 	(void)lem_in;
 	while (i < condition_of_ants.m && condition_of_ants.data[i][j] != DISJ)
 	{
@@ -266,9 +268,9 @@ void	ft_print_ants(t_matrix	condition_of_ants, t_matrix paths_table, t_lem_in le
 		{
 			if (condition_of_ants.data[i][j] != 0)
 			{
-				//if (i > 0 || j > 0)
-				//	printf(" ");
-				printf("L%d-%d", condition_of_ants.data[i][j], paths_table.data[i][j]);
+				num = paths_table.data[i][j];
+				printf("L%d-%s", condition_of_ants.data[i][j],
+					((t_room*)t_array_get(&lem_in.rooms, num))->name);
 				printf(" ");//space in end of a line
 			}
 			j++;
