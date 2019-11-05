@@ -34,6 +34,8 @@ t_array read_rooms(int fd, int *start, int *end, char **line)
 	while (1)
 	{
 		assert(ft_get_next_line(fd, line) > 0, "failed read room");
+		ft_putstr(*line);
+		ft_putchar('\n');
 		if (!ft_strcmp(*line, "##start"))
 			*start = i;
 		if (!ft_strcmp(*line, "##end"))
@@ -62,6 +64,8 @@ t_matrix read_roads(int fd, t_array rooms, char **line)
 	t_matrix_init(&aj, rooms.count, rooms.count);
 	while (1)
 	{
+		ft_putstr(*line);
+		ft_putchar('\n');
 		//todo: what if road count is 0 in map
 		if (**line != '#')
 		{
@@ -87,6 +91,8 @@ t_matrix lem_in_read(int fd, t_lem_in *lem_in)
 	while (1)
 	{
 		assert(ft_get_next_line(fd, &line) > 0, "bad data");
+		ft_putstr(line);
+		ft_putchar('\n');
 		if (line[0] != '#')
 			break;
 	}
