@@ -21,7 +21,6 @@ void t_matrix_init_minus(t_matrix *mat, int m, int n)
 	}
 }
 
-
 /*
 void	ft_src_roads(t_matrix *ans, t_matrix *map, int k)
 {
