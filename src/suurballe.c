@@ -1,20 +1,5 @@
 #include "lem_in.h"
 
-void t_matrix_duplicate_row(t_matrix *aj, int k);
-void t_matrix_duplicate_col(t_matrix *aj, int k);
-void t_matrix_duplicate_node(t_matrix *aj, int k);
-
-
-int find_shortest_path(t_matrix *aj, t_matrix *path, int start, int end)
-{
-	t_matrix paths_map;
-
-	if (find_paths(aj, &paths_map, start, end) == 1)
-		if (ft_restore_patch(path, paths_map, start, end) == 1)
-			return (1);
-	return (0);
-}
-
 void split_node(t_matrix *aj, int k)
 {
 	int i;
@@ -130,12 +115,8 @@ int suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
 		suurballe_reverse_path(&aj2, all_paths);
 		t_matrix_init_identity(&collapser, aj2.m);
 		split_path_nodes(&aj2, all_paths, &collapser, &s, &e);
-//		if (!find_shortest_path(&aj2, &path, s, e))
-//		if (!bf_shortest_path(&aj2, &path, s, e))
-//			break;
-		if (!find_paths(&aj2, &path, s, e))
+		if (!find_path(&aj2, &path, s, e))
 			break;
-//		t_matrix_print(&path);
 		i++;
 		s = start;
 		e = end;

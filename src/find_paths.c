@@ -72,8 +72,8 @@ int		ft_get_node(int **stack, int num)
 	int		i;
 	int		*new_nodes;
 
-	(void)i;
 	i = 0;
+	(void)i;
 	node = *stack[0];
 	new_nodes = (int*)malloc(sizeof(int) * num);
 	ft_bminus(&new_nodes, num);
@@ -290,9 +290,6 @@ void	ft_q_push(t_queue **q, int node)
 
 int		ft_q_empty(t_queue *q)
 {
-	int i;
-
-	i = 0;
 	if (q && q->data >= 0)
 		return (1);
 	return (0);
@@ -321,7 +318,6 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end)
 	int		node;
 	int		i;
 
-	i = 0;
 	(void)end;
 	q = (t_queue*)malloc(sizeof(t_queue));
 	q->next = NULL;
@@ -350,4 +346,12 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end)
 		}
 	}
 	return (1);
+}
+
+int find_path(t_matrix *aj, t_matrix *ret, int start, int end)
+{
+	t_matrix path;
+
+	find_paths(aj, &path, start, end);
+	return ft_restore_patch(ret, path, start, end);
 }

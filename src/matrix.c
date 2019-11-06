@@ -208,15 +208,36 @@ void t_matrix_del(t_matrix *m)
 	free(m->data);
 }
 
-void lem_in_test()
+
+void t_matrix_duplicate_row(t_matrix *aj, int k)
 {
-	t_matrix map;
-	t_matrix flow;
+	aj->data = ft_realloc(aj->data,
+						  sizeof(int *) * aj->m,
+						  sizeof(int *) * (aj->m + 1));
 
-	t_matrix_init(&map, 6, 6);
+	ft_memmove(&aj->data[k + 1], &aj->data[k], sizeof(int *) * (aj->m - k));
+	aj->data[k] = ft_memdup(aj->data[k], sizeof(int) * aj->n);
+	aj->m++;
+}
 
-	t_matrix_fill(&map);
-	t_matrix_print_no_headers(&map);
-	flow = push_relabel(&map, 0, 5);
-	t_matrix_print_no_headers(&flow);
+void t_matrix_duplicate_col(t_matrix *aj, int k)
+{
+	int i;
+
+	i = -1;
+	while (++i < aj->m)
+	{
+		aj->data[i] = ft_realloc(aj->data[i],
+								 sizeof(int) * aj->n,
+								 sizeof(int) * (aj->n + 1));
+		ft_memmove(&aj->data[i][k + 1], &aj->data[i][k],
+				   sizeof(int) * (aj->n - k));
+	}
+	aj->n++;
+}
+
+void t_matrix_duplicate_node(t_matrix *aj, int k)
+{
+	t_matrix_duplicate_row(aj, k);
+	t_matrix_duplicate_col(aj, k);
 }

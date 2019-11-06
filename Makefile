@@ -7,17 +7,12 @@ SRC = \
 		src/main.c \
         src/matrix.c \
         src/array.c \
-        src/push_relabel.c \
-        src/expand_junctions.c \
 		src/find_paths.c \
         src/lem_in_read.c \
 		src/lem_in_output.c \
-        src/select_paths.c \
 		src/ft_trnsfr_paths.c \
 		src/suurballe.c \
 		src/bellman_ford.c \
-        ft_read_map.c \
-        ft_crt_map.c \
 
 FLS = -g -Wall -Wextra -Werror
 

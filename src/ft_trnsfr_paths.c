@@ -134,7 +134,17 @@ void matrix_to_bits_recur(t_matrix *aj, int i, int end, unsigned long *path, t_a
 	}
 }
 
-void printf_bin_ulong(unsigned long n, int k);
+void printf_bin_ulong(unsigned long n, int k)
+{
+	printf("%6lu:\t", n);
+	while (k--)
+	{
+		printf(n & 1 ? "1" : "0");
+		n >>= 1;
+	}
+	printf("\n");
+}
+
 
 t_array path_matrix_to_bit_masks(t_matrix *aj, int start, int end)
 {
