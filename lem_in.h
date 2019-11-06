@@ -72,6 +72,14 @@ typedef struct	s_lem_in
 	t_array rooms;
 }				t_lem_in;
 
+typedef	struct 		s_queue
+{
+	int				data;
+	struct s_queue	*next;
+	struct s_queue	*previous;
+}					t_queue;
+
+
 void		t_matrix_init(t_matrix *mat, int m, int n);
 void		t_matrix_init_identity(t_matrix *mat, int n);
 t_matrix	t_matrix_copy(t_matrix *m);
@@ -89,7 +97,7 @@ void 		ft_crt_names_rooms_table(t_start *start, char **res, int i);
 void		t_matrix_print(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in);
-int			find_paths(t_matrix *p, t_matrix *aj, int start, int end);
+int			find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end);
 int			ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end);
 ULONG		select_paths(t_array *arr);
 int			**find_paths_mock(t_matrix *aj, int start, int end);

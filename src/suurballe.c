@@ -131,8 +131,11 @@ int suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
 		t_matrix_init_identity(&collapser, aj2.m);
 		split_path_nodes(&aj2, all_paths, &collapser, &s, &e);
 //		if (!find_shortest_path(&aj2, &path, s, e))
-		if (!bf_shortest_path(&aj2, &path, s, e))
+//		if (!bf_shortest_path(&aj2, &path, s, e))
+//			break;
+		if (!find_paths(&aj2, &path, s, e))
 			break;
+//		t_matrix_print(&path);
 		i++;
 		s = start;
 		e = end;

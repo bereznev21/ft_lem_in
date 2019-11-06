@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/04 15:01:49 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/06 15:01:53 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,23 +143,19 @@ t_matrix	find_paths(t_matrix *aj, int start, int end) // DFS
 	free(nodes);
 	return (paths_map);
 }
-
-
-
-int		find_paths(t_matrix *p, t_matrix *aj, int start, int end) // BFS
+*/
+/*
+int		find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end) // BFS
 {
 	int			node;
 	int			num;
 	int			*nodes;
 	int			*stack;
-	t_matrix	paths_map;
 	int			j;
 
 	(void)end;
-	(void)p;
 	nodes = (int*)malloc(sizeof(int) * aj->n);
 	stack = (int*)malloc(sizeof(int) * aj->n);
-	t_matrix_init(&paths_map, aj->n, aj->n);
 	ft_bminus(&nodes, aj->n);
 	ft_bminus(&stack, aj->n);
 	ft_push(&stack, start);
@@ -168,16 +164,16 @@ int		find_paths(t_matrix *p, t_matrix *aj, int start, int end) // BFS
 	{
 		num = aj->n;
 		node = ft_get_node(&stack, --num);
-		//if (node == end)
-		//	continue;
+		if (node == end)
+			continue;
 		nodes[node] = 2;
 		j = 0;
 		while (j < num)
 		{
 			if (aj->data[node][j] == 1 && nodes[j] == -1)
 			{
-				paths_map.data[node][j] = 1;
-				paths_map.data[j][node] = -1;
+				paths_map->data[node][j] = 1;
+				paths_map->data[j][node] = -1;
 				ft_push(&stack, j);
 				num++;
 				nodes[j] = 1;
@@ -191,7 +187,6 @@ int		find_paths(t_matrix *p, t_matrix *aj, int start, int end) // BFS
 	return (0);
 }
 */
-
 int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end)
 {
 	int	i;
@@ -223,14 +218,13 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int e
 	return (1);
 }
 
-
+/*
 int	find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end) // Dijkstra
 {
 	int			node;
 	int			num;
 	int			*nodes;
 	int			*stack;
-	//t_matrix	paths_map;
 	int			j;
 
 	(void)end;
@@ -271,4 +265,89 @@ int	find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end) // Dijkstr
 	free(stack);
 	free(nodes);
 	return (0);
+}
+*/
+
+void	ft_q_push(t_queue **q, int node)
+{
+	t_queue *tmp;
+	t_queue *list;
+
+	tmp = *q;
+	list = (t_queue*)malloc(sizeof(t_queue));
+	list->data = node;
+	list->next = NULL;
+	if (list)
+	{
+		while (tmp->next)
+		{
+			//q->next->previous = q; 
+			tmp = tmp->next;
+		}
+		tmp->next = list;
+	}
+}
+
+int		ft_q_empty(t_queue *q)
+{
+	int i;
+
+	i = 0;
+	if (q && q->data >= 0)
+		return (1);
+	return (0);
+}
+
+int		ft_q_front(t_queue *q)
+{
+	if (q->data >= 0)
+		return (q->data);
+	return (-1);
+}
+
+void	ft_q_pop(t_queue **q)
+{
+	t_queue *tmp;
+
+	tmp = (*q)->next;
+	//free(q);
+	*q = tmp;
+}
+
+int		find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end)
+{
+	t_queue	*q;
+	int		*used;
+	int		node;
+	int		i;
+
+	i = 0;
+	(void)end;
+	q = (t_queue*)malloc(sizeof(t_queue));
+	q->next = NULL;
+	used = (int*)malloc(sizeof(int) * aj->n);
+	ft_bminus(&used, aj->n);
+	ft_q_push(&q, start);
+	used[start] = 1;
+	while ((ft_q_empty(q)))
+	{
+		node = ft_q_front(q);
+		ft_q_pop(&q);
+		i = 0;
+		if (node == end)
+			break ;
+		while (i < aj->m)
+		{
+			if(used[i] == DISJ && aj->data[node][i] != DISJ)
+			{
+				//printf("%d %d\n", node, i);
+				ft_q_push(&q, i);
+				paths_map->data[node][i] = 1;
+				used[i] = 1;
+				//printf("%d\n", node);
+			}
+			i++;
+		}
+	}
+	return (1);
 }

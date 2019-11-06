@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/05 17:00:59 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/06 15:20:55 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,15 +320,20 @@ void lem_in_v3(int fd)
 	t_lem_in lem_in;
 	t_matrix aj;
 	t_matrix paths;
-	int n_paths;
+	t_matrix least_patch;
+//	int n_paths;
 
 	aj = lem_in_read(fd, &lem_in);
-	//t_matrix_print(&aj);
-	//printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
-	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
+//	t_matrix_print(&aj);
+	t_matrix_init(&paths, aj.m, aj.n);
+	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
+//	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
 	//printf("total disjoint paths: %d\n", n_paths);
+	find_paths(&aj, &paths, lem_in.start, lem_in.end);
+	ft_restore_patch(&least_patch, paths, lem_in.start, lem_in.end);
 	//t_matrix_print(&paths);
-	lem_in_output(paths, aj, lem_in);
+	//lem_in_output(paths, aj, lem_in);
+	lem_in_output(least_patch, aj, lem_in);
 }
 
 void test_bf(int fd)
@@ -371,7 +376,7 @@ int main(void)
 {
 	int fd;
 
-	fd = open("test_map", O_RDONLY);
+	fd = open("maps/1000", O_RDONLY);
 //	lem_in_v1(fd);
 //	lem_in_v2(fd);
 	lem_in_v3(fd);
