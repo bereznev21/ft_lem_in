@@ -277,7 +277,7 @@ void	ft_q_push(t_queue **q, int node)
 	list = (t_queue*)malloc(sizeof(t_queue));
 	list->data = node;
 	list->next = NULL;
-	if (list)
+	if (list) // todo: if list is NOLL then line above will make segfault
 	{
 		while (tmp->next)
 		{
