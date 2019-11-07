@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/07 18:28:44 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/07 22:22:27 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,7 +326,6 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end)
 	int		i;
 
 	i = 0;
-	(void)end;
 	q = (t_queue*)malloc(sizeof(t_queue));
 	q->data = DISJ;
 	q->next = NULL;
@@ -338,7 +337,8 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end)
 	{
 		node = ft_q_front(q);
 		if (node == -1 || node == DISJ)
-			return (1);
+			//return (1);
+			break ;
 		ft_q_pop(&q);
 		i = 0;
 		if (node == end)
@@ -357,6 +357,8 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end)
 			i++;
 		}
 	}
+	ft_free_q(&q);
+	free(used);
 	return (1);
 }
 

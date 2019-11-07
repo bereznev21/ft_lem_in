@@ -13,6 +13,7 @@ SRC = \
 		src/ft_trnsfr_paths.c \
 		src/suurballe.c \
 		src/bellman_ford.c \
+		src/free.c \
 
 FLS = -g -Wall -Wextra -Werror
 

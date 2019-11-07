@@ -83,5 +83,8 @@ void 		t_matrix_init_zero(t_matrix *mat, int m, int n);
 int			find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end);
 int			find_path(t_matrix *aj, t_matrix *paths, int start, int end);
 void		ft_print_arr(int *lems_in_rooms, int n);
+void		ft_free(t_lem_in *lem_in, t_matrix *aj, t_matrix *paths);
+void		ft_free_matrix(t_matrix *matrix);
+void		ft_free_q(t_queue **q);
 
 #endif

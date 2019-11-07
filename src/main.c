@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/07 20:48:31 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/07 22:00:23 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void lem_in_main(int fd)
 //	printf("total disjoint paths: %d\n", n_paths);
 //	t_matrix_print(&paths);
 	lem_in_output(paths, aj, lem_in);
+	ft_free(&lem_in, &aj, &paths);
 }
 
 void test_bf(int fd)
@@ -74,7 +75,7 @@ int main(void)
 {
 	int fd;
 
-	fd = open("maps/generated/big3.map", O_RDONLY);
+	fd = open("maps/map3", O_RDONLY);
 	lem_in_main(fd);
 	close(fd);
 	return (0);

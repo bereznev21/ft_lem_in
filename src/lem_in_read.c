@@ -58,8 +58,8 @@ t_array read_rooms(int fd, int *start, int *end, char **line)
 
 t_matrix read_roads(int fd, t_array rooms, char **line)
 {
-	t_matrix aj;
-	char **split;
+	t_matrix	aj;
+	char		**split;
 
 	t_matrix_init(&aj, rooms.count, rooms.count);
 	while (1)
