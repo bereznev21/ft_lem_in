@@ -6,7 +6,7 @@ NO_PATH = -9999
 DISJ = 999999
 
 
-def read_matrix(f_name):
+def read_data(f_name):
     with open(f_name, 'rt') as f:
         data = [l.strip() for l in f.read().split('\n')]
     data = [l for l in data if l]
@@ -104,7 +104,7 @@ def suurballe(aj, start, end):
 
 
 def test_bf():
-    aj, start, end = read_matrix("mat/300.mat")
+    aj, start, end = read_data("mat/300.mat")
     print(aj)
     # indices = np.zeros([aj.shape[0]])
     # indices[0] = 1
@@ -142,7 +142,7 @@ def reconstruct_paths(all_paths, start, end):
 
 
 def main():
-    aj, start, end = read_matrix("maps/qqq")
+    aj, start, end = read_data("mat/300.mat")
     # print(bf_shortest_path(aj, start, end))
     n, all_paths = suurballe(aj, start, end)
     reconstruct_paths(all_paths, start, end)

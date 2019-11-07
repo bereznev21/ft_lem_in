@@ -336,7 +336,6 @@ void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
 	t_matrix	paths_table;
 
 	i = -1;
-	(void)i;
 	t_matrix_init(&paths_table, aj.m, aj.n);
 	ft_crt_len_table(paths, lem_in, &paths_table, &len_table);
 //	t_matrix_print(&paths_table);
