@@ -82,5 +82,6 @@ int			bf_shortest_path(t_matrix *aj, t_matrix *paths_map, int stat, int end);
 void 		t_matrix_init_zero(t_matrix *mat, int m, int n);
 int			find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end);
 int			find_path(t_matrix *aj, t_matrix *paths, int start, int end);
+void		ft_print_arr(int *lems_in_rooms, int n);
 
 #endif
