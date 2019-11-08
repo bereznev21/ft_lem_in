@@ -19,15 +19,9 @@ add_executable(push_relabel
 		src/array.c
         src/matrix.c
         src/lem_in_read.c
-        src/select_paths.c
-        src/push_relabel.c
 		src/find_paths.c
-		src/expand_junctions.c
-		src/ft_trnsfr_paths.c
 		src/suurballe.c
 		src/bellman_ford.c
-        ft_read_map.c
-        ft_crt_map.c
 		src/lem_in_output.c
 
         libft/ft_memset.c
