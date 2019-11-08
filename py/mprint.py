@@ -1,4 +1,5 @@
-from .consts import *
+import sys
+from py.consts import *
 
 def mprint(mat):
     m, n = mat.shape
@@ -13,7 +14,7 @@ def mprint(mat):
     for i, row in enumerate(mat):
         print("{:2d}|".format(i), end="")
         for c in row:
-            if c == DISJ:
+            if c == D:
                 print(" . ", end="")
             elif c == ZERO:
                 print(" o ", end="")

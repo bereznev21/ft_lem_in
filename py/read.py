@@ -1,4 +1,4 @@
-from .consts import *
+from py.consts import *
 
 
 def read_lem_in(f_name):
@@ -28,7 +28,7 @@ def read_lem_in(f_name):
             continue
         rooms.append(l.split()[0])
     aj = np.ones([len(rooms), len(rooms)])
-    aj *= DISJ
+    aj *= D
     for l in data[last_room_idx:]:
         a, b = l.split('-')
         i = room_idx(a)
@@ -51,7 +51,7 @@ def read_matrix(f_name):
     for i, line in enumerate(data):
         for j, c in enumerate(line.split()):
             if c == ".":
-                aj[i, j] = DISJ
+                aj[i, j] = D
             else:
                 aj[i, j] = int(c)
     return aj, start, end

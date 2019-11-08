@@ -1,7 +1,7 @@
 import numpy as np
-from .consts import *
-from .mprint import mprint
-from .find_path import bf_shortest_path
+from py.consts import *
+from py.mprint import mprint
+from py.find_path import bf_shortest_path
 
 
 def suu_reverse_path(aj, all_paths):
@@ -11,7 +11,7 @@ def suu_reverse_path(aj, all_paths):
             if (p):
                 # ret[j, i] = -aj[i, j]
                 ret[j, i] = aj[i, j]
-                ret[i, j] = DISJ
+                ret[i, j] = D
     return ret
 
 
@@ -27,8 +27,8 @@ def split_node(aj, k):
     aj = np.insert(aj, k, aj[k], axis=0)
     aj = np.insert(aj, k, aj[:, k], axis=1)
     for i in range(aj.shape[0]):
-        aj[k, i] = DISJ
-        aj[i, k + 1] = DISJ
+        aj[k, i] = D
+        aj[i, k + 1] = D
     aj[k, k + 1] = ZERO
     return aj
 
