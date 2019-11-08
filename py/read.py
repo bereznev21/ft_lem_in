@@ -1,4 +1,5 @@
 from py.consts import *
+from py.utils import get_lines
 
 
 def read_lem_in(f_name):
@@ -7,9 +8,7 @@ def read_lem_in(f_name):
             if r == room_name:
                 return i
 
-    with open(f_name, 'rt') as f:
-        data = [l.strip() for l in f.read().split('\n')]
-    data = [l for l in data if l]
+    data = get_lines(f_name)
     while data[0].startswith("#"):
         data = data[1:]  # skip ant count
     data = data[1:]  # skip ant count
@@ -30,6 +29,8 @@ def read_lem_in(f_name):
     aj = np.ones([len(rooms), len(rooms)])
     aj *= D
     for l in data[last_room_idx:]:
+        if l.startswith("#"):
+            continue
         a, b = l.split('-')
         i = room_idx(a)
         j = room_idx(b)
@@ -39,9 +40,7 @@ def read_lem_in(f_name):
 
 
 def read_matrix(f_name):
-    with open(f_name, 'rt') as f:
-        data = [l.strip() for l in f.read().split('\n')]
-    data = [l for l in data if l]
+    data = get_lines(f_name)
     start = int(data[0].split()[0])
     end = int(data[0].split()[1])
     data = data[1:]

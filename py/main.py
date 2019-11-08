@@ -1,10 +1,11 @@
 from scipy.sparse.csgraph import bellman_ford
-from scipy.sparse.csgraph._tools import csgraph_from_dense
 
-from py.find_path import restore_path2, bf_shortest_path
+from py.find_path import bf_shortest_path
+from py.map_dump_restore import map_dump, map_restore
+from py.map_generator import generate_map
 from py.mprint import mprint
 from py.read import *
-from py.suurballe import suurballe
+from py.suurballe import suurballe, suurballe_generator
 
 
 def test_bf():
@@ -44,17 +45,39 @@ def reconstruct_paths(all_paths, start, end):
                     i = j
                     break
         print(i)
-    print(used_nodes)
 
 
 def main():
-    aj, start, end = read_lem_in("maps/qqq_ordered")
-    mprint(aj)
+    aj, start, end = read_lem_in("maps/generated/big1.map")
+    # mprint(aj)
     print(start, end)
     # mprint(bf_shortest_path(aj, start, end))
+    for i, all_paths in enumerate(suurballe_generator(aj, start, end)):
+        print("total paths:", i + 1)
+        reconstruct_paths(all_paths, start, end)
+
+
+def test_generated_maps():
+    start = 0
+    end = 4
+    aj = generate_map(end + 1, end // 2, 3)
+    # dump_map(aj)
+    print(aj)
     n, all_paths = suurballe(aj, start, end)
-    print("total paths:", n)
-    reconstruct_paths(all_paths, start, end)
+    try:
+        reconstruct_paths(all_paths, start, end)
+    except AssertionError:
+        map_dump(aj)
+        raise
+
+
+def debug_suurballe():
+    aj = map_restore("mat/bad_suurballe_5.mat")
+    start = 0
+    end = aj.shape[0] - 1
+    n, all_paths = suurballe(aj, start, end)
+    print(n)
+    mprint(all_paths)
 
 
 def draft():
@@ -73,5 +96,7 @@ def draft():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    # test_generated_maps()
+    debug_suurballe()
     # draft()

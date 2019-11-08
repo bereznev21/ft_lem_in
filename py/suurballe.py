@@ -54,24 +54,24 @@ def split_path_nodes(aj, path, start, end):
 
 def suurballe(aj, start, end):
     all_paths = np.zeros(aj.shape)
+    i = -1
+    for i, all_paths in enumerate(suurballe_generator(aj, start, end)):
+        pass
+    return i + 1, all_paths
+
+
+def suurballe_generator(aj, start, end):
+    all_paths = np.zeros(aj.shape)
     i = 0
     while 1:
-        print("reversing path...")
-        mprint(aj)
-        mprint(all_paths)
         aj2 = suu_reverse_path(aj, all_paths)
-        print("done:")
-        mprint(aj2)
         aj2, collapser, s, e = split_path_nodes(aj2, all_paths, start, end)
-        print("split nodes:")
-        mprint(aj2)
         path = bf_shortest_path(aj2, s, e)
         if path is None:
             break
         i += 1
-        print("path:")
-        mprint(path)
+        print(f"path: {i}")
         path = np.matmul(collapser.T, np.matmul(path, collapser))
         all_paths += path
         remove_sym(all_paths)
-    return i, all_paths
+        yield np.copy(all_paths)
