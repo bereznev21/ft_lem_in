@@ -86,5 +86,14 @@ void		ft_print_arr(int *lems_in_rooms, int n);
 void		ft_free(t_lem_in *lem_in, t_matrix *aj, t_matrix *paths);
 void		ft_free_matrix(t_matrix *matrix);
 void		ft_free_q(t_queue **q);
+void		ft_print_arr(int *lems_in_rooms, int n);
+void		ft_print_lems(int *lems_in_rooms, t_matrix paths_table, t_lem_in lem_in, int max_path);
+void		ft_move_leams_in_path(t_matrix *condition_of_ants, t_matrix paths_table, int k);
+void		ft_crt_len_table(t_matrix paths, t_lem_in lem_in, t_matrix *paths_table, int **len_table);
+
+void		ft_q_push(t_queue **q, int node);
+int			ft_q_empty(t_queue *q);
+int			ft_q_front(t_queue *q);
+void		ft_q_pop(t_queue **q);
 
 #endif
