@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/07 22:22:27 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/07 22:43:39 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,8 +192,8 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix *paths_map, int start, int 
 	ends = end;
 	while (ends != start)
 	{
-		i = 0;
-		while (i < paths_map->n)
+		i = -1;
+		while (++i < paths_map->n)
 		{
 			if (paths_map->data[i][ends] == 1)
 			{
@@ -205,13 +205,13 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix *paths_map, int start, int 
 				ends = i;
 				break;
 			}
-			i++;
 		}
-		//printf("\n");
 		if (i == paths_map->m)
 			return (0);
+			//break ;
 	}
 	//t_matrix_print(least_patch);
+	ft_free_matrix(paths_map);
 	return (1);
 }
 

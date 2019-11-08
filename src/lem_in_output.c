@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/07 22:00:02 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/08 14:00:53 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,18 @@ int		ft_got_path(t_lem_in lem_in, t_matrix paths, int **paths_table, int i)
 	int	begin;
 	int len_path;
 
+	(void)lem_in;
 	len_path = 0;
 	begin = i;
-	while (begin != lem_in.end)
+	while (1)
 	{
 		j = 0;
 		while (j < paths.m)
 		{
-			//printf("|%d|\n", j);
 			if (paths.data[begin][j] == 1)
 			{
+				//ft_print_arr(*paths_table, paths.m);
+				//printf("|%d %d|\n", begin, j);
 				ft_put_end(paths_table, begin);
 				begin = j;
 				len_path++;
@@ -71,9 +73,16 @@ int		ft_got_path(t_lem_in lem_in, t_matrix paths, int **paths_table, int i)
 			}
 			j++;
 		}
-		if (j == paths.m)
-			return (0);
+		//printf("%d\n", j);
+		//printf("%d\n", begin);
+		if (begin == lem_in.end)
+		{
+			ft_put_end(paths_table, begin);
+			break ;
+		}
+		//	return (0);
 	}
+	//ft_print_arr(*paths_table, paths.m);
 	return (len_path);
 }
 
@@ -85,6 +94,7 @@ void	ft_crt_len_table(t_matrix paths, t_lem_in lem_in, t_matrix *paths_table, in
 	j = -1;
 	num_path = 0;
 	//t_matrix_init(len_table, paths.m, paths.n);
+//	t_matrix_print(&paths);
 	(*len_table) = (int*)malloc(sizeof(int) * paths.m);
 	while (++j < paths.m)
 		(*len_table)[j] = -1;
@@ -327,7 +337,8 @@ void	ft_print_lems(int *lems_in_rooms, t_matrix paths_table, t_lem_in lem_in, in
 	lem_num = 0;
 	i = 0;
 	t_matrix_init(&condition_of_ants, paths_table.m, paths_table.n);
-	//ft_print_arr(lems_in_rooms, paths_table.n);
+//	t_matrix_print(&paths_table);
+//	ft_print_arr(lems_in_rooms, paths_table.n);
 	while (ants > 0)
 	{
 		while (i < paths_table.n)
@@ -343,14 +354,16 @@ void	ft_print_lems(int *lems_in_rooms, t_matrix paths_table, t_lem_in lem_in, in
 				ants--;
 			}
 			i++;
+			//t_matrix_print(&condition_of_ants);
 		}
-		//t_matrix_print(&condition_of_ants);
 		ft_print_ants(condition_of_ants, paths_table, lem_in);
 		i = 0;
 	}
-	while (max_path--)
+	while (max_path-- > 0)
 	{
-		ft_move_leams_in_path(&condition_of_ants, paths_table, i);
+		i = -1;
+		while (++i < paths_table.n)
+			ft_move_leams_in_path(&condition_of_ants, paths_table, i);
 		ft_print_ants(condition_of_ants, paths_table, lem_in);
 	}
 	//t_matrix_print(&condition_of_ants);

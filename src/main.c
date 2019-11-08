@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/07 22:00:23 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/07 22:52:08 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void lem_in_main(int fd)
 	(void)n_paths;
 	aj = lem_in_read(fd, &lem_in);
 //	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
-//	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
-	find_path(&aj, &paths, lem_in.start, lem_in.end);
+	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
+//	find_path(&aj, &paths, lem_in.start, lem_in.end);
 //	printf("%d %d\n", aj.m, aj.n);
 //	printf("total disjoint paths: %d\n", n_paths);
 //	t_matrix_print(&paths);
