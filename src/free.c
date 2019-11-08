@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/08 15:44:52 by rpoetess          #+#    #+#             */
+/*   Updated: 2019/11/08 15:46:33 by rpoetess         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 
@@ -18,7 +30,7 @@ void	ft_free_matrix(t_matrix *matrix)
 	i = -1;
 	while (++i < matrix->m)
 		free(matrix->data[i]);
-//	free(matrix->data);
+	free(matrix->data);
 //	free(matrix);
 }
 

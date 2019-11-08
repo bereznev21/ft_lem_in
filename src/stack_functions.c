@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_functions.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/08 15:43:23 by rpoetess          #+#    #+#             */
+/*   Updated: 2019/11/08 15:53:32 by rpoetess         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 
@@ -35,7 +46,6 @@ int		ft_q_empty(t_queue *q)
 
 int		ft_q_front(t_queue *q)
 {
-
 	if (q->data >= 0)
 		return (q->data);
 	return (-1);
@@ -48,7 +58,7 @@ void	ft_q_pop(t_queue **q)
 	if ((*q)->next)
 	{
 		tmp = (*q)->next;
-		//free(q);
+		free(*q);
 		*q = tmp;
 	}
 	else

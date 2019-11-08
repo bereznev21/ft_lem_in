@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/07 22:52:08 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/08 16:02:01 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include "lem_in.h"
 
-void lem_in_main(int fd)
+void	lem_in_main(int fd)
 {
 	t_lem_in lem_in;
 	t_matrix aj; // adjacency matrix
@@ -35,7 +35,7 @@ void lem_in_main(int fd)
 	ft_free(&lem_in, &aj, &paths);
 }
 
-void test_bf(int fd)
+void	test_bf(int fd)
 {
 	t_lem_in lem_in;
 	t_matrix aj;
@@ -59,7 +59,7 @@ void test_bf(int fd)
 			if (paths.data[k][i])
 			{
 				k = i;
-				break;
+				break ;
 			}
 		}
 		if (i == aj.m)
@@ -71,7 +71,7 @@ void test_bf(int fd)
 	printf("path exists\n");
 }
 
-int main(void)
+int		main(void)
 {
 	int fd;
 

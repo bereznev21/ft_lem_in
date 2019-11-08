@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 15:24:11 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/08 15:56:50 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,6 @@ int		*ft_srh_num_paths(int **paths, int *len, int num_patchs)
 	return (size_paths);
 }
 
-int		ft_srch_min(int *len_table)
-{
-	int min;
-	int i;
-	int	i_min;
-
-	i = -1;
-	i_min = 0;
-	min = len_table[0];
-	while (len_table[++i] != -1)
-	{
-		if (len_table[i] < min)
-		{
-			min = len_table[i];
-			i_min = i;
-		}
-	}
-	return (i_min);
-}
-
 int		ft_srch_max_paths_in_rooms(int *len_table, int len)
 {
 	int max;
@@ -70,8 +50,8 @@ int		ft_srch_max_paths_in_rooms(int *len_table, int len)
 	return (max);
 }
 
-
-void	ft_calc_lems(t_matrix paths, t_lem_in lem_in, int *len_table, int **lems_in_rooms)
+void	ft_calc_lems(t_matrix paths, t_lem_in lem_in,
+			int *len_table, int **lems_in_rooms)
 {
 	int		lems;
 	int		min;
@@ -100,7 +80,8 @@ void	ft_calc_lems(t_matrix paths, t_lem_in lem_in, int *len_table, int **lems_in
 	//ft_free_matrix(&paths);
 }
 
-void	ft_move_leams_in_path(t_matrix *condition_of_ants, t_matrix paths_table, int k)
+void	ft_move_leams_in_path(t_matrix *condition_of_ants,
+			t_matrix paths_table, int k)
 {
 	int i;
 

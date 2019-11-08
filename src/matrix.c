@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:17:25 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 15:13:27 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/08 15:48:57 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void		t_matrix_t(t_matrix *a)
 		while (++j < a->n)
 			b.data[j][i] = a->data[i][j];
 	}
-	t_matrix_del(a);
+	ft_free_matrix(a);
 	ft_memcpy(a, &b, sizeof(t_matrix));
 }
 
@@ -158,15 +158,6 @@ t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b)
 	return (r);
 }
 
-void		t_matrix_del(t_matrix *m)
-{
-	int i;
-
-	i = 0;
-	while (i < m->m)
-		free(m->data[i++]);
-	free(m->data);
-}
 
 void		t_matrix_duplicate_row(t_matrix *aj, int k)
 {
