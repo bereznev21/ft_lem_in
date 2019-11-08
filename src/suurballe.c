@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:43:48 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 15:52:10 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/08 17:57:16 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int		suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
 		suurballe_reverse_path(&aj2, all_paths);
 		t_matrix_init_identity(&collapser, aj2.m);
 		split_path_nodes(&aj2, all_paths, &collapser, &s, &e);
+	//	exit(0);
 		if (!find_path(&aj2, &path, s, e))
 			break ;
 		i++;

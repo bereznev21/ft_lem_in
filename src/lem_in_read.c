@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:12:26 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 15:05:53 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/08 16:12:04 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ t_matrix	read_roads(int fd, t_array rooms, char **line)
 		if (ft_get_next_line(fd, line) <= 0)
 			break ;
 	}
+	//free_(split);
 	return (aj);
 }
 
