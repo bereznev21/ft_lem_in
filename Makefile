@@ -6,13 +6,18 @@ OPTIONS = -I. -Ilibft/includes
 SRC = \
 		src/main.c \
         src/matrix.c \
+		src/init_matrix.c \
         src/array.c \
 		src/find_paths.c \
         src/lem_in_read.c \
 		src/lem_in_output.c \
-		src/ft_trnsfr_paths.c \
+		src/arr_functions.c \
+		src/crt_len_table.c \
+		src/stack_functions.c \
 		src/suurballe.c \
 		src/bellman_ford.c \
+		src/ft_print_functions.c \
+		src/free.c \
 
 FLS = -g -Wall -Wextra -Werror
 

@@ -41,7 +41,6 @@ typedef	struct 		s_queue
 {
 	int				data;
 	struct s_queue	*next;
-	struct s_queue	*previous;
 }					t_queue;
 
 void		t_array_init(t_array *a, size_t item_size);
@@ -50,6 +49,7 @@ void		*t_array_push(t_array *a, void *content);
 
 void		t_matrix_init(t_matrix *mat, int m, int n);
 void		t_matrix_init_identity(t_matrix *mat, int n);
+void 		t_matrix_init_zero(t_matrix *mat, int m, int n);
 t_matrix	t_matrix_copy(t_matrix *m);
 t_matrix	t_matrix_add(t_matrix *a, t_matrix *b);
 t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b);
@@ -65,12 +65,11 @@ void		t_matrix_print_no_headers(t_matrix *m);
 void		t_matrix_print(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in);
-int			find_path(t_matrix *aj, t_matrix *ret, int start, int end);
-int			ft_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end);
+int			t_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end);
 ULONG		select_paths(t_array *arr);
 int			**find_paths_mock(t_matrix *aj, int start, int end);
 void		lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in);
-void 		ft_print_matrix(int **map, int width);
+int			ft_srch_min(int *len_table);
 
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end);
 t_array		path_matrix_to_bit_masks(t_matrix *aj, int start, int end);
@@ -81,6 +80,23 @@ void		ft_bminus(int **s, size_t n);
 int			suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end);
 int			find_shortest_path(t_matrix *aj, t_matrix *path, int start, int end);
 int			bf_shortest_path(t_matrix *aj, t_matrix *paths_map, int stat, int end);
-void 		t_matrix_init_zero(t_matrix *mat, int m, int n);
+int			find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end);
+int			find_path(t_matrix *aj, t_matrix *paths, int start, int end);
+
+void		ft_free(t_lem_in *lem_in, t_matrix *aj, t_matrix *paths);
+void		ft_free_matrix(t_matrix *matrix);
+void		ft_free_q(t_queue **q);
+
+void 		ft_print_matrix(int **map, int width);
+void		ft_print_arr(int *lems_in_rooms, int n);
+void		ft_print_lems(int *lems_in_rooms, t_matrix paths_table, t_lem_in lem_in, int max_path);
+
+void		ft_move_leams_in_path(t_matrix *condition_of_ants, t_matrix paths_table, int k);
+void		ft_crt_len_table(t_matrix paths, t_lem_in lem_in, t_matrix *paths_table, int **len_table);
+
+void		ft_q_push(t_queue **q, int node);
+int			ft_q_empty(t_queue *q);
+int			ft_q_front(t_queue *q);
+void		ft_q_pop(t_queue **q);
 
 #endif

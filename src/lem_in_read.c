@@ -1,17 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lem_in_read.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/08 14:12:26 by rpoetess          #+#    #+#             */
+/*   Updated: 2019/11/08 15:05:53 by rpoetess         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "stdio.h"
 #include "libft.h"
 #include "lem_in.h"
 
-void assert(int expr, const char *msg)
+void		assert(int expr, const char *msg)
 {
 	if (!expr)
 	{
-		printf("%s\n", msg);
+		ft_putstr(msg);
+		ft_putchar('\n');
 		exit(1);
 	}
 }
 
-int get_room_idx(t_array rooms, const char *name)
+int			get_room_idx(t_array rooms, const char *name)
 {
 	int i;
 
@@ -22,12 +35,12 @@ int get_room_idx(t_array rooms, const char *name)
 	return (-1);
 }
 
-t_array read_rooms(int fd, int *start, int *end, char **line)
+t_array		read_rooms(int fd, int *start, int *end, char **line)
 {
-	t_array rooms;
-	t_room room;
-	char **split;
-	int i;
+	t_array	rooms;
+	t_room	room;
+	char	**split;
+	int		i;
 
 	t_array_init(&rooms, sizeof(t_room));
 	i = 0;
@@ -45,7 +58,7 @@ t_array read_rooms(int fd, int *start, int *end, char **line)
 		++i;
 		split = ft_strsplit(*line, ' ');
 		if (ft_len((void **)split) != 3)
-			break;
+			break ;
 		free(*line);
 		assert(get_room_idx(rooms, split[0]) < 0, "room name conflict");
 		room = (t_room){split[0], ft_atoi(split[1]), ft_atoi(split[2])};
@@ -56,10 +69,10 @@ t_array read_rooms(int fd, int *start, int *end, char **line)
 	return (rooms);
 }
 
-t_matrix read_roads(int fd, t_array rooms, char **line)
+t_matrix	read_roads(int fd, t_array rooms, char **line)
 {
-	t_matrix aj;
-	char **split;
+	t_matrix	aj;
+	char		**split;
 
 	t_matrix_init(&aj, rooms.count, rooms.count);
 	while (1)
@@ -74,17 +87,17 @@ t_matrix read_roads(int fd, t_array rooms, char **line)
 			assert(get_room_idx(rooms, split[0]) >= 0, "room not found");
 			assert(get_room_idx(rooms, split[1]) >= 0, "room not found");
 			t_matrix_set(&aj,
-						 get_room_idx(rooms, split[0]),
-						 get_room_idx(rooms, split[1]), 1);
+						get_room_idx(rooms, split[0]),
+						get_room_idx(rooms, split[1]), 1);
 		}
 		free(*line);
 		if (ft_get_next_line(fd, line) <= 0)
-			break;
+			break ;
 	}
 	return (aj);
 }
 
-t_matrix lem_in_read(int fd, t_lem_in *lem_in)
+t_matrix	lem_in_read(int fd, t_lem_in *lem_in)
 {
 	char *line;
 
@@ -94,10 +107,10 @@ t_matrix lem_in_read(int fd, t_lem_in *lem_in)
 		ft_putstr(line);
 		ft_putchar('\n');
 		if (line[0] != '#')
-			break;
+			break ;
 	}
 	lem_in->ants = ft_atoi(line);
 	free(line);
 	lem_in->rooms = read_rooms(fd, &lem_in->start, &lem_in->end, &line);
-	return read_roads(fd, lem_in->rooms, &line);
+	return (read_roads(fd, lem_in->rooms, &line));
 }
