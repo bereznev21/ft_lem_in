@@ -73,7 +73,7 @@ int		main(void)
 {
 	int fd;
 
-	fd = open("maps/qqq", O_RDONLY);
+	fd = open("maps/generated/10.map", O_RDONLY);
 	lem_in_main(fd);
 	close(fd);
 	return (0);
