@@ -34,17 +34,17 @@ int		ft_srch_max_paths_in_rooms(int *len_table, int len)
 {
 	int max;
 	int i;
-	int	i_max;
+//	int	i_max;
 
 	i = -1;
-	i_max = 0;
+//	i_max = 0;
 	max = len_table[0];
 	while (i < len && len_table[++i] != -1)
 	{
 		if (len_table[i] < max)
 		{
 			max = len_table[i];
-			i_max = i;
+//			i_max = i;
 		}
 	}
 	return (max);
@@ -58,6 +58,7 @@ void	ft_calc_lems(t_matrix paths, t_lem_in lem_in,
 	int		i;
 	int		j;
 
+	(void)min;
 	j = -1;
 	i = 0;
 	min = 0;
@@ -97,13 +98,11 @@ void	ft_move_leams_in_path(t_matrix *condition_of_ants,
 
 void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
 {
-	int			i;
 	int			max_path;
 	int			*len_table;
 	int			*lems_in_rooms;
 	t_matrix	paths_table;
 
-	i = -1;
 	(void)lems_in_rooms;
 	t_matrix_init(&paths_table, aj.m, aj.n);
 	ft_crt_len_table(paths, lem_in, &paths_table, &len_table);

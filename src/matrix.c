@@ -129,7 +129,7 @@ void		t_matrix_t(t_matrix *a)
 		while (++j < a->n)
 			b.data[j][i] = a->data[i][j];
 	}
-	ft_free_matrix(a);
+	t_matrix_del(a);
 	ft_memcpy(a, &b, sizeof(t_matrix));
 }
 
@@ -159,19 +159,23 @@ t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b)
 }
 
 
-void		t_matrix_duplicate_row(t_matrix *aj, int k)
+void		t_matrix_duplicate_row(t_matrix *aj, int k, int m)
 {
+	int *src_row;
+
 	aj->data = ft_realloc(aj->data,
 						sizeof(int *) * aj->m,
 						sizeof(int *) * (aj->m + 1));
-	ft_memmove(&aj->data[k + 1], &aj->data[k], sizeof(int *) * (aj->m - k));
-	aj->data[k] = ft_memdup(aj->data[k], sizeof(int) * aj->n);
+	src_row = aj->data[k];
+	ft_memmove(&aj->data[m + 1], &aj->data[m], sizeof(int *) * (aj->m - m));
+	aj->data[m] = ft_memdup(src_row, sizeof(int) * aj->n);
 	aj->m++;
 }
 
-void		t_matrix_duplicate_col(t_matrix *aj, int k)
+void		t_matrix_duplicate_col(t_matrix *aj, int k, int m)
 {
 	int i;
+	int v;
 
 	i = -1;
 	while (++i < aj->m)
@@ -179,14 +183,26 @@ void		t_matrix_duplicate_col(t_matrix *aj, int k)
 		aj->data[i] = ft_realloc(aj->data[i],
 								sizeof(int) * aj->n,
 								sizeof(int) * (aj->n + 1));
-		ft_memmove(&aj->data[i][k + 1], &aj->data[i][k],
-					sizeof(int) * (aj->n - k));
+		v = aj->data[i][k];
+		ft_memmove(&aj->data[i][m + 1], &aj->data[i][m],
+					sizeof(int) * (aj->n - m));
+		aj->data[i][m] = v;
 	}
 	aj->n++;
 }
 
-void		t_matrix_duplicate_node(t_matrix *aj, int k)
+void		t_matrix_duplicate_node(t_matrix *aj, int k, int m)
 {
-	t_matrix_duplicate_row(aj, k);
-	t_matrix_duplicate_col(aj, k);
+	t_matrix_duplicate_row(aj, k, m);
+	t_matrix_duplicate_col(aj, k, m);
+}
+
+void	t_matrix_del(t_matrix *matrix)
+{
+	int i;
+
+	i = -1;
+	while (++i < matrix->m)
+		free(matrix->data[i]);
+	free(matrix->data);
 }

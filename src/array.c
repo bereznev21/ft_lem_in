@@ -46,3 +46,8 @@ void *t_array_push(t_array *a, void *content)
 	a->count++;
 	return (a->data + a->item_size * (a->count - 1));
 }
+
+void t_array_del(t_array *a)
+{
+	free(a->data);
+}

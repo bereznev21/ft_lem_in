@@ -36,9 +36,6 @@ void	ft_q_push(t_queue **q, int node)
 
 int		ft_q_empty(t_queue *q)
 {
-	int i;
-
-	i = 0;
 	if (q && q->data >= 0)
 		return (1);
 	return (0);

@@ -25,14 +25,14 @@ void	lem_in_main(int fd)
 
 	(void)n_paths;
 	aj = lem_in_read(fd, &lem_in);
-//	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
+	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
 	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
-//	find_path(&aj, &paths, lem_in.start, lem_in.end);
-//	printf("%d %d\n", aj.m, aj.n);
-//	printf("total disjoint paths: %d\n", n_paths);
-//	t_matrix_print(&paths);
+	find_path(&aj, &paths, lem_in.start, lem_in.end);
+	printf("total disjoint paths: %d\n", n_paths);
 	lem_in_output(paths, aj, lem_in);
-	ft_free(&lem_in, &aj, &paths);
+	t_matrix_del(&aj);
+	t_matrix_del(&paths);
+	t_array_del(&lem_in.rooms);
 }
 
 void	test_bf(int fd)
