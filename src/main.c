@@ -23,11 +23,9 @@ void	lem_in_main(int fd)
 	t_matrix paths;
 	int n_paths;
 
-	(void)n_paths;
 	aj = lem_in_read(fd, &lem_in);
 	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
 	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
-	find_path(&aj, &paths, lem_in.start, lem_in.end);
 	printf("total disjoint paths: %d\n", n_paths);
 	lem_in_output(paths, aj, lem_in);
 	t_matrix_del(&aj);
@@ -75,8 +73,7 @@ int		main(void)
 {
 	int fd;
 
-//	fd = open("maps/map3", O_RDONLY);
-	fd = open("maps/generated/test.map", O_RDONLY);
+	fd = open("maps/qqq", O_RDONLY);
 	lem_in_main(fd);
 	close(fd);
 	return (0);
