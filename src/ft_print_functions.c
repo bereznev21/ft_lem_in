@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:58:34 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 15:00:12 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/08 19:32:47 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ void	ft_print_lems(int *lems_in_rooms,
 	t_matrix_init(&condition_of_ants, paths_table.m, paths_table.n);
 	while (ants > 0)
 	{
-		while (i < paths_table.n)
+		//while (i < paths_table.n)
+		while (lems_in_rooms[i] > 0)
 		{
 			ft_move_leams_in_path(&condition_of_ants, paths_table, i);
 			if (lems_in_rooms[i] > 0 && ants > 0)
@@ -83,6 +84,7 @@ void	ft_print_lems(int *lems_in_rooms,
 			}
 			i++;
 		}
+		//t_matrix_print(&condition_of_ants);
 		ft_print_ants(condition_of_ants, paths_table, lem_in);
 		i = 0;
 	}
