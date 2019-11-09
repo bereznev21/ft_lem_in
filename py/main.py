@@ -49,6 +49,7 @@ def reconstruct_paths(all_paths, start, end):
 
 def main():
     aj, start, end = read_lem_in("maps/generated/big1.map")
+    # aj, start, end = read_lem_in("maps/100")
     # mprint(aj)
     print(start, end)
     # mprint(bf_shortest_path(aj, start, end))
@@ -59,9 +60,9 @@ def main():
 
 def test_generated_maps():
     start = 0
-    end = 4
-    aj = generate_map(end + 1, end // 2, 3)
-    # dump_map(aj)
+    end = 10
+    aj = generate_map(end + 1, path_len=4, n_paths=5)
+    map_dump(aj)
     print(aj)
     n, all_paths = suurballe(aj, start, end)
     try:
@@ -72,12 +73,13 @@ def test_generated_maps():
 
 
 def debug_suurballe():
-    aj = map_restore("mat/bad_suurballe_5.mat")
+    aj = map_restore("mat/10.mat")
     start = 0
     end = aj.shape[0] - 1
     n, all_paths = suurballe(aj, start, end)
     print(n)
     mprint(all_paths)
+    reconstruct_paths(all_paths, start, end)
 
 
 def draft():
@@ -96,7 +98,16 @@ def draft():
 
 
 if __name__ == '__main__':
-    # main()
+    main()
     # test_generated_maps()
-    debug_suurballe()
+    # debug_suurballe()
     # draft()
+    # for p in separate_paths(np.array([
+    #     [0, 1, 1, 0],
+    #     [0, 0, 1, 0],
+    #     [0, 0, 0, 1],
+    #     [0, 0, 0, 0],
+    # ]), 0, 3):
+    #     for x in p:
+    #         print(x)
+    #     print()
