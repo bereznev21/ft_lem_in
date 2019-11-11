@@ -147,20 +147,23 @@ t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b)
 
 void		t_matrix_duplicate_row(t_matrix *aj, int k, int m)
 {
+	int i;
 	int *src_row;
 
 	if (aj->m + 1 > aj->m_alloc)
 	{
+		i = aj->m_alloc;
 		aj->m_alloc = round_up(aj->m + 1);
 		aj->data = ft_realloc(aj->data,
 							  sizeof(int *) * aj->m,
 							  sizeof(int *) * aj->m_alloc);
+		while(i < aj->m_alloc)
+			aj->data[i++] = malloc(sizeof(int) * aj->n_alloc);
+
 	}
 	src_row = aj->data[k];
 	ft_memmove(&aj->data[m + 1], &aj->data[m], sizeof(int *) * (aj->m - m));
-	aj->data[m] = malloc(sizeof(int) * aj->n_alloc);
-	ft_memcpy(&aj->data[m], src_row, sizeof(int) * aj->n);
-//	aj->data[m] = ft_memdup(src_row, sizeof(int) * aj->n);
+	ft_memcpy(aj->data[m], src_row, sizeof(int) * aj->n);
 	aj->m++;
 }
 
@@ -173,7 +176,7 @@ void		t_matrix_duplicate_col(t_matrix *aj, int k, int m)
 	{
 		aj->n_alloc = round_up(aj->n + 1);
 		i = -1;
-		while (++i < aj->m)
+		while (++i < aj->m_alloc)
 			aj->data[i] = ft_realloc(aj->data[i],
 									 sizeof(int) * aj->n,
 									 sizeof(int) * aj->n_alloc);

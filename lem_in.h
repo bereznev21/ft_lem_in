@@ -6,7 +6,7 @@
 
 # define ULONG unsigned long
 # define DISJ INT_MAX
-# define MAT_ALLOC_STEP 32
+# define MAT_ALLOC_STEP 512
 
 typedef struct	s_matrix
 {
