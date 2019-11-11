@@ -46,6 +46,7 @@ typedef	struct 		s_queue
 void		t_array_init(t_array *a, size_t item_size);
 void		*t_array_get(t_array *a, int i);
 void		*t_array_push(t_array *a, void *content);
+void		t_array_del(t_array *a);
 
 void		t_matrix_init(t_matrix *mat, int m, int n);
 void		t_matrix_init_identity(t_matrix *mat, int n);
@@ -54,16 +55,16 @@ t_matrix	t_matrix_copy(t_matrix *m);
 t_matrix	t_matrix_add(t_matrix *a, t_matrix *b);
 t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b);
 void		t_matrix_t(t_matrix *a);
-void		t_matrix_duplicate_row(t_matrix *aj, int k);
-void		t_matrix_duplicate_col(t_matrix *aj, int k);
-void		t_matrix_duplicate_node(t_matrix *aj, int k);
+void		t_matrix_duplicate_row(t_matrix *aj, int k, int m);
+void		t_matrix_duplicate_col(t_matrix *aj, int k, int m);
+void		t_matrix_duplicate_node(t_matrix *aj, int k, int m);
+void		t_matrix_print_no_headers(t_matrix *m);
+void		t_matrix_print(t_matrix *m);
+void		t_matrix_del(t_matrix *m);
 
 t_matrix	expand_junctions(t_matrix *aj);
 t_matrix	push_relabel(t_matrix *cap, int src, int dst);
 void		t_matrix_set(t_matrix *m, int i, int j, int v);
-void		t_matrix_print_no_headers(t_matrix *m);
-void		t_matrix_print(t_matrix *m);
-void		t_matrix_del(t_matrix *m);
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in);
 int			t_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end);
 ULONG		select_paths(t_array *arr);

@@ -14,21 +14,21 @@ include_directories(headers)
 
 #add_library(libft.a
 include_directories(libft/includes)
-add_executable(push_relabel
+add_executable(lem_in
         src/main.c
 		src/array.c
         src/matrix.c
+		src/init_matrix.c
         src/lem_in_read.c
-        src/select_paths.c
-        src/push_relabel.c
 		src/find_paths.c
-		src/expand_junctions.c
-		src/ft_trnsfr_paths.c
 		src/suurballe.c
 		src/bellman_ford.c
-        ft_read_map.c
-        ft_crt_map.c
+		src/stack_functions.c
 		src/lem_in_output.c
+		src/arr_functions.c
+		src/free.c
+		src/crt_len_table.c
+		src/ft_print_functions.c
 
         libft/ft_memset.c
         libft/ft_bzero.c

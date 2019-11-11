@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 19:54:22 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/11 17:15:31 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ void	lem_in_main(int fd)
 	t_matrix paths;
 	int n_paths;
 
-	(void)n_paths;
 	aj = lem_in_read(fd, &lem_in);
-//	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
-//	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
-	find_path(&aj, &paths, lem_in.start, lem_in.end);
-//	printf("%d %d\n", aj.m, aj.n);
-//	printf("total disjoint paths: %d\n", n_paths);
-//	t_matrix_print(&paths);
+	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
+	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
+	printf("total disjoint paths: %d\n", n_paths);
+	//exit(1);
 	lem_in_output(paths, aj, lem_in);
-	ft_free(&lem_in, &aj, &paths);
+	t_matrix_del(&aj);
+//	t_matrix_del(&paths);
+	t_array_del(&lem_in.rooms);
 }
 
 void	test_bf(int fd)
@@ -75,8 +74,8 @@ int		main(void)
 {
 	int fd;
 
-//	fd = open("maps/1000", O_RDONLY);
-	fd = open("maps/generated/test.map", O_RDONLY);
+//	fd = open("maps/map3", O_RDONLY);
+	fd = open("maps/generated/flow_one2.map", O_RDONLY);
 	lem_in_main(fd);
 	close(fd);
 	return (0);
