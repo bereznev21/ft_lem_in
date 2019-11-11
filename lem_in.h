@@ -7,6 +7,9 @@
 # define ULONG unsigned long
 # define DISJ INT_MAX
 # define MAT_ALLOC_STEP 512
+# define UINT unsigned int
+# define FLAG_PRINT_INPUT 1
+# define FLAG_DEBUG 2
 
 typedef struct	s_matrix
 {
@@ -76,7 +79,7 @@ int			round_up(int a);
 t_matrix	expand_junctions(t_matrix *aj);
 t_matrix	push_relabel(t_matrix *cap, int src, int dst);
 void		t_matrix_set(t_matrix *m, int i, int j, int v);
-t_matrix	lem_in_read(int fd, t_lem_in *lem_in);
+t_matrix	lem_in_read(int fd, t_lem_in *lem_in, UINT flags);
 int			t_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end);
 ULONG		select_paths(t_array *arr);
 int			**find_paths_mock(t_matrix *aj, int start, int end);
