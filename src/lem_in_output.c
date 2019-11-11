@@ -6,10 +6,11 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 19:20:23 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/11 17:10:44 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "lem_in.h"
 #include "libft/includes/libft.h"
 
@@ -86,14 +87,33 @@ void	ft_move_leams_in_path(t_matrix *condition_of_ants,
 {
 	int i;
 
+	/*
 	i = paths_table.n;
 	while (i > 0)
 	{
-		if (paths_table.data[k][i] != DISJ || i == paths_table.n)
+		//printf("%d\n", paths_table.data[k][i]);
+		if (paths_table.data[k][i] != DISJ)
 			condition_of_ants->data[k][i] = condition_of_ants->data[k][i - 1];
 		i--;
 	}
 	condition_of_ants->data[k][0] = 0;
+	*/
+	i = paths_table.n - 1;
+	//printf("%d\n", i);
+	while (i > 0)
+	{
+		if (paths_table.data[k][i] != DISJ)
+		{
+			condition_of_ants->data[k][i] = condition_of_ants->data[k][i - 1];
+			//printf("%d\n", condition_of_ants->data[k][i]);
+			//printf("%d ", paths_table.data[k][i]);
+			//ft_putnbr(paths_table.data[k][i]);
+			//ft_putchar(' ');
+		}
+		i--;
+	}
+	condition_of_ants->data[k][0] = 0;
+	//t_matrix_print(condition_of_ants);
 }
 
 void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
@@ -103,11 +123,12 @@ void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
 	int			*lems_in_rooms;
 	t_matrix	paths_table;
 
-	(void)lems_in_rooms;
 	t_matrix_init(&paths_table, aj.m, aj.n);
 	ft_crt_len_table(paths, lem_in, &paths_table, &len_table);
 	max_path = ft_srch_max_paths_in_rooms(len_table, aj.m);
+	//ft_putchar('\n');
 	ft_calc_lems(paths, lem_in, len_table, &lems_in_rooms);
+	//ft_print_arr(lems_in_rooms, aj.m);
 	ft_print_lems(lems_in_rooms, paths_table, lem_in, max_path);
 	free(len_table);
 	free(lems_in_rooms);
