@@ -6,9 +6,12 @@
 
 # define ULONG unsigned long
 # define DISJ INT_MAX
+# define MAT_ALLOC_STEP 32
 
 typedef struct	s_matrix
 {
+	int m_alloc;
+	int n_alloc;
 	int m;
 	int n;
 	int **data;
@@ -68,6 +71,7 @@ void		t_matrix_duplicate_node(t_matrix *aj, int k, int m);
 void		t_matrix_print_no_headers(t_matrix *m);
 void		t_matrix_print(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
+int			round_up(int a);
 
 t_matrix	expand_junctions(t_matrix *aj);
 t_matrix	push_relabel(t_matrix *cap, int src, int dst);

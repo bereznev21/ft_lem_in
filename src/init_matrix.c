@@ -11,56 +11,53 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include "libft.h"
 
-void		t_matrix_init(t_matrix *mat, int m, int n)
+int		round_up(int a)
+{
+	return (((a - 1) / MAT_ALLOC_STEP + 1) * MAT_ALLOC_STEP);
+}
+
+void	t_matrix_init(t_matrix *mat, int m, int n)
 {
 	int i;
 	int j;
 
 	mat->m = m;
 	mat->n = n;
-	mat->data = malloc(sizeof(int *) * mat->m);
+	mat->m_alloc = round_up(m);
+	mat->n_alloc = round_up(n);
+	mat->data = malloc(sizeof(int *) * mat->m_alloc);
 	i = -1;
-	while (++i < mat->m)
+	while (++i < mat->m_alloc)
 	{
-		mat->data[i] = malloc(sizeof(int) * mat->n);
+		mat->data[i] = malloc(sizeof(int) * mat->n_alloc);
 		j = -1;
 		while (++j < mat->n)
 			mat->data[i][j] = DISJ;
 	}
 }
 
-void		t_matrix_init_zero(t_matrix *mat, int m, int n)
+void	t_matrix_init_zero(t_matrix *mat, int m, int n)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
-	mat->m = m;
-	mat->n = n;
-	mat->data = malloc(sizeof(int *) * mat->m);
+	t_matrix_init(mat, m, n);
 	i = -1;
 	while (++i < mat->m)
 	{
-		mat->data[i] = malloc(sizeof(int) * mat->n);
 		j = -1;
 		while (++j < mat->n)
 			mat->data[i][j] = 0;
 	}
 }
 
-void		t_matrix_init_identity(t_matrix *mat, int n)
+void	t_matrix_init_identity(t_matrix *mat, int n)
 {
-	int	i;
+	int i;
 
-	mat->m = n;
-	mat->n = n;
-	mat->data = malloc(sizeof(int *) * mat->m);
+	t_matrix_init_zero(mat, n, n);
 	i = -1;
 	while (++i < mat->m)
-	{
-		mat->data[i] = malloc(sizeof(int) * mat->n);
-		ft_bzero(mat->data[i], mat->n * sizeof(int));
 		mat->data[i][i] = 1;
-	}
 }

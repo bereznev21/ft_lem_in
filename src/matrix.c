@@ -20,13 +20,10 @@ t_matrix	t_matrix_copy(t_matrix *m)
 	int			j;
 	t_matrix	ret;
 
-	ret.m = m->m;
-	ret.n = m->n;
-	ret.data = malloc(sizeof(int *) * ret.m);
+	t_matrix_init(&ret, m->m, m->n);
 	i = -1;
 	while (++i < ret.m)
 	{
-		ret.data[i] = malloc(sizeof(int) * ret.n);
 		j = -1;
 		while (++j < ret.n)
 			ret.data[i][j] = m->data[i][j];
@@ -104,17 +101,6 @@ void		t_matrix_set(t_matrix *m, int i, int j, int v)
 	m->data[j][i] = v;
 }
 
-void		t_matrix_fill(t_matrix *m)
-{
-	t_matrix_set(m, 0, 1, 1);
-	t_matrix_set(m, 0, 2, 1);
-	t_matrix_set(m, 1, 4, 1);
-	t_matrix_set(m, 2, 3, 1);
-	t_matrix_set(m, 2, 4, 1);
-	t_matrix_set(m, 3, 5, 1);
-	t_matrix_set(m, 4, 5, 1);
-}
-
 void		t_matrix_t(t_matrix *a)
 {
 	int			i;
@@ -163,12 +149,18 @@ void		t_matrix_duplicate_row(t_matrix *aj, int k, int m)
 {
 	int *src_row;
 
-	aj->data = ft_realloc(aj->data,
-						sizeof(int *) * aj->m,
-						sizeof(int *) * (aj->m + 1));
+	if (aj->m + 1 > aj->m_alloc)
+	{
+		aj->m_alloc = round_up(aj->m + 1);
+		aj->data = ft_realloc(aj->data,
+							  sizeof(int *) * aj->m,
+							  sizeof(int *) * aj->m_alloc);
+	}
 	src_row = aj->data[k];
 	ft_memmove(&aj->data[m + 1], &aj->data[m], sizeof(int *) * (aj->m - m));
-	aj->data[m] = ft_memdup(src_row, sizeof(int) * aj->n);
+	aj->data[m] = malloc(sizeof(int) * aj->n_alloc);
+	ft_memcpy(&aj->data[m], src_row, sizeof(int) * aj->n);
+//	aj->data[m] = ft_memdup(src_row, sizeof(int) * aj->n);
 	aj->m++;
 }
 
@@ -177,12 +169,18 @@ void		t_matrix_duplicate_col(t_matrix *aj, int k, int m)
 	int i;
 	int v;
 
+	if (aj->n + 1 > aj->n_alloc)
+	{
+		aj->n_alloc = round_up(aj->n + 1);
+		i = -1;
+		while (++i < aj->m)
+			aj->data[i] = ft_realloc(aj->data[i],
+									 sizeof(int) * aj->n,
+									 sizeof(int) * aj->n_alloc);
+	}
 	i = -1;
 	while (++i < aj->m)
 	{
-		aj->data[i] = ft_realloc(aj->data[i],
-								sizeof(int) * aj->n,
-								sizeof(int) * (aj->n + 1));
 		v = aj->data[i][k];
 		ft_memmove(&aj->data[i][m + 1], &aj->data[i][m],
 					sizeof(int) * (aj->n - m));
@@ -202,7 +200,7 @@ void	t_matrix_del(t_matrix *matrix)
 	int i;
 
 	i = -1;
-	while (++i < matrix->m)
+	while (++i < matrix->m_alloc)
 		free(matrix->data[i]);
 	free(matrix->data);
 }
