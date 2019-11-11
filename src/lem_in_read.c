@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:12:26 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/11 18:19:48 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/11 20:16:17 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ t_matrix	read_roads(int fd, t_array rooms, char **line)
 	t_matrix_init(&aj, rooms.count, rooms.count);
 	while (1)
 	{
-		ft_putstr(*line);
-		ft_putchar('\n');
 		//todo: what if road count is 0 in map
 		if (**line != '#')
 		{
@@ -100,6 +98,8 @@ t_matrix	read_roads(int fd, t_array rooms, char **line)
 		free(*line);
 		if (ft_get_next_line(fd, line) <= 0)
 			break ;
+		ft_putstr(*line);
+		ft_putchar('\n');
 	}
 	//free_(split);
 	return (aj);
