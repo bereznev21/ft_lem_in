@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoetess <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:42:59 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 15:43:02 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/11 18:38:08 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include <stdio.h>
 
 int		round_up(int a)
 {
@@ -26,6 +27,7 @@ void	t_matrix_init(t_matrix *mat, int m, int n)
 	mat->n = n;
 	mat->m_alloc = round_up(m);
 	mat->n_alloc = round_up(n);
+//	printf("%d %d\n", mat->m_alloc, mat->n_alloc);
 	mat->data = malloc(sizeof(int *) * mat->m_alloc);
 	i = -1;
 	while (++i < mat->m_alloc)
