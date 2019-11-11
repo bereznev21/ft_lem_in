@@ -27,47 +27,10 @@ void	lem_in_main(int fd)
 	printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
 	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
 	printf("total disjoint paths: %d\n", n_paths);
-	//exit(1);
-	lem_in_output(paths, aj, lem_in);
+//	lem_in_output(paths, aj, lem_in);
 	t_matrix_del(&aj);
-//	t_matrix_del(&paths);
+	t_matrix_del(&paths);
 	t_array_del(&lem_in.rooms);
-}
-
-void	test_bf(int fd)
-{
-	t_lem_in lem_in;
-	t_matrix aj;
-	t_matrix paths;
-	//int n_paths;
-	int k;
-	int i;
-
-	aj = lem_in_read(fd, &lem_in);
-	//t_matrix_print(&aj);
-	//printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
-	bf_shortest_path(&aj, &paths, lem_in.start, lem_in.end);
-	//t_matrix_print(&paths);
-
-	k = lem_in.start;
-	while (k != lem_in.end)
-	{
-		i = -1;
-		while (++i < aj.m)
-		{
-			if (paths.data[k][i])
-			{
-				k = i;
-				break ;
-			}
-		}
-		if (i == aj.m)
-		{
-			printf("path not found\n");
-			exit(1);
-		}
-	}
-	printf("path exists\n");
 }
 
 int		main(void)
@@ -75,7 +38,7 @@ int		main(void)
 	int fd;
 
 //	fd = open("maps/map3", O_RDONLY);
-	fd = open("maps/generated/flow_one2.map", O_RDONLY);
+	fd = open("maps/generated/10.map", O_RDONLY);
 	lem_in_main(fd);
 	close(fd);
 	return (0);
