@@ -41,7 +41,7 @@ int parse_av(int ac, char **av, UINT *flags)
 	char *arg;
 	char *f_name;
 
-	*flags = 0;
+	*flags = FLAG_PRINT_INPUT;
 	f_name = 0;
 	if (ac < 2)
 		return (0);
@@ -53,7 +53,7 @@ int parse_av(int ac, char **av, UINT *flags)
 		if (!ft_strcmp("-d", arg))
 			*flags |= FLAG_DEBUG;
 		else if (!ft_strcmp("-i", arg))
-			*flags |= FLAG_PRINT_INPUT;
+			*flags ^= FLAG_PRINT_INPUT;
 		else if (!f_name)
 			f_name = arg;
 		else
