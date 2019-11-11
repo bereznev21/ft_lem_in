@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/11 20:55:50 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/11 23:34:12 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,13 @@ void lem_in_main(int fd, UINT flags)
 	aj = lem_in_read(fd, &lem_in, flags & FLAG_PRINT_INPUT);
 	if (flags & FLAG_DEBUG)
 		printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
-	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
+	if (lem_in.ants > 1)
+		n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
+	else
+	{
+		find_path(&aj, &paths, lem_in.start, lem_in.end);
+		n_paths = 1;
+	}
 	if (flags & FLAG_DEBUG)
 		printf("total disjoint paths: %d\n", n_paths);
 	lem_in_output(paths, aj, lem_in);
@@ -41,7 +47,7 @@ int parse_av(int ac, char **av, UINT *flags)
 	char *arg;
 	char *f_name;
 
-	*flags = 0;
+	*flags = FLAG_PRINT_INPUT;
 	f_name = 0;
 	if (ac < 2)
 		return (0);
@@ -53,7 +59,7 @@ int parse_av(int ac, char **av, UINT *flags)
 		if (!ft_strcmp("-d", arg))
 			*flags |= FLAG_DEBUG;
 		else if (!ft_strcmp("-i", arg))
-			*flags |= FLAG_PRINT_INPUT;
+			*flags ^= FLAG_PRINT_INPUT;
 		else if (!f_name)
 			f_name = arg;
 		else
