@@ -80,7 +80,7 @@ void		lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in);
 int			ft_srch_min(int *len_table);
 
 void		t_collapse_add(t_collapse *c, int k);
-void		t_collapse_do(t_collapse *c, t_matrix *aj);
+void		t_collapse_do(t_collapse *c, t_matrix *paths);
 void		t_collapse_init(t_collapse *c, int size);
 
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end);
