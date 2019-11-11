@@ -72,6 +72,10 @@ int			**find_paths_mock(t_matrix *aj, int start, int end);
 void		lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in);
 int			ft_srch_min(int *len_table);
 
+void		node_collapse_add(t_matrix *collapser, int k);
+void		node_collapse(t_matrix *aj, t_matrix *collapser);
+void		node_collapse_init(t_matrix *collapser, int size);
+
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end);
 t_array		path_matrix_to_bit_masks(t_matrix *aj, int start, int end);
 void		ft_put_end(int **roads, int end);
