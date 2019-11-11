@@ -103,6 +103,7 @@ void		ft_free(t_lem_in *lem_in, t_matrix *aj, t_matrix *paths);
 void		ft_free_matrix(t_matrix *matrix);
 void		ft_free_q(t_queue **q);
 void		ft_free_arr_int(int **str, int width);
+void		ft_free_arr_char(char **map);
 
 void 		ft_print_matrix(int **map, int width);
 void		ft_print_arr(int *lems_in_rooms, int n);

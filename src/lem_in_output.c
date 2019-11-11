@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/11 17:10:44 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/11 17:50:32 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_calc_lems(t_matrix paths, t_lem_in lem_in,
 		}
 		i = 0;
 	}
-	//ft_free_matrix(&paths);
+	ft_free_matrix(&paths);
 }
 
 void	ft_move_leams_in_path(t_matrix *condition_of_ants,
@@ -87,29 +87,12 @@ void	ft_move_leams_in_path(t_matrix *condition_of_ants,
 {
 	int i;
 
-	/*
-	i = paths_table.n;
-	while (i > 0)
-	{
-		//printf("%d\n", paths_table.data[k][i]);
-		if (paths_table.data[k][i] != DISJ)
-			condition_of_ants->data[k][i] = condition_of_ants->data[k][i - 1];
-		i--;
-	}
-	condition_of_ants->data[k][0] = 0;
-	*/
 	i = paths_table.n - 1;
 	//printf("%d\n", i);
 	while (i > 0)
 	{
 		if (paths_table.data[k][i] != DISJ)
-		{
 			condition_of_ants->data[k][i] = condition_of_ants->data[k][i - 1];
-			//printf("%d\n", condition_of_ants->data[k][i]);
-			//printf("%d ", paths_table.data[k][i]);
-			//ft_putnbr(paths_table.data[k][i]);
-			//ft_putchar(' ');
-		}
 		i--;
 	}
 	condition_of_ants->data[k][0] = 0;
@@ -130,6 +113,7 @@ void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
 	ft_calc_lems(paths, lem_in, len_table, &lems_in_rooms);
 	//ft_print_arr(lems_in_rooms, aj.m);
 	ft_print_lems(lems_in_rooms, paths_table, lem_in, max_path);
+	t_matrix_del(&paths_table);
 	free(len_table);
 	free(lems_in_rooms);
 }
