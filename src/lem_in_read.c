@@ -84,8 +84,8 @@ t_matrix	read_roads(int fd, t_array rooms, char **line, UINT print_input)
 	t_matrix_init(&aj, rooms.count, rooms.count);
 	while (1)
 	{
-		//if (print_input)
-		//	ft_putendl(*line);
+		if (print_input)
+			ft_putendl(*line);
 		//todo: what if road count is 0 in map
 		if (**line != '#')
 		{
