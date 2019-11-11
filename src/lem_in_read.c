@@ -18,8 +18,7 @@ void		assert(int expr, const char *msg)
 {
 	if (!expr)
 	{
-		ft_putstr(msg);
-		ft_putchar('\n');
+		ft_putendl(msg);
 		exit(1);
 	}
 }
@@ -35,7 +34,7 @@ int			get_room_idx(t_array rooms, const char *name)
 	return (-1);
 }
 
-t_array		read_rooms(int fd, int *start, int *end, char **line)
+t_array		read_rooms(int fd, int *start, int *end, char **line, UINT print_input)
 {
 	t_array	rooms;
 	t_room	room;
@@ -47,8 +46,8 @@ t_array		read_rooms(int fd, int *start, int *end, char **line)
 	while (1)
 	{
 		assert(ft_get_next_line(fd, line) > 0, "failed read room");
-		ft_putstr(*line);
-		ft_putchar('\n');
+		if (print_input)
+			ft_putendl(*line);
 		if (!ft_strcmp(*line, "##start"))
 			*start = i;
 		if (!ft_strcmp(*line, "##end"))
@@ -76,7 +75,7 @@ t_array		read_rooms(int fd, int *start, int *end, char **line)
 	return (rooms);
 }
 
-t_matrix	read_roads(int fd, t_array rooms, char **line)
+t_matrix	read_roads(int fd, t_array rooms, char **line, UINT print_input)
 {
 	t_matrix	aj;
 	char		**split;
@@ -84,8 +83,8 @@ t_matrix	read_roads(int fd, t_array rooms, char **line)
 	t_matrix_init(&aj, rooms.count, rooms.count);
 	while (1)
 	{
-		ft_putstr(*line);
-		ft_putchar('\n');
+		if (print_input)
+			ft_putendl(*line);
 		//todo: what if road count is 0 in map
 		if (**line != '#')
 		{
@@ -105,20 +104,20 @@ t_matrix	read_roads(int fd, t_array rooms, char **line)
 	return (aj);
 }
 
-t_matrix	lem_in_read(int fd, t_lem_in *lem_in)
+t_matrix	lem_in_read(int fd, t_lem_in *lem_in, UINT print_input)
 {
 	char *line;
 
 	while (1)
 	{
 		assert(ft_get_next_line(fd, &line) > 0, "bad data");
-		ft_putstr(line);
-		ft_putchar('\n');
+		if (print_input)
+			ft_putendl(line);
 		if (line[0] != '#')
 			break ;
 	}
 	lem_in->ants = ft_atoi(line);
 	free(line);
-	lem_in->rooms = read_rooms(fd, &lem_in->start, &lem_in->end, &line);
-	return (read_roads(fd, lem_in->rooms, &line));
+	lem_in->rooms = read_rooms(fd, &lem_in->start, &lem_in->end, &line, print_input);
+	return (read_roads(fd, lem_in->rooms, &line, print_input));
 }
