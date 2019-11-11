@@ -6,12 +6,21 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:44:52 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 15:46:33 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/11 18:15:35 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
+void	ft_free_arr_char(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map);
+}
 
 void	ft_free_arr_int(int **str, int width)
 {

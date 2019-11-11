@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:12:26 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 16:12:04 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/11 18:19:48 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ t_array		read_rooms(int fd, int *start, int *end, char **line)
 		if (!ft_strcmp(*line, "##end"))
 			*end = i;
 		if (*line[0] == '#')
+		{
+			//free(line);
 			continue;
+		}
 		++i;
 		split = ft_strsplit(*line, ' ');
 		if (ft_len((void **)split) != 3)
@@ -65,7 +68,11 @@ t_array		read_rooms(int fd, int *start, int *end, char **line)
 		t_array_push(&rooms, &room);
 		free(split[1]);
 		free(split[2]);
+		free(split);
 	}
+	//ft_free_arr_char(split);
+	//free(split);
+	
 	return (rooms);
 }
 
