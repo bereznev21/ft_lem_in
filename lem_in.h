@@ -29,6 +29,13 @@ typedef struct	s_array
 	void *data;
 }				t_array;
 
+typedef struct	s_collapse
+{
+	t_array a;
+	t_matrix m;
+	int size;
+}				t_collapse;
+
 typedef struct	s_lem_in
 {
 	int start;
@@ -72,9 +79,9 @@ int			**find_paths_mock(t_matrix *aj, int start, int end);
 void		lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in);
 int			ft_srch_min(int *len_table);
 
-void		node_collapse_add(t_matrix *collapser, int k);
-void		node_collapse(t_matrix *aj, t_matrix *collapser);
-void		node_collapse_init(t_matrix *collapser, int size);
+void		t_collapse_add(t_collapse *c, int k);
+void		t_collapse_do(t_collapse *c, t_matrix *aj);
+void		t_collapse_init(t_collapse *c, int size);
 
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end);
 t_array		path_matrix_to_bit_masks(t_matrix *aj, int start, int end);

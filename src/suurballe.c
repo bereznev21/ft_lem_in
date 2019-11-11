@@ -121,7 +121,7 @@ void split_path_node(t_matrix *aj, int k, int prev, int next)
 }
 
 void split_paths_nodes(t_matrix *aj, t_matrix *paths,
-					   t_matrix *collapser, int start, int end)
+					   t_collapse *c, int start, int end)
 {
 	int j;
 	int k_prev;
@@ -140,7 +140,7 @@ void split_paths_nodes(t_matrix *aj, t_matrix *paths,
 		{
 			k_next = path_step(paths, k);
 			split_path_node(aj, k, k_prev, k_next);
-			node_collapse_add(collapser, k);
+			t_collapse_add(c, k);
 			k_prev = aj->m - 1;
 			k = k_next;
 		}
@@ -150,7 +150,7 @@ void split_paths_nodes(t_matrix *aj, t_matrix *paths,
 // http://www.macfreek.nl/memory/Disjoint_Path_Finding
 int suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
 {
-	t_matrix collapser;
+	t_collapse c;
 	t_matrix path;
 	t_matrix aj2;
 	int i;
@@ -161,18 +161,17 @@ int suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
 	{
 		aj2 = t_matrix_copy(aj);
 		suurballe_reverse_path(&aj2, all_paths);
-		node_collapse_init(&collapser, aj2.m);
-		split_paths_nodes(&aj2, all_paths, &collapser, start, end);
+		t_collapse_init(&c, aj2.m);
+		split_paths_nodes(&aj2, all_paths, &c, start, end);
 		if (!find_path(&aj2, &path, start, end))
 			break;
 		i++;
-		node_collapse(&path, &collapser);
+		t_collapse_do(&c, &path);
 		*all_paths = t_matrix_add(all_paths, &path);
 		remove_sym(all_paths);
 		t_matrix_del(&aj2);
 		t_matrix_del(&path);
 	}
 	t_matrix_del(&aj2);
-	t_matrix_del(&collapser);
 	return (i);
 }
