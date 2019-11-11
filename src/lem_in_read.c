@@ -69,9 +69,6 @@ t_array		read_rooms(int fd, int *start, int *end, char **line, UINT print_input)
 		free(split[2]);
 		free(split);
 	}
-	//ft_free_arr_char(split);
-	//free(split);
-	
 	return (rooms);
 }
 
@@ -84,8 +81,6 @@ t_matrix	read_roads(int fd, t_array rooms, char **line, UINT print_input)
 	t_matrix_init(&aj, rooms.count, rooms.count);
 	while (1)
 	{
-		if (print_input)
-			ft_putendl(*line);
 		//todo: what if road count is 0 in map
 		if (**line != '#')
 		{
@@ -96,14 +91,16 @@ t_matrix	read_roads(int fd, t_array rooms, char **line, UINT print_input)
 			t_matrix_set(&aj,
 						get_room_idx(rooms, split[0]),
 						get_room_idx(rooms, split[1]), 1);
+			free(split[0]);
+			free(split[1]);
+			free(split);
 		}
 		free(*line);
 		if (ft_get_next_line(fd, line) <= 0)
 			break ;
-		ft_putstr(*line);
-		ft_putchar('\n');
+		if (print_input)
+			ft_putendl(*line);
 	}
-	//free_(split);
 	return (aj);
 }
 
