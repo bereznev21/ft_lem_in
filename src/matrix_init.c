@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_matrix.c                                      :+:      :+:    :+:   */
+/*   matrix_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,12 +13,12 @@
 #include "lem_in.h"
 #include <stdio.h>
 
-int		round_up(int a)
+int			round_up(int a)
 {
 	return (((a - 1) / MAT_ALLOC_STEP + 1) * MAT_ALLOC_STEP);
 }
 
-void	t_matrix_init(t_matrix *mat, int m, int n)
+void		t_matrix_init(t_matrix *mat, int m, int n)
 {
 	int i;
 	int j;
@@ -27,7 +27,6 @@ void	t_matrix_init(t_matrix *mat, int m, int n)
 	mat->n = n;
 	mat->m_alloc = round_up(m);
 	mat->n_alloc = round_up(n);
-//	printf("%d %d\n", mat->m_alloc, mat->n_alloc);
 	mat->data = malloc(sizeof(int *) * mat->m_alloc);
 	i = -1;
 	while (++i < mat->m_alloc)
@@ -39,7 +38,7 @@ void	t_matrix_init(t_matrix *mat, int m, int n)
 	}
 }
 
-void	t_matrix_init_zero(t_matrix *mat, int m, int n)
+void		t_matrix_init_zero(t_matrix *mat, int m, int n)
 {
 	int i;
 	int j;
@@ -54,7 +53,7 @@ void	t_matrix_init_zero(t_matrix *mat, int m, int n)
 	}
 }
 
-void	t_matrix_init_identity(t_matrix *mat, int n)
+void		t_matrix_init_identity(t_matrix *mat, int n)
 {
 	int i;
 
@@ -62,4 +61,21 @@ void	t_matrix_init_identity(t_matrix *mat, int n)
 	i = -1;
 	while (++i < mat->m)
 		mat->data[i][i] = 1;
+}
+
+t_matrix	t_matrix_copy(t_matrix *m)
+{
+	int			i;
+	int			j;
+	t_matrix	ret;
+
+	t_matrix_init(&ret, m->m, m->n);
+	i = -1;
+	while (++i < ret.m)
+	{
+		j = -1;
+		while (++j < ret.n)
+			ret.data[i][j] = m->data[i][j];
+	}
+	return (ret);
 }

@@ -22,6 +22,7 @@ void	ft_put_end(int **roads, int end)
 		n++;
 	(*roads)[n] = end;
 }
+
 int		ft_got_path(t_lem_in lem_in, t_matrix paths, int **paths_table, int i)
 {
 	int	j;
@@ -41,7 +42,7 @@ int		ft_got_path(t_lem_in lem_in, t_matrix paths, int **paths_table, int i)
 				len_path++;
 				break ;
 			}
-		if (begin == lem_in.end)
+		if (begin == lem_in.se.end)
 		{
 			ft_put_end(paths_table, begin);
 			break ;
@@ -62,7 +63,7 @@ void	ft_crt_len_table(t_matrix paths, t_lem_in lem_in, t_matrix *paths_table, in
 		(*len_table)[j] = -1;
 	j = -1;
 	while (++j < paths.n)
-		if (paths.data[lem_in.start][j] == 1)
+		if (paths.data[lem_in.se.start][j] == 1)
 		{
 			(*len_table)[num_path] = ft_got_path(lem_in, paths, &paths_table->data[num_path], j);
 			num_path++;

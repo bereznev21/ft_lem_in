@@ -12,45 +12,7 @@
 
 #include "lem_in.h"
 
-void split_node(t_matrix *aj, int k)
-{
-	int i;
-
-	t_matrix_duplicate_node(aj, k, k);
-	// k'th is IN; k+1'th us OUT
-	for (i = 0; i < aj->n; i++)
-	{
-		aj->data[k][i] = DISJ; // remove all outs for input node
-		aj->data[i][k + 1] = DISJ; //remove all inputs from output node
-	}
-	aj->data[k][k + 1] = 0; // link between split
-}
-
-void split_path_nodes(t_matrix *aj, t_matrix *path,
-					  t_matrix *collapser, int *start, int *end)
-{
-	int i;
-	t_matrix path_diag;
-
-	path_diag = t_matrix_copy(path);
-	t_matrix_t(&path_diag);
-	path_diag = t_matrix_mul(&path_diag, path);
-	i = -1;
-	while (++i < path_diag.n)
-		if (path_diag.data[i][i] == 1 && i != *start && i != *end)
-		{
-			if (*start > i)
-				(*start)++;
-			if (*end > i)
-				(*end)++;
-			t_matrix_duplicate_node(&path_diag, i, i);
-			t_matrix_duplicate_row(collapser, i, i);
-			split_node(aj, i);
-			i++;
-		}
-}
-
-void suurballe_reverse_path(t_matrix *aj, t_matrix *path)
+void	suurballe_reverse_path(t_matrix *aj, t_matrix *path)
 {
 	int i;
 	int j;
@@ -70,7 +32,7 @@ void suurballe_reverse_path(t_matrix *aj, t_matrix *path)
 	}
 }
 
-void remove_sym(t_matrix *path)
+void	remove_sym(t_matrix *path)
 {
 	int i;
 	int j;
@@ -90,7 +52,7 @@ void remove_sym(t_matrix *path)
 	}
 }
 
-int path_step(t_matrix *path, int k)
+int		path_step(t_matrix *path, int k)
 {
 	int j;
 
@@ -101,7 +63,7 @@ int path_step(t_matrix *path, int k)
 	return (-1);
 }
 
-void split_path_node(t_matrix *aj, int k, int prev, int next)
+void	split_path_node(t_matrix *aj, int k, int prev, int next)
 {
 	int i;
 	int n;
@@ -120,8 +82,8 @@ void split_path_node(t_matrix *aj, int k, int prev, int next)
 	aj->data[n][k] = 0;
 }
 
-void split_paths_nodes(t_matrix *aj, t_matrix *paths,
-					   t_collapse *c, int start, int end)
+void	split_paths_nodes(t_matrix *aj, t_matrix *paths,
+							t_collapse *c, t_startend se)
 {
 	int j;
 	int k_prev;
@@ -130,13 +92,14 @@ void split_paths_nodes(t_matrix *aj, t_matrix *paths,
 	int size;
 
 	size = aj->m;
-	for (j = 0; j < size; ++j)
+	j = -1;
+	while (++j < size)
 	{
-		if (!paths->data[start][j])
+		if (!paths->data[se.start][j])
 			continue;
-		k_prev = start;
-		k = j; //path cursor;
-		while (k != end)
+		k_prev = se.start;
+		k = j;
+		while (k != se.end)
 		{
 			k_next = path_step(paths, k);
 			split_path_node(aj, k, k_prev, k_next);
@@ -147,13 +110,16 @@ void split_paths_nodes(t_matrix *aj, t_matrix *paths,
 	}
 }
 
-// http://www.macfreek.nl/memory/Disjoint_Path_Finding
-int suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
+/*
+** http://www.macfreek.nl/memory/Disjoint_Path_Finding
+*/
+
+int		suurballe(t_matrix *aj, t_matrix *all_paths, t_startend se)
 {
-	t_collapse c;
-	t_matrix path;
-	t_matrix aj2;
-	int i;
+	t_collapse	c;
+	t_matrix	path;
+	t_matrix	aj2;
+	int			i;
 
 	t_matrix_init_zero(all_paths, aj->m, aj->n);
 	i = 0;
@@ -162,9 +128,9 @@ int suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
 		aj2 = t_matrix_copy(aj);
 		suurballe_reverse_path(&aj2, all_paths);
 		t_collapse_init(&c, aj2.m);
-		split_paths_nodes(&aj2, all_paths, &c, start, end);
-		if (!find_path(&aj2, &path, start, end))
-			break;
+		split_paths_nodes(&aj2, all_paths, &c, se);
+		if (!find_path(&aj2, &path, se))
+			break ;
 		i++;
 		t_collapse_do(&c, &path);
 		*all_paths = t_matrix_add(all_paths, &path);
