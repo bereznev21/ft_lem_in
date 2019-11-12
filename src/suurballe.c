@@ -140,31 +140,12 @@ int		suurballe_next(t_matrix aj, t_matrix *all_paths, t_startend se)
 
 int		suurballe(t_matrix *aj, t_matrix *all_paths, t_startend se)
 {
-	t_collapse	c;
-	t_matrix	path;
-	t_matrix	aj2;
 	int			i;
 
 	t_matrix_init_zero(all_paths, aj->m, aj->n);
 	i = 0;
-	while (1)
-	{
-		aj2 = t_matrix_copy(aj);
-		suurballe_reverse_path(&aj2, all_paths);
-		t_collapse_init(&c, aj2.m);
-		split_paths_nodes(&aj2, all_paths, &c, se);
-		if (!find_path(&aj2, &path, se))
-			break ;
+	while (suurballe_next(*aj, all_paths, se))
 		i++;
-		t_collapse_do(&c, &path);
-		t_array_del(&c.a);
-		*all_paths = t_matrix_add(all_paths, &path);
-		remove_sym(all_paths);
-		t_matrix_del(&aj2);
-		t_matrix_del(&path);
-	}
-	t_matrix_del(&aj2);
-	t_array_del(&c.a);
 	return (i);
 }
 /*
