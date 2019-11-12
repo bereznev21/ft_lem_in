@@ -13,67 +13,69 @@
 #include "includes/libft.h"
 #include <stdlib.h>
 
-static size_t	ft_quantity(const char *s, char c)
+static int	chunk_len(const char *s, char c)
 {
-	size_t	count;
+	int n;
 
-	count = 0;
-	while (*s)
+	n = 0;
+	while (*s && *s != c)
 	{
-		while (*s && *s == c)
-			s++;
-		if (*s && *s != c)
-			count++;
-		while (*s && *s != c)
-			s++;
+		n++;
+		s++;
 	}
-	return (count);
+	return (n);
 }
 
-static size_t	ft_len2(const char *s, char c)
+static int	count_chunks(const char *s, char c)
 {
-	size_t	len;
+	int n;
 
-	len = 0;
-	while (s[len] && s[len] != c)
-		len++;
-	return (len);
-}
-
-static char		**ft_arrdel(char **arr, size_t i)
-{
-	while (i--)
-		ft_strdel(&arr[i]);
-	free(arr);
-	arr = NULL;
-	return (arr);
-}
-
-char			**ft_strsplit(char const *s, char c)
-{
-	char	**arr;
-	size_t	i;
-	size_t	j;
-
-	if (!s || (!(arr = (char **)malloc(sizeof(char *) * (ft_quantity(s, c) +
-			1)))))
-		return (NULL);
-	i = 0;
-	while (*s)
+	n = 0;
+	while (1)
 	{
 		while (*s && *s == c)
 			s++;
-		if (*s && *s != c)
+		if (!*s)
+			return (n);
+		n++;
+		s += chunk_len(s, c);
+	}
+}
+
+char		**ft_strsplit_clear(char **p)
+{
+	char *ptr;
+
+	ptr = *p;
+	while (ptr)
+		free(ptr++);
+	free(p);
+	return (0);
+}
+
+char		**ft_strsplit(char const *s, char c)
+{
+	char	**ret;
+	char	**ptr;
+	int		l;
+
+	if (!(ret = malloc(sizeof(char *) * (count_chunks(s, c) + 1))))
+		return (0);
+	ptr = ret;
+	while (1)
+	{
+		while (*s && *s == c)
+			s++;
+		if (!*s)
 		{
-			if (!(arr[i] = (char *)malloc(sizeof(char) * (ft_len2(s, c) + 1))))
-				return (ft_arrdel(arr, i));
-			j = 0;
-			while (*s && *s != c)
-				arr[i][j++] = *s++;
-			arr[i][j] = '\0';
-			i++;
+			*ptr = 0;
+			return (ret);
 		}
+		l = chunk_len(s, c);
+		if (!(*ptr = malloc(sizeof(char) * (l + 1))))
+			return (ft_strsplit_clear(ret));
+		(*ptr)[l] = 0;
+		ft_strncpy(*ptr++, s, l);
+		s += l;
 	}
-	arr[i] = NULL;
-	return (arr);
 }
