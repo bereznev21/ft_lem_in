@@ -70,7 +70,6 @@ t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b);
 void		t_matrix_t(t_matrix *a);
 void		t_matrix_duplicate_row(t_matrix *aj, int k, int m);
 void		t_matrix_duplicate_col(t_matrix *aj, int k, int m);
-void		t_matrix_duplicate_node(t_matrix *aj, int k, int m);
 void		t_matrix_print_no_headers(t_matrix *m);
 void		t_matrix_print(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
