@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:58:34 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/12 14:55:08 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/12 15:10:47 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	ft_print_ants(t_matrix condition_of_ants,
 	i = -1;
 	j = 0;
 	num = 0;
-	ft_putchar('\n');
 	while (++i < condition_of_ants.m && condition_of_ants.data[i][j] != DISJ)
 	{
 		while (j < condition_of_ants.n && condition_of_ants.data[i][j] != DISJ)
@@ -74,6 +73,7 @@ void	ft_print_ants(t_matrix condition_of_ants,
 		}
 		j = 0;
 	}
+	//ft_putchar('\n');
 }
 
 void	ft_print_lems(int *lems_in_rooms,
@@ -106,7 +106,7 @@ void	ft_print_lems(int *lems_in_rooms,
 			i++;
 		}
 		ft_print_ants(condition_of_ants, paths_table, lem_in);
-	//	ft_putchar('\n');
+		ft_putchar('\n');
 	//	t_matrix_print(&condition_of_ants);
 	}
 	while (max_path-- >= 0)
@@ -115,7 +115,8 @@ void	ft_print_lems(int *lems_in_rooms,
 		while (++i < paths_table.n)
 			ft_move_leams_in_path(&condition_of_ants, paths_table, i);
 		ft_print_ants(condition_of_ants, paths_table, lem_in);
+		if (max_path != 0)
+			ft_putchar('\n');
 	}
-	//ft_putchar('\n');
 	//ft_free_matrix(&condition_of_ants);
 }
