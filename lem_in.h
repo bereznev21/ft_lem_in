@@ -11,6 +11,12 @@
 # define FLAG_PRINT_INPUT 1
 # define FLAG_DEBUG 2
 
+typedef struct	s_startend
+{
+	int start;
+	int end;
+}				t_startend;
+
 typedef struct	s_matrix
 {
 	int m_alloc;
@@ -44,8 +50,7 @@ typedef struct	s_collapse
 
 typedef struct	s_lem_in
 {
-	int start;
-	int end;
+	t_startend se;
 	int ants;
 	t_array rooms;
 }				t_lem_in;
@@ -75,13 +80,8 @@ void		t_matrix_print(t_matrix *m);
 void		t_matrix_del(t_matrix *m);
 int			round_up(int a);
 
-t_matrix	expand_junctions(t_matrix *aj);
-t_matrix	push_relabel(t_matrix *cap, int src, int dst);
 void		t_matrix_set(t_matrix *m, int i, int j, int v);
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in, UINT flags);
-int			t_restore_patch(t_matrix *least_patch, t_matrix paths_map, int start, int end);
-ULONG		select_paths(t_array *arr);
-int			**find_paths_mock(t_matrix *aj, int start, int end);
 void		lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in);
 int			ft_srch_min(int *len_table);
 
@@ -92,14 +92,10 @@ void		t_collapse_init(t_collapse *c, int size);
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end);
 t_array		path_matrix_to_bit_masks(t_matrix *aj, int start, int end);
 void		ft_put_end(int **roads, int end);
-void		ft_src_roads(t_matrix *ans, t_matrix *map, int k);
-void		ft_src_roads1(t_matrix	*res, t_matrix *map, int frst_room, int num_room);
 void		ft_bminus(int **s, size_t n);
-int			suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end);
-int			find_shortest_path(t_matrix *aj, t_matrix *path, int start, int end);
-int			bf_shortest_path(t_matrix *aj, t_matrix *paths_map, int stat, int end);
-int			find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end);
-int			find_path(t_matrix *aj, t_matrix *paths, int start, int end);
+int			suurballe(t_matrix *aj, t_matrix *all_paths, t_startend se);
+int			find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se);
+int			find_path(t_matrix *aj, t_matrix *paths, t_startend se);
 
 void		ft_free(t_lem_in *lem_in, t_matrix *aj, t_matrix *paths);
 void		ft_free_matrix(t_matrix *matrix);
@@ -118,5 +114,7 @@ void		ft_q_push(t_queue **q, int node);
 int			ft_q_empty(t_queue *q);
 int			ft_q_front(t_queue *q);
 void		ft_q_pop(t_queue **q);
+
+int			bf_shortest_path(t_matrix *aj, t_matrix *paths_map, int stat, int end);
 
 #endif

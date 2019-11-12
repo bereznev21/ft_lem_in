@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "lem_in.h"
 #include <stdio.h>
-#include "libft/includes/libft.h"
 
 void	ft_bminus(int **s, size_t n)
 {
@@ -23,14 +23,14 @@ void	ft_bminus(int **s, size_t n)
 		(*s)[i] = DISJ;
 }
 
-int	ft_restore_patch(t_matrix *least_patch, t_matrix *paths_map, int start, int end)
+int	ft_restore_patch(t_matrix *least_patch, t_matrix *paths_map, t_startend se)
 {
 	int	i;
 	int	ends;
 
 	t_matrix_init_zero(least_patch, paths_map->m, paths_map->n);
-	ends = end;
-	while (ends != start)
+	ends = se.end;
+	while (ends != se.start)
 	{
 		i = -1;
 		while (++i < paths_map->n)
@@ -53,7 +53,7 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix *paths_map, int start, int 
 	return (1);
 }
 
-int		find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end)
+int		find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se)
 {
 	t_queue	*q;
 	int		*used;
@@ -66,8 +66,8 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end)
 	q->next = NULL;
 	used = (int*)malloc(sizeof(int) * aj->n);
 	ft_bminus(&used, aj->n);
-	ft_q_push(&q, start);
-	used[start] = 1;
+	ft_q_push(&q, se.start);
+	used[se.start] = 1;
 	while ((ft_q_empty(q)))
 	{
 		node = ft_q_front(q);
@@ -75,7 +75,7 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end)
 			break ;
 		ft_q_pop(&q);
 		i = 0;
-		if (node == end)
+		if (node == se.end)
 			break ;
 		while (i < aj->m)
 		{
@@ -96,11 +96,11 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, int start, int end)
 	return (1);
 }
 
-int find_path(t_matrix *aj, t_matrix *paths, int start, int end)
+int find_path(t_matrix *aj, t_matrix *paths, t_startend se)
 {
 	t_matrix ret;
 
 	t_matrix_init(&ret, aj->m, aj->n);
-	find_paths(aj, &ret, start, end);
-	return ft_restore_patch(paths, &ret, start, end);
+	find_paths(aj, &ret, se);
+	return ft_restore_patch(paths, &ret, se);
 }

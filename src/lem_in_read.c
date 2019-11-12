@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdio.h"
 #include "libft.h"
 #include "lem_in.h"
 
@@ -34,7 +33,7 @@ int			get_room_idx(t_array rooms, const char *name)
 	return (-1);
 }
 
-t_array		read_rooms(int fd, int *start, int *end, char **line, UINT print_input)
+t_array		read_rooms(int fd, t_startend *se, char **line, UINT print_input)
 {
 	t_array	rooms;
 	t_room	room;
@@ -49,9 +48,9 @@ t_array		read_rooms(int fd, int *start, int *end, char **line, UINT print_input)
 		if (print_input)
 			ft_putendl(*line);
 		if (!ft_strcmp(*line, "##start"))
-			*start = i;
+			se->start = i;
 		if (!ft_strcmp(*line, "##end"))
-			*end = i;
+			se->end = i;
 		if (*line[0] == '#')
 		{
 			//free(line);
@@ -118,6 +117,6 @@ t_matrix	lem_in_read(int fd, t_lem_in *lem_in, UINT print_input)
 	}
 	lem_in->ants = ft_atoi(line);
 	free(line);
-	lem_in->rooms = read_rooms(fd, &lem_in->start, &lem_in->end, &line, print_input);
+	lem_in->rooms = read_rooms(fd, &lem_in->se, &line, print_input);
 	return (read_roads(fd, lem_in->rooms, &line, print_input));
 }
