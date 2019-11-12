@@ -116,6 +116,7 @@ int			ft_q_front(t_queue *q);
 void		ft_q_pop(t_queue **q);
 
 void		assert(int expr, const char *msg);
+void		error_exit(const char *msg);
 int			bf_shortest_path(t_matrix *aj, t_matrix *paths_map, int stat, int end);
 
 #endif
