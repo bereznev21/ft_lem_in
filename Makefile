@@ -5,6 +5,7 @@ OPTIONS = -I. -Ilibft/includes
 
 SRC = \
 		src/main.c \
+		src/debug.c \
         src/matrix.c \
 		src/matrix_init.c \
         src/array.c \
