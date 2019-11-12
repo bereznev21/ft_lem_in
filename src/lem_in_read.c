@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:12:26 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/12 18:22:56 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/12 18:28:48 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ int			put_room(t_array *rooms, char *line)
 
 t_array		read_rooms(int fd, t_startend *se, char **line, UINT print_input)
 {
-	t_array	rooms;
 	int		i;
+	t_array	rooms;
+	char	*buf;
 
+	buf = ft_strdup("");
 	t_array_init(&rooms, sizeof(t_room));
 	i = 0;
 	while (1)
@@ -53,7 +55,10 @@ t_array		read_rooms(int fd, t_startend *se, char **line, UINT print_input)
 		free(*line);
 		assert(get_next_line(fd, line) > 0, "failed read room");
 		if (print_input)
+		{
+			//ft_strjoin_left()
 			ft_putendl(*line);
+		}
 		if (!ft_strcmp(*line, "##start"))
 			se->start = i;
 		if (!ft_strcmp(*line, "##end"))
