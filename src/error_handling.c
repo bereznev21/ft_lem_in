@@ -9,5 +9,5 @@ void	error_exit(const char *msg)
 void	assert(int expr, const char *msg)
 {
 	if (!expr)
-	error_exit(msg);
+		error_exit(msg);
 }
