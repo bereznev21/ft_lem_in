@@ -19,3 +19,19 @@ int		ft_srch_min(int *len_table)
 	}
 	return (i_min);
 }
+
+int		ft_srch_max(int *len_table, int len)
+{
+	int max;
+	int i;
+
+	i = -1;
+	max = len_table[0];
+	while (i < len && len_table[i] != -1)
+	{
+		if (len_table[i] > max)
+			max = len_table[i];
+		i++;
+	}
+	return (max);
+}

@@ -84,6 +84,7 @@ void		t_matrix_set(t_matrix *m, int i, int j, int v);
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in, UINT flags);
 void		lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in);
 int			ft_srch_min(int *len_table);
+int			ft_srch_max_paths_in_rooms(int *len_table, int len);
 
 void		t_collapse_add(t_collapse *c, int k);
 void		t_collapse_do(t_collapse *c, t_matrix *paths);
@@ -109,6 +110,8 @@ void		ft_print_lems(int *lems_in_rooms, t_matrix paths_table, t_lem_in lem_in, i
 
 void		ft_move_leams_in_path(t_matrix *condition_of_ants, t_matrix paths_table, int k);
 void		ft_crt_len_table(t_matrix paths, t_lem_in lem_in, t_matrix *paths_table, int **len_table);
+void		ft_calc_lems(t_matrix paths, t_lem_in lem_in,
+				int *len_table, int **lems_in_rooms);
 
 void		ft_q_push(t_queue **q, int node);
 int			ft_q_empty(t_queue *q);

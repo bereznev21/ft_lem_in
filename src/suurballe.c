@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:43:48 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/12 19:19:08 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/12 19:55:23 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,20 +143,35 @@ int		suurballe(t_matrix *aj, t_matrix *all_paths, t_startend se)
 	return (i);
 }
 
+int		lem_in_count_steps(t_matrix *all_paths, t_lem_in lem_in)
+{
+	int			max_path;
+//	int			steps;
+	int			*lems_in_rooms;
+	int			*len_table;
+	t_matrix	paths_table;
+
+	t_matrix_init(&paths_table, all_paths->m, all_paths->n);
+	ft_crt_len_table(*all_paths, lem_in, &paths_table, &len_table);
+	max_path = ft_srch_max_paths_in_rooms(len_table, all_paths->m);
+	ft_calc_lems(*all_paths, lem_in, len_table, &lems_in_rooms);
+	return (1);
+}
+
 int		lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in)
 {
 	int	steps;
 	int	steps_result;
 	int	status;
 
-	t_matrix_init_zero(all_paths, aj->m, aj->n);
 	steps_result = INT_MAX;
+	t_matrix_init_zero(all_paths, aj->m, aj->n);
 	while(1)
 	{
 		status = suurballe(aj, all_paths, lem_in.se);
 		if (!status)
 			break;
-		steps = lem_in_count_steps(all_paths, lem_in.ants);
+		steps = lem_in_count_steps(all_paths, lem_in);
 		if (steps_result < steps)
 			return (steps_result);
 		else
