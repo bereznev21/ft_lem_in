@@ -26,7 +26,7 @@ size_t	t_buff_extend(t_buff *b)
 
 	size_old = b->size;
 	b->size *= 2;
-	if (!(b->data = ft_realloc(b->data, b->size + 1, size_old)))
+	if (!(b->data = ft_realloc(b->data, size_old, b->size + 1)))
 		return (0);
 	return (b->size);
 }

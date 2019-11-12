@@ -35,14 +35,14 @@ static	int	ft_get_new_line(const int fd, char **line, char **old, int i)
 	else if (old[fd][j] == '\0')
 	{
 		if (i == BUFF_SIZE)
-			return (ft_get_next_line(fd, line));
+			return (get_next_line(fd, line));
 		*line = ft_strdup(old[fd]);
 		ft_strdel(&old[fd]);
 	}
 	return (1);
 }
 
-int			ft_get_next_line(const int fd, char **line)
+int			get_next_line(const int fd, char **line)
 {
 	static char	*old[1];
 	char		*new_arr;

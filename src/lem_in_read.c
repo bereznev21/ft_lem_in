@@ -31,13 +31,17 @@ int			put_room(t_array *rooms, char *line)
 
 	split = ft_strsplit(line, ' ');
 	if (ft_len((void **)split) != 3)
+	{
+		ft_strsplit_clear(split);
 		return (0);
+	}
 	assert(get_room_idx(*rooms, split[0]) < 0, "room name conflict");
-	room = (t_room){split[0], ft_atoi(split[1]), ft_atoi(split[2])};
+	room = (t_room){
+		ft_strdup(split[0]),
+		ft_atoi(split[1]),
+		ft_atoi(split[2])};
 	t_array_push(rooms, &room);
-	free(split[1]);
-	free(split[2]);
-	free(split);
+	ft_strsplit_clear(split);
 	return (1);
 }
 
@@ -71,45 +75,48 @@ t_matrix	read_roads(int fd, t_array rooms, char **line, UINT print_input)
 {
 	t_matrix	aj;
 	char		**split;
+	int i;
 
 	t_matrix_init(&aj, rooms.count, rooms.count);
+	i = 0;
 	while (1)
 	{
 		if (**line != '#')
 		{
-			split = ft_strsplit(*line, '-');
-			assert(ft_len((void *)split) == 2, "invalid road");
+			assert((split = ft_strsplit(*line, '-')) > 0, "mem err");
+			assert(ft_len((void **)split) == 2, "invalid road");
 			assert(get_room_idx(rooms, split[0]) >= 0, "room not found");
 			assert(get_room_idx(rooms, split[1]) >= 0, "room not found");
 			t_matrix_set(&aj, get_room_idx(rooms, split[0]),
 						get_room_idx(rooms, split[1]), 1);
-			free(split[0]);
-			free(split[1]);
-			free(split);
+			ft_strsplit_clear(split);
 		}
 		free(*line);
 		if (get_next_line(fd, line) <= 0)
 			break ;
 		if (print_input)
 			ft_putendl(*line);
+		i++;
 	}
 	return (aj);
 }
 
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in, UINT print_input)
 {
-	char *line;
+	char *line_buff;
+	char **line;
 
+	line = &line_buff;
 	while (1)
 	{
-		assert(get_next_line(fd, &line) > 0, "bad data");
+		assert(get_next_line(fd, line) > 0, "bad data");
 		if (print_input)
-			ft_putendl(line);
-		if (line[0] != '#')
+			ft_putendl(*line);
+		if (**line != '#')
 			break ;
-		free(line);
+		free(*line);
 	}
-	lem_in->ants = ft_atoi(line);
-	lem_in->rooms = read_rooms(fd, &lem_in->se, &line, print_input);
-	return (read_roads(fd, lem_in->rooms, &line, print_input));
+	lem_in->ants = ft_atoi(*line);
+	lem_in->rooms = read_rooms(fd, &lem_in->se, line, print_input);
+	return (read_roads(fd, lem_in->rooms, line, print_input));
 }

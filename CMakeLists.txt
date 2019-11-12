@@ -96,6 +96,7 @@ add_executable(lem_in
         libft/ft_get_next_line.c
         libft/ft_strjoin_free.c
 		libft/ft_realloc.c
+		libft/ft_buff.c
         )
 
 #        libft.ksticks/src/string/ft_atoi.c
