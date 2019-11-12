@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:12:26 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/11 20:52:24 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/12 18:09:13 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_array		read_rooms(int fd, int *start, int *end, char **line, UINT print_input)
 	i = 0;
 	while (1)
 	{
-		assert(ft_get_next_line(fd, line) > 0, "failed read room");
+		assert(get_next_line(fd, line) > 0, "failed read room");
 		if (print_input)
 			ft_putendl(*line);
 		if (!ft_strcmp(*line, "##start"))
@@ -96,7 +96,7 @@ t_matrix	read_roads(int fd, t_array rooms, char **line, UINT print_input)
 			free(split);
 		}
 		free(*line);
-		if (ft_get_next_line(fd, line) <= 0)
+		if (get_next_line(fd, line) <= 0)
 			break ;
 		if (print_input)
 			ft_putendl(*line);
@@ -110,7 +110,7 @@ t_matrix	lem_in_read(int fd, t_lem_in *lem_in, UINT print_input)
 
 	while (1)
 	{
-		assert(ft_get_next_line(fd, &line) > 0, "bad data");
+		assert(get_next_line(fd, &line) > 0, "bad data");
 		if (print_input)
 			ft_putendl(line);
 		if (line[0] != '#')

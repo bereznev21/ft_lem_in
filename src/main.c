@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/11 23:34:12 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/12 17:47:42 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void lem_in_main(int fd, UINT flags)
 	aj = lem_in_read(fd, &lem_in, flags & FLAG_PRINT_INPUT);
 	if (flags & FLAG_DEBUG)
 		printf("Start: %d End: %d\n\n", lem_in.start, lem_in.end);
-	if (lem_in.ants > 1)
-		n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
-	else
+	//if (lem_in.ants > 1)
+	//	n_paths = suurballe(&aj, &paths, lem_in.start, lem_in.end);
+	//else
 	{
 		find_path(&aj, &paths, lem_in.start, lem_in.end);
 		n_paths = 1;

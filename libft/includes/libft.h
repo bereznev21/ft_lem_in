@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 21:15:05 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/10/21 23:15:45 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/12 18:07:26 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-# define BUFF_SIZE 1
+//# define BUFF_SIZE 1
+# define CHECK0RET(x, r) if (!(x)) return (r)
+# define CHECK0RET0(x) CHECK0RET(x, 0)
+# define CHECK0RET1(x) CHECK0RET(x, -1)
+# define CHECK1RET1(x) if ((x) < 0) return (-1)
 
 void				ft_putchar(char c);
 void				ft_putstr(char const *str);
@@ -82,7 +86,7 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
-int					ft_get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
 char				*ft_strjoin_left(const char *s1, char *s2);
 char				*ft_strjoin_right(char *s1, const char *s2);
 char				*ft_strjoin_char(char *str, char end);
@@ -98,6 +102,15 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct		s_buff
+{
+	char	*data;
+	size_t	len;
+	size_t	size;
+}					t_buff;
+
+int					t_buff_append(t_buff *b, void *data, size_t len);
+void                *t_buff_init(t_buff *b, size_t size);
 t_list				*ft_lstnew(const void *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
