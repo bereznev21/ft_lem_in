@@ -17,6 +17,7 @@ include_directories(libft/includes)
 add_executable(lem_in
         src/main.c
         src/debug.c
+		src/error_handling.c
 		src/array.c
         src/matrix.c
         src/matrix_init.c
