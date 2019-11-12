@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:58:34 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/11 20:17:03 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/12 14:55:08 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,30 @@ void	ft_print_arr(int *lems_in_rooms, int n)
 	}
 }
 
+void	ft_print_ans(int num_len, char *room_name)
+{
+//	int		len;
+	char	*res;
+	char	*num;
+
+	res = ft_strdup("");
+	res = ft_strjoin_left("L", res);
+	num = ft_itoa(num_len);
+	res = ft_strjoin_right(res, num);
+	res = ft_strjoin_right(res, "-");
+	res = ft_strjoin_right(res, room_name);
+	res = ft_strjoin_right(res, " ");
+	ft_putstr(res);
+	free(res);
+	free(num);
+}
+
 void	ft_print_ants(t_matrix condition_of_ants,
 			t_matrix paths_table, t_lem_in lem_in)
 {
-	int	i;
-	int	j;
-	int num;
+	int		i;
+	int		j;
+	int		num;
 
 	i = -1;
 	j = 0;
@@ -45,11 +63,12 @@ void	ft_print_ants(t_matrix condition_of_ants,
 			if (condition_of_ants.data[i][j] != 0)
 			{
 				num = paths_table.data[i][j];
-				ft_putchar('L');
+				ft_print_ans(condition_of_ants.data[i][j], ((t_room*)t_array_get(&lem_in.rooms, num))->name);
+				/*ft_putchar('L');
 				ft_putnbr(condition_of_ants.data[i][j]);
 				ft_putchar('-');
 				ft_putstr(((t_room*)t_array_get(&lem_in.rooms, num))->name);
-				ft_putchar(' ');
+				ft_putchar(' ');*/
 			}
 			j++;
 		}
@@ -90,7 +109,7 @@ void	ft_print_lems(int *lems_in_rooms,
 	//	ft_putchar('\n');
 	//	t_matrix_print(&condition_of_ants);
 	}
-	while (max_path-- > 0)
+	while (max_path-- >= 0)
 	{
 		i = -1;
 		while (++i < paths_table.n)
