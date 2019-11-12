@@ -48,11 +48,10 @@ void		t_matrix_duplicate_row(t_matrix *aj, int k, int m)
 		i = aj->m_alloc;
 		aj->m_alloc = round_up(aj->m + 1);
 		aj->data = ft_realloc(aj->data,
-							  sizeof(int *) * aj->m,
-							  sizeof(int *) * aj->m_alloc);
-		while(i < aj->m_alloc)
+						sizeof(int *) * aj->m,
+						sizeof(int *) * aj->m_alloc);
+		while (i < aj->m_alloc)
 			aj->data[i++] = malloc(sizeof(int) * aj->n_alloc);
-
 	}
 	src_row = aj->data[k];
 	ft_memmove(&aj->data[m + 1], &aj->data[m], sizeof(int *) * (aj->m - m));
@@ -71,8 +70,8 @@ void		t_matrix_duplicate_col(t_matrix *aj, int k, int m)
 		i = -1;
 		while (++i < aj->m_alloc)
 			aj->data[i] = ft_realloc(aj->data[i],
-									 sizeof(int) * aj->n,
-									 sizeof(int) * aj->n_alloc);
+							sizeof(int) * aj->n,
+							sizeof(int) * aj->n_alloc);
 	}
 	i = -1;
 	while (++i < aj->m)
@@ -85,7 +84,7 @@ void		t_matrix_duplicate_col(t_matrix *aj, int k, int m)
 	aj->n++;
 }
 
-void	t_matrix_del(t_matrix *matrix)
+void		t_matrix_del(t_matrix *matrix)
 {
 	int i;
 

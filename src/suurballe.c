@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-void suurballe_reverse_path(t_matrix *aj, t_matrix *path)
+void	suurballe_reverse_path(t_matrix *aj, t_matrix *path)
 {
 	int i;
 	int j;
@@ -32,7 +32,7 @@ void suurballe_reverse_path(t_matrix *aj, t_matrix *path)
 	}
 }
 
-void remove_sym(t_matrix *path)
+void	remove_sym(t_matrix *path)
 {
 	int i;
 	int j;
@@ -52,7 +52,7 @@ void remove_sym(t_matrix *path)
 	}
 }
 
-int path_step(t_matrix *path, int k)
+int		path_step(t_matrix *path, int k)
 {
 	int j;
 
@@ -63,7 +63,7 @@ int path_step(t_matrix *path, int k)
 	return (-1);
 }
 
-void split_path_node(t_matrix *aj, int k, int prev, int next)
+void	split_path_node(t_matrix *aj, int k, int prev, int next)
 {
 	int i;
 	int n;
@@ -82,8 +82,8 @@ void split_path_node(t_matrix *aj, int k, int prev, int next)
 	aj->data[n][k] = 0;
 }
 
-void split_paths_nodes(t_matrix *aj, t_matrix *paths,
-					   t_collapse *c, int start, int end)
+void	split_paths_nodes(t_matrix *aj, t_matrix *paths,
+							t_collapse *c, int start, int end)
 {
 	int j;
 	int k_prev;
@@ -92,12 +92,13 @@ void split_paths_nodes(t_matrix *aj, t_matrix *paths,
 	int size;
 
 	size = aj->m;
-	for (j = 0; j < size; ++j)
+	j = -1;
+	while (++j < size)
 	{
 		if (!paths->data[start][j])
 			continue;
 		k_prev = start;
-		k = j; //path cursor;
+		k = j;
 		while (k != end)
 		{
 			k_next = path_step(paths, k);
@@ -109,13 +110,16 @@ void split_paths_nodes(t_matrix *aj, t_matrix *paths,
 	}
 }
 
-// http://www.macfreek.nl/memory/Disjoint_Path_Finding
-int suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
+/*
+** http://www.macfreek.nl/memory/Disjoint_Path_Finding
+*/
+
+int		suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
 {
-	t_collapse c;
-	t_matrix path;
-	t_matrix aj2;
-	int i;
+	t_collapse	c;
+	t_matrix	path;
+	t_matrix	aj2;
+	int			i;
 
 	t_matrix_init_zero(all_paths, aj->m, aj->n);
 	i = 0;
@@ -126,7 +130,7 @@ int suurballe(t_matrix *aj, t_matrix *all_paths, int start, int end)
 		t_collapse_init(&c, aj2.m);
 		split_paths_nodes(&aj2, all_paths, &c, start, end);
 		if (!find_path(&aj2, &path, start, end))
-			break;
+			break ;
 		i++;
 		t_collapse_do(&c, &path);
 		*all_paths = t_matrix_add(all_paths, &path);
