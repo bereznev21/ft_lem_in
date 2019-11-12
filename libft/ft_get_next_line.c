@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 18:29:13 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/12 18:08:44 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/12 18:58:19 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include "includes/libft_compat.h"
 #include "includes/get_next_line.h"
 
-/*
-static	int	ft_get_new_line(const int fd, char **line, char **old, int i)
+static int	ft_get_new_line(const int fd, char **line, char **old, int i)
 {
 	int		j;
 	char	*buff;
@@ -69,8 +68,8 @@ int			get_next_line(const int fd, char **line)
 		return (-1);
 	return (ft_get_new_line(fd, line, old, i));
 }
-*/
 
+/*
 static int	copy_until_break(t_buff *buff, char *chunk, size_t chunk_size,
 		char **ptr)
 {
@@ -193,4 +192,6 @@ int			get_next_line(const int fd, char **line)
 		gnl_state_remove(&state_lst, fd);
 	}
 	return (ret);
+
 }
+*/
