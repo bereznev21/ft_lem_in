@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "libft.h": "c",
-        "stdio.h": "c",
-        "lem_in.h": "c",
-        "libft_compat.h": "c",
-        "get_next_line.h": "c"
-    }
-}
