@@ -49,9 +49,7 @@ t_array		read_rooms(int fd, t_startend *se, char **line, UINT print_input)
 {
 	int		i;
 	t_array	rooms;
-	char	*buf;
 
-	buf = ft_strdup("");
 	t_array_init(&rooms, sizeof(t_room));
 	i = 0;
 	while (1)
@@ -88,7 +86,7 @@ t_matrix	read_roads(int fd, t_array rooms, char **line, UINT print_input)
 	{
 		if (**line != '#')
 		{
-			assert((split = ft_strsplit(*line, '-')) > 0, "mem err");
+			assert((split = ft_strsplit(*line, '-')) != NULL, "mem err");
 			assert(ft_len((void **)split) == 2, "invalid road");
 			assert(get_room_idx(rooms, split[0]) >= 0, "room not found");
 			assert(get_room_idx(rooms, split[1]) >= 0, "room not found");
