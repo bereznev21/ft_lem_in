@@ -77,8 +77,10 @@ class Ants {
         let dt = sketch.deltaTime;
         this.t += dt;
         let t = this.t / this.move_time;
-        if (t > 1.)
+        if (t > 1.) {
             this.next_move();
+            t = this.t / this.move_time;
+        }
         for (const ant of this.active_ants) {
             let x = ant.n1.x * (1 - t) + ant.n2.x * t;
             let y = ant.n1.y * (1 - t) + ant.n2.y * t;
