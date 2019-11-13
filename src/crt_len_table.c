@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   crt_len_table.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoetess <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:44:39 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 15:44:40 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/13 17:28:51 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include <stdio.h>
 #include "lem_in.h"
 
 void	ft_put_end(int **roads, int end)
@@ -58,9 +58,9 @@ void	ft_crt_len_table(t_matrix paths, t_lem_in lem_in, t_matrix *paths_table, in
 
 	j = -1;
 	num_path = 0;
-	(*len_table) = (int*)malloc(sizeof(int) * paths.m);
+	(*len_table) = (int*)malloc(sizeof(int) * (paths.m));
 	while (++j < paths.m)
-		(*len_table)[j] = -1;
+		(*len_table)[j] = DISJ;
 	j = -1;
 	while (++j < paths.n)
 		if (paths.data[lem_in.se.start][j] == 1)
@@ -68,5 +68,6 @@ void	ft_crt_len_table(t_matrix paths, t_lem_in lem_in, t_matrix *paths_table, in
 			(*len_table)[num_path] = ft_got_path(lem_in, paths, &paths_table->data[num_path], j);
 			num_path++;
 		}
+//	printf("%d\n", num_path);
 	(*len_table)[num_path] = -1;
 }
