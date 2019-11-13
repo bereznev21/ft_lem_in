@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/13 17:56:40 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/13 19:56:57 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,27 +81,26 @@ void	ft_move_leams_in_path(t_matrix *condition_of_ants,
 
 void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
 {
-	int			max_path;
+	int			i;
 	int			*len_table;
 	int			*lems_in_rooms;
 	t_matrix	paths_table;
 
 	t_matrix_init(&paths_table, aj.m, aj.n);
 	ft_crt_len_table(paths, lem_in, &paths_table, &len_table);
-//	ft_print_arr(len_table, aj.m);
-//	ft_putchar('\n');
 	ft_calc_lems(paths, lem_in, len_table, &lems_in_rooms);
-	max_path = ft_srch_max1(lems_in_rooms, aj.m);
 /*
 	ft_putchar('\n');
 	ft_print_arr(len_table, aj.m);
 	ft_putchar('\n');
 	ft_print_arr(lems_in_rooms, aj.m);
 	ft_putchar('\n');
-	ft_putnbr(len_table[max_path]);
-	ft_putchar('\n');
 */
-	ft_print_lems(lems_in_rooms, paths_table, lem_in, len_table[max_path]);
+//	ft_putnbr(len_table[max_path]);
+//	ft_putchar('\n');
+	i = ft_srch_max1(lems_in_rooms, aj.m);
+//	printf("|%d %d|\n", len_table[i], i);
+	ft_print_lems(lems_in_rooms, paths_table, lem_in, len_table[i]);
 	t_matrix_del(&paths_table);
 	free(len_table);
 	free(lems_in_rooms);
