@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:58:34 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/13 17:20:35 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/13 17:39:40 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	ft_print_lems(int *lems_in_rooms,
 
 	ants = lem_in.ants;
 	lem_num = 0;
+	ft_putchar('\n');
 //	t_matrix_print(&paths_table);
 	t_matrix_init(&condition_of_ants, paths_table.m, paths_table.n);
 	while (ants > 0)
@@ -112,7 +113,6 @@ void	ft_print_lems(int *lems_in_rooms,
 	}
 //	printf("%d\n", max_path);
 //	ft_putnbr(max_path);
-	ft_putchar('\n');
 	if (max_path > 0)
 		while (max_path >= 0)
 		{
