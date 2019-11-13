@@ -83,7 +83,6 @@ int			round_up(int a);
 void		t_matrix_set(t_matrix *m, int i, int j, int v);
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in, UINT flags);
 void		lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in);
-int			ft_srch_min(int *len_table);
 int			ft_srch_max_paths_in_rooms(int *len_table, int len);
 
 void		t_collapse_add(t_collapse *c, int k);
@@ -122,5 +121,8 @@ void		assert(int expr, const char *msg);
 void		error_exit(const char *msg);
 int			bf_shortest_path(t_matrix *aj, t_matrix *paths_map, int stat, int end);
 int			ft_srch_max(int *len_table, int len);
+int			ft_srch_max1(int *len_table, int len);
+int			ft_srch_min(int *len_table);
+int			lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in);
 
 #endif

@@ -1,5 +1,6 @@
 #include "lem_in.h"
 
+
 int		ft_srch_min(int *len_table)
 {
 	int min;
@@ -27,11 +28,32 @@ int		ft_srch_max(int *len_table, int len)
 
 	i = -1;
 	max = len_table[0];
-	while (i < len && len_table[i] != -1)
+	while (i < len && len_table[i] != DISJ)
 	{
 		if (len_table[i] > max)
 			max = len_table[i];
 		i++;
 	}
 	return (max);
+}
+
+int		ft_srch_max1(int *len_table, int len)
+{
+	int max;
+	int max_i;
+	int i;
+
+	i = -1;
+	max_i = 0;
+	max = len_table[0];
+	while (i < len && len_table[i] != DISJ)
+	{
+		if (len_table[i] > max)
+		{
+			max = len_table[i];
+			max_i = i;
+		}
+		i++;
+	}
+	return (max_i);
 }
