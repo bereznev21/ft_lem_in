@@ -54,7 +54,7 @@ class Ants {
             return (ant.n1.name !== end)
         });
         if (this.i > this.moves.lines.length - 1)
-            return;
+            this.i = 0;
         for (const move of this.moves.lines[this.i]) {
             let ant_exists = 0;
             for (const ant of this.active_ants)
@@ -79,7 +79,7 @@ class Ants {
         let t = this.t / this.move_time;
         if (t > 1.) {
             this.next_move();
-            t = this.t / this.move_time;
+            t = 0;
         }
         for (const ant of this.active_ants) {
             let x = ant.n1.x * (1 - t) + ant.n2.x * t;
