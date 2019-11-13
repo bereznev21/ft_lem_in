@@ -28,7 +28,7 @@ void	lem_in_main(int fd, UINT flags)
 		printf("Start: %d End: %d\n\n", lem_in.se.start, lem_in.se.end);
 	n_paths = lem_in_solve(&aj, &paths, lem_in);
 	if (flags & FLAG_DEBUG)
-		printf("total disjoint paths: %d\n", n_paths);
+		printf("total steps: %d\n", n_paths);
 	lem_in_output(paths, aj, lem_in);
 	t_matrix_del(&aj);
 	t_matrix_del(&paths);
