@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/12 22:36:50 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/13 17:33:36 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	lem_in_main(int fd, UINT flags)
 	n_paths = lem_in_solve(&aj, &paths, lem_in);
 	if (flags & FLAG_DEBUG)
 		printf("total disjoint paths: %d\n", n_paths);
-//	lem_in_output(paths, aj, lem_in);
+	lem_in_output(paths, aj, lem_in);
 	t_matrix_del(&aj);
 	t_matrix_del(&paths);
 	t_array_del(&lem_in.rooms);
