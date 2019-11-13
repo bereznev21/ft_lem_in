@@ -6,12 +6,13 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:43:48 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/13 19:33:16 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/13 20:07:41 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include <stdio.h>
+#include "libft/includes/libft.h"
 
 void	suurballe_reverse_path(t_matrix *aj, t_matrix *path)
 {
@@ -153,6 +154,7 @@ int		suurballe(t_matrix *aj, t_matrix *all_paths, t_startend se)
 int		lem_in_count_steps(t_matrix *all_paths, t_lem_in lem_in)
 {
 	int			i;
+	int			max;
 	int			*len_table;
 	int			*lems_in_rooms;
 	t_matrix	paths_table;
@@ -167,11 +169,13 @@ int		lem_in_count_steps(t_matrix *all_paths, t_lem_in lem_in)
 	ft_print_arr(lems_in_rooms, all_paths->n);
 	putchar('\n');
 */
-	i = ft_srch_max1(lems_in_rooms, all_paths->n);
-	printf("|%d %d|\n", len_table[i], i);
+	i = ft_srch_max1(lems_in_rooms, all_paths->m);
+	max = len_table[i];
+//	ft_putnbr(len_table[i]);
+//	ft_putchar('\n');
 	free(len_table);
 	free(lems_in_rooms);
-	return (len_table[i]);
+	return (max);
 }
 
 int		lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in)
@@ -187,14 +191,15 @@ int		lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in)
 	while(++i < lem_in.ants)
 	{
 		status = suurballe_next(*aj, all_paths, lem_in.se);
+		//printf("%d\n", status);
 		if (!status)
 			break;
 		steps = lem_in_count_steps(all_paths, lem_in);
+		//printf("|%d %d|\n", steps_result, steps);
+	//	ft_putnbr(steps);
+	//	ft_putchar('\n');
 		if (steps_result < steps)
-		{
-			//printf("|%d %d|\n", steps_result, steps);
 			return (steps_result);
-		}
 		steps_result = steps;
 	}
 	//printf("OK");
