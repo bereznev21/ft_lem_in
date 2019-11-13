@@ -194,12 +194,8 @@ int		lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in)
 			break;
 		steps = lem_in_count_steps(all_paths, lem_in);
 		if (steps_result < steps)
-		{
-			//printf("|%d %d|\n", steps_result, steps);
 			return (steps_result);
-		}
 		steps_result = steps;
 	}
-	//printf("OK");
 	return (steps_result);
 }
