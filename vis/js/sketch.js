@@ -6,9 +6,9 @@ new p5(function (sketch) {
         sketch.stroke(220);
         sketch.strokeWeight(3);
         sketch.fill(255);
-        // sketch.smooth();
         sketch.ellipseMode(sketch.CENTER);
         lem_in = new LemIn(data);
+
     };
     sketch.draw = () => {
         sketch.background(0);
@@ -24,6 +24,68 @@ function defaultdict(default_f) {
             return obj[key];
         }
     })
+}
+
+class Ant {
+    constructor(name, n1, n2) {
+        this.name = name;
+        this.n1 = n1;
+        this.n2 = n2;
+    }
+}
+
+class Ants {
+    constructor(moves, graph) {
+        this.move_time = 700; // ms
+        this.active_ants = [];
+        this.moves = moves;
+        this.graph = graph;
+        this.i = -1;
+        this.t = 0;
+        this.next_move();
+    }
+
+    next_move() {
+        this.i++;
+        this.t = 0;
+        let end = this.graph.end;
+        this.active_ants = this.active_ants.filter(function (ant) {
+            ant.n1 = ant.n2;
+            return (ant.n1.name !== end)
+        });
+        if (this.i > this.moves.lines.length - 1)
+            return;
+        for (const move of this.moves.lines[this.i]) {
+            let ant_exists = 0;
+            for (const ant of this.active_ants)
+                if (move.ant === ant.name) {
+                    ant.n2 = this.graph.nodes_per_name[move.room];
+                    ant_exists = 1;
+                    break;
+                }
+            if (!ant_exists)
+                this.active_ants.push(new Ant(move.ant,
+                    this.graph.nodes_per_name[this.graph.start],
+                    this.graph.nodes_per_name[move.room]));
+        }
+    }
+
+    draw(sketch) {
+        sketch.push();
+        sketch.stroke("#888800");
+        sketch.fill("#bbbb00");
+        let dt = sketch.deltaTime;
+        this.t += dt;
+        let t = this.t / this.move_time;
+        if (t > 1.)
+            this.next_move();
+        for (const ant of this.active_ants) {
+            let x = ant.n1.x * (1 - t) + ant.n2.x * t;
+            let y = ant.n1.y * (1 - t) + ant.n2.y * t;
+            sketch.ellipse(x, y, R2)
+        }
+        sketch.pop();
+    }
 }
 
 class Move {
@@ -144,10 +206,12 @@ class LemIn {
         for (let move of this.moves.lines[0])
             this.paths.push(this.moves.moves_per_ant[move.ant]);
         this.graph.init_path_nodes(this.paths);
+        this.ants = new Ants(this.moves, this.graph);
     }
 
     draw(sketch) {
         this.graph.draw(sketch);
+        this.ants.draw(sketch);
     }
 }
 
@@ -158,4 +222,5 @@ const BOTTOM = 800 - TOP;
 const MIDDLE = (BOTTOM + TOP) / 2;
 const SPAN = (BOTTOM - TOP);
 const R = 20;
+const R2 = 15;
 
