@@ -26,9 +26,9 @@ int		ft_srch_max(int *len_table, int len)
 	int max;
 	int i;
 
-	i = -1;
+	i = 0;
 	max = len_table[0];
-	while (i < len && len_table[i] != DISJ)
+	while (i < len)
 	{
 		if (len_table[i] > max)
 			max = len_table[i];
@@ -43,7 +43,7 @@ int		ft_srch_max1(int *len_table, int len)
 	int max_i;
 	int i;
 
-	i = -1;
+	i = 0;
 	max_i = 0;
 	max = len_table[0];
 	while (i < len && len_table[i] != DISJ)

@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:43:48 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/13 18:30:13 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/13 19:33:16 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ int		lem_in_count_steps(t_matrix *all_paths, t_lem_in lem_in)
 	putchar('\n');
 */
 	i = ft_srch_max1(lems_in_rooms, all_paths->n);
+	printf("|%d %d|\n", len_table[i], i);
 	free(len_table);
 	free(lems_in_rooms);
 	return (len_table[i]);
