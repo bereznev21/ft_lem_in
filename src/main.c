@@ -25,15 +25,7 @@ void	lem_in_main(int fd, UINT flags)
 	aj = lem_in_read(fd, &lem_in, flags & FLAG_PRINT_INPUT);
 	if (flags & FLAG_DEBUG)
 		printf("Start: %d End: %d\n\n", lem_in.se.start, lem_in.se.end);
-	//if (lem_in.ants > 1)
-	//	n_paths = suurballe(&aj, &paths, lem_in.se);
-		n_paths = lem_in_solve(&aj, &paths, lem_in);
-	/*
-	{
-		find_path(&aj, &paths, lem_in.se);
-		n_paths = 1;
-	}
-	*/
+	n_paths = lem_in_solve(&aj, &paths, lem_in);
 	if (flags & FLAG_DEBUG)
 		printf("total disjoint paths: %d\n", n_paths);
 	lem_in_output(paths, aj, lem_in);
