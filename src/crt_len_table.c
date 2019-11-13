@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:44:39 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/13 17:25:44 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/13 17:28:51 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void	ft_crt_len_table(t_matrix paths, t_lem_in lem_in, t_matrix *paths_table, in
 			(*len_table)[num_path] = ft_got_path(lem_in, paths, &paths_table->data[num_path], j);
 			num_path++;
 		}
-	printf("%d\n", num_path);
+//	printf("%d\n", num_path);
 	(*len_table)[num_path] = -1;
 }
