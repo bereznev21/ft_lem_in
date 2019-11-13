@@ -763,35 +763,35 @@ Bkn7-Uaa5\n\
 Clv1-M_h7\n\
 #Here is the number of lines required: 31\n\
 \n\
-L1-Ags9 L2-A__6 L3-Oru3 L4-Yor8 \n\
-L5-Ags9 L1-Nbn6 L6-A__6 L2-Ecl5 L3-Ejm3 L7-Yor8 L4-Mrn4 \n\
-L8-Ags9 L5-Nbn6 L1-G_d9 L9-A__6 L6-Ecl5 L2-Opn2 L3-Mvs5 L7-Mrn4 L4-Fog9 \n\
-L10-Ags9 L8-Nbn6 L5-G_d9 L1-Qao6 L11-A__6 L9-Ecl5 L6-Opn2 L2-X_f2 L3-Xbh1 L7-Fog9 L4-Jme3 \n\
-L12-Ags9 L10-Nbn6 L8-G_d9 L5-Qao6 L1-I__3 L11-Ecl5 L9-Opn2 L6-X_f2 L2-Ebv0 L3-Nly2 L7-Jme3 L4-Hzo3 \n\
-L12-Nbn6 L10-G_d9 L8-Qao6 L5-I__3 L1-Iis0 L11-Opn2 L9-X_f2 L6-Ebv0 L2-Nzq9 L3-Dqs5 L7-Hzo3 L4-Dtn8 \n\
-L12-G_d9 L10-Qao6 L8-I__3 L5-Iis0 L1-Xfx5 L11-X_f2 L9-Ebv0 L6-Nzq9 L2-Gju5 L3-Edq9 L7-Dtn8 L4-K_c1 \n\
-L12-Qao6 L10-I__3 L8-Iis0 L5-Xfx5 L1-Jcj5 L11-Ebv0 L9-Nzq9 L6-Gju5 L2-Kin5 L3-Tdy4 L7-K_c1 L4-Wir8 \n\
-L12-I__3 L10-Iis0 L8-Xfx5 L5-Jcj5 L1-Psf5 L11-Nzq9 L9-Gju5 L6-Kin5 L2-Boq2 L3-Azt3 L7-Wir8 L4-Erh8 \n\
-L12-Iis0 L10-Xfx5 L8-Jcj5 L5-Psf5 L1-Qlp8 L11-Gju5 L9-Kin5 L6-Boq2 L2-Cnr7 L3-Qmy7 L7-Erh8 L4-Cfv9 \n\
-L12-Xfx5 L10-Jcj5 L8-Psf5 L5-Qlp8 L1-Ain4 L11-Kin5 L9-Boq2 L6-Cnr7 L2-Els8 L3-Hzi7 L7-Cfv9 L4-Vcx2 \n\
-L12-Jcj5 L10-Psf5 L8-Qlp8 L5-Ain4 L1-Nit1 L11-Boq2 L9-Cnr7 L6-Els8 L2-Grn9 L3-Pzj1 L7-Vcx2 L4-Xl_2 \n\
-L12-Psf5 L10-Qlp8 L8-Ain4 L5-Nit1 L1-Hls2 L11-Cnr7 L9-Els8 L6-Grn9 L2-Jvy8 L3-Utm2 L7-Xl_2 L4-Asc0 \n\
-L12-Qlp8 L10-Ain4 L8-Nit1 L5-Hls2 L1-Gnq2 L11-Els8 L9-Grn9 L6-Jvy8 L2-Dec6 L3-Ujq3 L7-Asc0 L4-Uce3 \n\
-L12-Ain4 L10-Nit1 L8-Hls2 L5-Gnq2 L1-Ihb5 L11-Grn9 L9-Jvy8 L6-Dec6 L2-Iyn6 L3-Vlt8 L7-Uce3 L4-Tnn6 \n\
-L12-Nit1 L10-Hls2 L8-Gnq2 L5-Ihb5 L1-Nih7 L11-Jvy8 L9-Dec6 L6-Iyn6 L2-D_e2 L3-Skz0 L7-Tnn6 L4-Ntn3 \n\
-L12-Hls2 L10-Gnq2 L8-Ihb5 L5-Nih7 L1-Mr_9 L11-Dec6 L9-Iyn6 L6-D_e2 L2-Ipk9 L3-Ykz6 L7-Ntn3 L4-Sqj4 \n\
-L12-Gnq2 L10-Ihb5 L8-Nih7 L5-Mr_9 L1-Ftl2 L11-Iyn6 L9-D_e2 L6-Ipk9 L2-Xok1 L3-Ksr6 L7-Sqj4 L4-Pxk1 \n\
-L12-Ihb5 L10-Nih7 L8-Mr_9 L5-Ftl2 L1-Glg7 L11-D_e2 L9-Ipk9 L6-Xok1 L2-Zmn4 L3-Gab2 L7-Pxk1 L4-Nin4 \n\
-L12-Nih7 L10-Mr_9 L8-Ftl2 L5-Glg7 L1-Ifh7 L11-Ipk9 L9-Xok1 L6-Zmn4 L2-Gty4 L3-Gcw5 L7-Nin4 L4-Ir_8 \n\
-L12-Mr_9 L10-Ftl2 L8-Glg7 L5-Ifh7 L1-Jp_2 L11-Xok1 L9-Zmn4 L6-Gty4 L2-Ven4 L3-Vqu3 L7-Ir_8 L4-Gme6 \n\
-L12-Ftl2 L10-Glg7 L8-Ifh7 L5-Jp_2 L1-Bg_1 L11-Zmn4 L9-Gty4 L6-Ven4 L2-Mce7 L3-Ikg7 L7-Gme6 L4-V_z3 \n\
-L12-Glg7 L10-Ifh7 L8-Jp_2 L5-Bg_1 L1-Gkn9 L11-Gty4 L9-Ven4 L6-Mce7 L2-Grs1 L3-Bub0 L7-V_z3 L4-Ytp1 \n\
-L12-Ifh7 L10-Jp_2 L8-Bg_1 L5-Gkn9 L1-Akm2 L11-Ven4 L9-Mce7 L6-Grs1 L2-Ydl0 L3-Bus9 L7-Ytp1 L4-Gbx2 \n\
-L12-Jp_2 L10-Bg_1 L8-Gkn9 L5-Akm2 L1-Yrd6 L11-Mce7 L9-Grs1 L6-Ydl0 L2-Kpc8 L3-Mqp4 L7-Gbx2 L4-Mjk3 \n\
-L12-Bg_1 L10-Gkn9 L8-Akm2 L5-Yrd6 L1-Xw_0 L11-Grs1 L9-Ydl0 L6-Kpc8 L2-Jkk0 L3-Tun9 L7-Mjk3 L4-Ud_9 \n\
-L12-Gkn9 L10-Akm2 L8-Yrd6 L5-Xw_0 L1-Gq_6 L11-Ydl0 L9-Kpc8 L6-Jkk0 L2-Tzn6 L3-Oze8 L7-Ud_9 L4-Tsh3 \n\
-L12-Akm2 L10-Yrd6 L8-Xw_0 L5-Gq_6 L11-Kpc8 L9-Jkk0 L6-Tzn6 L2-Gq_6 L3-Dxr6 L7-Tsh3 L4-Z_x5 \n\
-L12-Yrd6 L10-Xw_0 L8-Gq_6 L11-Jkk0 L9-Tzn6 L6-Gq_6 L3-Twq1 L7-Z_x5 L4-Gq_6 \n\
-L12-Xw_0 L10-Gq_6 L11-Tzn6 L9-Gq_6 L3-Yza5 L7-Gq_6 \n\
-L12-Gq_6 L11-Gq_6 L3-Gq_6 \n\
+L1-Ags9 L2-A__6 L3-Oru3 L4-Yor8\n\
+L5-Ags9 L1-Nbn6 L6-A__6 L2-Ecl5 L3-Ejm3 L7-Yor8 L4-Mrn4\n\
+L8-Ags9 L5-Nbn6 L1-G_d9 L9-A__6 L6-Ecl5 L2-Opn2 L3-Mvs5 L7-Mrn4 L4-Fog9\n\
+L10-Ags9 L8-Nbn6 L5-G_d9 L1-Qao6 L11-A__6 L9-Ecl5 L6-Opn2 L2-X_f2 L3-Xbh1 L7-Fog9 L4-Jme3\n\
+L12-Ags9 L10-Nbn6 L8-G_d9 L5-Qao6 L1-I__3 L11-Ecl5 L9-Opn2 L6-X_f2 L2-Ebv0 L3-Nly2 L7-Jme3 L4-Hzo3\n\
+L12-Nbn6 L10-G_d9 L8-Qao6 L5-I__3 L1-Iis0 L11-Opn2 L9-X_f2 L6-Ebv0 L2-Nzq9 L3-Dqs5 L7-Hzo3 L4-Dtn8\n\
+L12-G_d9 L10-Qao6 L8-I__3 L5-Iis0 L1-Xfx5 L11-X_f2 L9-Ebv0 L6-Nzq9 L2-Gju5 L3-Edq9 L7-Dtn8 L4-K_c1\n\
+L12-Qao6 L10-I__3 L8-Iis0 L5-Xfx5 L1-Jcj5 L11-Ebv0 L9-Nzq9 L6-Gju5 L2-Kin5 L3-Tdy4 L7-K_c1 L4-Wir8\n\
+L12-I__3 L10-Iis0 L8-Xfx5 L5-Jcj5 L1-Psf5 L11-Nzq9 L9-Gju5 L6-Kin5 L2-Boq2 L3-Azt3 L7-Wir8 L4-Erh8\n\
+L12-Iis0 L10-Xfx5 L8-Jcj5 L5-Psf5 L1-Qlp8 L11-Gju5 L9-Kin5 L6-Boq2 L2-Cnr7 L3-Qmy7 L7-Erh8 L4-Cfv9\n\
+L12-Xfx5 L10-Jcj5 L8-Psf5 L5-Qlp8 L1-Ain4 L11-Kin5 L9-Boq2 L6-Cnr7 L2-Els8 L3-Hzi7 L7-Cfv9 L4-Vcx2\n\
+L12-Jcj5 L10-Psf5 L8-Qlp8 L5-Ain4 L1-Nit1 L11-Boq2 L9-Cnr7 L6-Els8 L2-Grn9 L3-Pzj1 L7-Vcx2 L4-Xl_2\n\
+L12-Psf5 L10-Qlp8 L8-Ain4 L5-Nit1 L1-Hls2 L11-Cnr7 L9-Els8 L6-Grn9 L2-Jvy8 L3-Utm2 L7-Xl_2 L4-Asc0\n\
+L12-Qlp8 L10-Ain4 L8-Nit1 L5-Hls2 L1-Gnq2 L11-Els8 L9-Grn9 L6-Jvy8 L2-Dec6 L3-Ujq3 L7-Asc0 L4-Uce3\n\
+L12-Ain4 L10-Nit1 L8-Hls2 L5-Gnq2 L1-Ihb5 L11-Grn9 L9-Jvy8 L6-Dec6 L2-Iyn6 L3-Vlt8 L7-Uce3 L4-Tnn6\n\
+L12-Nit1 L10-Hls2 L8-Gnq2 L5-Ihb5 L1-Nih7 L11-Jvy8 L9-Dec6 L6-Iyn6 L2-D_e2 L3-Skz0 L7-Tnn6 L4-Ntn3\n\
+L12-Hls2 L10-Gnq2 L8-Ihb5 L5-Nih7 L1-Mr_9 L11-Dec6 L9-Iyn6 L6-D_e2 L2-Ipk9 L3-Ykz6 L7-Ntn3 L4-Sqj4\n\
+L12-Gnq2 L10-Ihb5 L8-Nih7 L5-Mr_9 L1-Ftl2 L11-Iyn6 L9-D_e2 L6-Ipk9 L2-Xok1 L3-Ksr6 L7-Sqj4 L4-Pxk1\n\
+L12-Ihb5 L10-Nih7 L8-Mr_9 L5-Ftl2 L1-Glg7 L11-D_e2 L9-Ipk9 L6-Xok1 L2-Zmn4 L3-Gab2 L7-Pxk1 L4-Nin4\n\
+L12-Nih7 L10-Mr_9 L8-Ftl2 L5-Glg7 L1-Ifh7 L11-Ipk9 L9-Xok1 L6-Zmn4 L2-Gty4 L3-Gcw5 L7-Nin4 L4-Ir_8\n\
+L12-Mr_9 L10-Ftl2 L8-Glg7 L5-Ifh7 L1-Jp_2 L11-Xok1 L9-Zmn4 L6-Gty4 L2-Ven4 L3-Vqu3 L7-Ir_8 L4-Gme6\n\
+L12-Ftl2 L10-Glg7 L8-Ifh7 L5-Jp_2 L1-Bg_1 L11-Zmn4 L9-Gty4 L6-Ven4 L2-Mce7 L3-Ikg7 L7-Gme6 L4-V_z3\n\
+L12-Glg7 L10-Ifh7 L8-Jp_2 L5-Bg_1 L1-Gkn9 L11-Gty4 L9-Ven4 L6-Mce7 L2-Grs1 L3-Bub0 L7-V_z3 L4-Ytp1\n\
+L12-Ifh7 L10-Jp_2 L8-Bg_1 L5-Gkn9 L1-Akm2 L11-Ven4 L9-Mce7 L6-Grs1 L2-Ydl0 L3-Bus9 L7-Ytp1 L4-Gbx2\n\
+L12-Jp_2 L10-Bg_1 L8-Gkn9 L5-Akm2 L1-Yrd6 L11-Mce7 L9-Grs1 L6-Ydl0 L2-Kpc8 L3-Mqp4 L7-Gbx2 L4-Mjk3\n\
+L12-Bg_1 L10-Gkn9 L8-Akm2 L5-Yrd6 L1-Xw_0 L11-Grs1 L9-Ydl0 L6-Kpc8 L2-Jkk0 L3-Tun9 L7-Mjk3 L4-Ud_9\n\
+L12-Gkn9 L10-Akm2 L8-Yrd6 L5-Xw_0 L1-Gq_6 L11-Ydl0 L9-Kpc8 L6-Jkk0 L2-Tzn6 L3-Oze8 L7-Ud_9 L4-Tsh3\n\
+L12-Akm2 L10-Yrd6 L8-Xw_0 L5-Gq_6 L11-Kpc8 L9-Jkk0 L6-Tzn6 L2-Gq_6 L3-Dxr6 L7-Tsh3 L4-Z_x5\n\
+L12-Yrd6 L10-Xw_0 L8-Gq_6 L11-Jkk0 L9-Tzn6 L6-Gq_6 L3-Twq1 L7-Z_x5 L4-Gq_6\n\
+L12-Xw_0 L10-Gq_6 L11-Tzn6 L9-Gq_6 L3-Yza5 L7-Gq_6\n\
+L12-Gq_6 L11-Gq_6 L3-Gq_6\n\
 ";
