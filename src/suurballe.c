@@ -180,10 +180,12 @@ int		lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in)
 	int	steps;
 	int	steps_result;
 	int	status;
+	int i;
 
-	steps_result = DISJ;
+	steps_result = INT_MAX;
 	t_matrix_init_zero(all_paths, aj->m, aj->n);
-	while(1)
+	i = -1;
+	while(++i < lem_in.ants)
 	{
 		status = suurballe_next(*aj, all_paths, lem_in.se);
 		if (!status)
@@ -197,5 +199,5 @@ int		lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in)
 		steps_result = steps;
 	}
 	//printf("OK");
-	return (steps);
+	return (steps_result);
 }
