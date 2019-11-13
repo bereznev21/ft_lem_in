@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:43:48 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/13 13:41:54 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/13 18:30:13 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ int		suurballe(t_matrix *aj, t_matrix *all_paths, t_startend se)
 int		lem_in_count_steps(t_matrix *all_paths, t_lem_in lem_in)
 {
 	int			i;
-	int			max;
 	int			*len_table;
 	int			*lems_in_rooms;
 	t_matrix	paths_table;
@@ -161,7 +160,6 @@ int		lem_in_count_steps(t_matrix *all_paths, t_lem_in lem_in)
 	t_matrix_init(&paths_table, all_paths->m_alloc, all_paths->n_alloc);
 	ft_crt_len_table(*all_paths, lem_in, &paths_table, &len_table);
 	ft_calc_lems(*all_paths, lem_in, len_table, &lems_in_rooms);
-//	printf("\n%d", len_table[0] + lems_in_rooms[0]);
 /*
 	putchar('\n');
 	ft_print_arr(len_table, all_paths->n);
@@ -169,10 +167,10 @@ int		lem_in_count_steps(t_matrix *all_paths, t_lem_in lem_in)
 	ft_print_arr(lems_in_rooms, all_paths->n);
 	putchar('\n');
 */
-	i = ft_srch_max1(len_table, all_paths->n);
-	max = len_table[i];
-//	printf("%d\n", max);
-	return (max);
+	i = ft_srch_max1(lems_in_rooms, all_paths->n);
+	free(len_table);
+	free(lems_in_rooms);
+	return (len_table[i]);
 }
 
 int		lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in)
@@ -187,15 +185,17 @@ int		lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in)
 	i = -1;
 	while(++i < lem_in.ants)
 	{
-		if (lem_in.flags & FLAG_DEBUG)
-			printf("path %d...\n", i + 1);
 		status = suurballe_next(*aj, all_paths, lem_in.se);
 		if (!status)
 			break;
 		steps = lem_in_count_steps(all_paths, lem_in);
 		if (steps_result < steps)
+		{
+			//printf("|%d %d|\n", steps_result, steps);
 			return (steps_result);
+		}
 		steps_result = steps;
 	}
+	//printf("OK");
 	return (steps_result);
 }
