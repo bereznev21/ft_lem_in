@@ -104,11 +104,13 @@ t_matrix	read_roads(int fd, t_array rooms, char **line, UINT print_input)
 	return (aj);
 }
 
-t_matrix	lem_in_read(int fd, t_lem_in *lem_in, UINT print_input)
+t_matrix	lem_in_read(int fd, t_lem_in *lem_in)
 {
 	char *line_buff;
 	char **line;
+	UINT print_input;
 
+	print_input = lem_in->flags & FLAG_PRINT_INPUT;
 	line = &line_buff;
 	while (1)
 	{

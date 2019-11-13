@@ -22,7 +22,8 @@ void	lem_in_main(int fd, UINT flags)
 	t_matrix	paths;
 	int			n_paths;
 
-	aj = lem_in_read(fd, &lem_in, flags & FLAG_PRINT_INPUT);
+	lem_in.flags = flags;
+	aj = lem_in_read(fd, &lem_in);
 	if (flags & FLAG_DEBUG)
 		printf("Start: %d End: %d\n\n", lem_in.se.start, lem_in.se.end);
 	n_paths = lem_in_solve(&aj, &paths, lem_in);

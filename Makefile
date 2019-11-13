@@ -38,7 +38,7 @@ $(NAME): $(OBJ)
 	gcc $(FLS) $(OBJ) -o $(NAME) $(OPTIONS) -L libft -lft
 
 run : $(NAME)
-	@./$(NAME) maps/generated/big-superposition1.map
+	@./$(NAME) -d maps/generated/big-superposition2.map
 
 clean:
 	make clean -C libft
