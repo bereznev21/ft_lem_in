@@ -187,6 +187,8 @@ int		lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in)
 	i = -1;
 	while(++i < lem_in.ants)
 	{
+		if (lem_in.flags & FLAG_DEBUG)
+			printf("path %d...\n", i + 1);
 		status = suurballe_next(*aj, all_paths, lem_in.se);
 		if (!status)
 			break;

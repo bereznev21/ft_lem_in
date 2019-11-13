@@ -53,6 +53,7 @@ typedef struct	s_lem_in
 	t_startend se;
 	int ants;
 	t_array rooms;
+	UINT flags;
 }				t_lem_in;
 
 typedef	struct 		s_queue
@@ -81,7 +82,7 @@ void		t_matrix_del(t_matrix *m);
 int			round_up(int a);
 
 void		t_matrix_set(t_matrix *m, int i, int j, int v);
-t_matrix	lem_in_read(int fd, t_lem_in *lem_in, UINT flags);
+t_matrix	lem_in_read(int fd, t_lem_in *lem_in);
 void		lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in);
 int			ft_srch_max_paths_in_rooms(int *len_table, int len);
 
