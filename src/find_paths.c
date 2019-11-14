@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/14 18:51:18 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 19:21:19 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ int		ft_restore_patch1(t_matrix *aj, int *short_path,
 }
 */
 
-int		ft_restore_patch1(t_matrix *aj, int *short_path,
+int		*ft_restore_patch1(t_matrix *aj, int *short_path,
 			t_matrix *paths_map, t_startend se)
 {
 	int	i;
@@ -197,15 +197,14 @@ int		ft_restore_patch1(t_matrix *aj, int *short_path,
 				ends = i;
 				break ;
 			}
-			if (i == aj->m)
-				break ;
 		}
-		//	return (0);
+		if (i == aj->m)
+			return (0);
 	}
 	ft_print_arr(short_path, aj->m);
 	ft_putchar('\n');
 	//t_matrix_del(paths_map);
-	return (1);
+	return (short_path);
 }
 
 /*
@@ -231,13 +230,12 @@ int		find_path(t_matrix *aj, t_matrix *paths, t_startend se)
 }
 */
 
-int		find_path(t_matrix *aj, t_matrix *paths, t_startend se)
+int		*find_path(t_matrix *aj, t_startend se)
 {
 	int			i;
 	int			*short_path;
 	t_matrix	ret;
 
-	(void)paths;
 	i = -1;
 	short_path = (int*)malloc(sizeof(int) * aj->m);
 	while (++i < aj->m)
