@@ -104,7 +104,7 @@ int		find_path(t_matrix *aj, t_matrix *paths, t_startend se)
 {
 	t_matrix ret;
 
-	t_matrix_init(&ret, aj->m, aj->n);
+	t_matrix_init_zero(&ret, aj->m, aj->n);
 	find_paths(aj, &ret, se);
 	return (ft_restore_patch(paths, &ret, se));
 }

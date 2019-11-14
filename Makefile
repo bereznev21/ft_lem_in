@@ -17,7 +17,8 @@ SRC = \
 		src/crt_len_table.c \
 		src/stack_functions.c \
 		src/suurballe.c \
-		src/suurballe2.c \
+		src/path.c \
+		src/solve.c \
 		src/node_collapse.c \
 		src/bellman_ford.c \
 		src/ft_print_functions.c \
