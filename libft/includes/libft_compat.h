@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_compat.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksticks <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 16:31:42 by ksticks           #+#    #+#             */
-/*   Updated: 2019/10/17 16:31:43 by ksticks          ###   ########.fr       */
+/*   Updated: 2019/11/14 14:32:24 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,18 @@
 
 typedef unsigned long		t_ulong;
 #  define ulong t_ulong
-
 # endif
 
 # ifndef ullong
 
 typedef unsigned long long	t_ullong;
 #  define ullong t_ullong
-
 # endif
 
 # ifndef uint
 
 typedef unsigned int		t_uint;
 #  define uint t_uint
-
 # endif
 
 # ifndef ULLONG_MAX

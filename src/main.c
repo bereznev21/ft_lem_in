@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/13 17:33:36 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 14:19:18 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	lem_in_main(int fd, UINT flags)
 	if (flags & FLAG_DEBUG)
 		printf("Start: %d End: %d\n\n", lem_in.se.start, lem_in.se.end);
 	n_paths = lem_in_solve(&aj, &paths, lem_in);
+//	find_path(&aj, &paths, lem_in.se);
+//	suurballe_next(aj, &paths, lem_in.se);
 	if (flags & FLAG_DEBUG)
 		printf("total steps: %d\n", n_paths);
 	lem_in_output(paths, aj, lem_in);

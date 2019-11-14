@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:12:26 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/12 18:28:48 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 14:17:57 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ t_array		read_rooms(int fd, t_startend *se, char **line, UINT print_input)
 		free(*line);
 		assert(get_next_line(fd, line) > 0, "failed read room");
 		if (print_input)
-		{
-			//ft_strjoin_left()
 			ft_putendl(*line);
-		}
 		if (!ft_strcmp(*line, "##start"))
 			se->start = i;
 		if (!ft_strcmp(*line, "##end"))
@@ -78,10 +75,8 @@ t_matrix	read_roads(int fd, t_array rooms, char **line, UINT print_input)
 {
 	t_matrix	aj;
 	char		**split;
-	int i;
 
 	t_matrix_init(&aj, rooms.count, rooms.count);
-	i = 0;
 	while (1)
 	{
 		if (**line != '#')
@@ -99,7 +94,6 @@ t_matrix	read_roads(int fd, t_array rooms, char **line, UINT print_input)
 			break ;
 		if (print_input)
 			ft_putendl(*line);
-		i++;
 	}
 	return (aj);
 }

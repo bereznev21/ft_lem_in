@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 14:35:19 by rpoetess          #+#    #+#             */
+/*   Updated: 2019/11/14 14:41:57 by rpoetess         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
@@ -11,52 +23,52 @@
 # define FLAG_PRINT_INPUT 1
 # define FLAG_DEBUG 2
 
-typedef struct	s_startend
+typedef struct		s_startend
 {
-	int start;
-	int end;
-}				t_startend;
+	int				start;
+	int				end;
+}					t_startend;
 
-typedef struct	s_matrix
+typedef struct		s_matrix
 {
-	int m_alloc;
-	int n_alloc;
-	int m;
-	int n;
-	int **data;
-}				t_matrix;
+	int				m_alloc;
+	int				n_alloc;
+	int				m;
+	int				n;
+	int				**data;
+}					t_matrix;
 
-typedef struct	s_room
+typedef struct		s_room
 {
-	char	*name;
-	int		x;
-	int		y;
-} 				t_room;
+	char			*name;
+	int				x;
+	int				y;
+}					t_room;
 
-typedef struct	s_array
+typedef struct		s_array
 {
-	size_t item_size;
-	int count;
-	int size;
-	void *data;
-}				t_array;
+	size_t			item_size;
+	int				count;
+	int				size;
+	void			*data;
+}					t_array;
 
-typedef struct	s_collapse
+typedef struct		s_collapse
 {
-	t_array a;
-	t_matrix m;
-	int size;
-}				t_collapse;
+	t_array			a;
+	t_matrix		m;
+	int				size;
+}					t_collapse;
 
-typedef struct	s_lem_in
+typedef struct		s_lem_in
 {
-	t_startend se;
-	int ants;
-	t_array rooms;
-	UINT flags;
-}				t_lem_in;
+	t_startend		se;
+	int				ants;
+	t_array			rooms;
+	UINT			flags;
+}					t_lem_in;
 
-typedef	struct 		s_queue
+typedef	struct		s_queue
 {
 	int				data;
 	struct s_queue	*next;
@@ -69,7 +81,7 @@ void		t_array_del(t_array *a);
 
 void		t_matrix_init(t_matrix *mat, int m, int n);
 void		t_matrix_init_identity(t_matrix *mat, int n);
-void 		t_matrix_init_zero(t_matrix *mat, int m, int n);
+void		t_matrix_init_zero(t_matrix *mat, int m, int n);
 t_matrix	t_matrix_copy(t_matrix *m);
 t_matrix	t_matrix_add(t_matrix *a, t_matrix *b);
 t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b);
@@ -95,6 +107,11 @@ t_array		path_matrix_to_bit_masks(t_matrix *aj, int start, int end);
 void		ft_put_end(int **roads, int end);
 void		ft_bminus(int **s, size_t n);
 int			suurballe(t_matrix *aj, t_matrix *all_paths, t_startend se);
+void		suurballe_reverse_path(t_matrix *aj, t_matrix *path);
+void		split_paths_nodes(t_matrix *aj, t_matrix *paths,
+				t_collapse *c, t_startend se);
+void		remove_sym(t_matrix *path);
+
 int			find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se);
 int			find_path(t_matrix *aj, t_matrix *paths, t_startend se);
 
@@ -104,12 +121,15 @@ void		ft_free_q(t_queue **q);
 void		ft_free_arr_int(int **str, int width);
 void		ft_free_arr_char(char **map);
 
-void 		ft_print_matrix(int **map, int width);
+void		ft_print_matrix(int **map, int width);
 void		ft_print_arr(int *lems_in_rooms, int n);
-void		ft_print_lems(int *lems_in_rooms, t_matrix paths_table, t_lem_in lem_in, int max_path);
+void		ft_print_lems(int *lems_in_rooms, t_matrix paths_table,
+				t_lem_in lem_in, int max_path);
 
-void		ft_move_leams_in_path(t_matrix *condition_of_ants, t_matrix paths_table, int k);
-void		ft_crt_len_table(t_matrix paths, t_lem_in lem_in, t_matrix *paths_table, int **len_table);
+void		ft_move_leams_in_path(t_matrix *condition_of_ants,
+				t_matrix paths_table, int k);
+void		ft_crt_len_table(t_matrix paths, t_lem_in lem_in,
+				t_matrix *paths_table, int **len_table);
 void		ft_calc_lems(t_matrix paths, t_lem_in lem_in,
 				int *len_table, int **lems_in_rooms);
 
@@ -120,7 +140,8 @@ void		ft_q_pop(t_queue **q);
 
 void		assert(int expr, const char *msg);
 void		error_exit(const char *msg);
-int			bf_shortest_path(t_matrix *aj, t_matrix *paths_map, int stat, int end);
+int			bf_shortest_path(t_matrix *aj,
+				t_matrix *paths_map, int stat, int end);
 int			ft_srch_max(int *len_table, int len);
 int			ft_srch_max1(int *len_table, int len);
 int			ft_srch_min(int *len_table);

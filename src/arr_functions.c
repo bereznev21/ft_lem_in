@@ -1,5 +1,16 @@
-#include "lem_in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arr_functions.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 14:31:08 by rpoetess          #+#    #+#             */
+/*   Updated: 2019/11/14 14:31:14 by rpoetess         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "lem_in.h"
 
 int		ft_srch_min(int *len_table)
 {
@@ -48,7 +59,7 @@ int		ft_srch_max1(int *len_table, int len)
 	max = len_table[0];
 	while (i < len)
 	{
-		if (len_table[i] > max && len_table[i] != DISJ)
+		if (len_table[i] > max)
 		{
 			max = len_table[i];
 			max_i = i;

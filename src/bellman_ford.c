@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   bellman_ford.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoetess <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:44:24 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 15:44:28 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 14:29:49 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include <limits.h>
 
-static void relax_edges(t_matrix *aj, t_matrix *path, int *d)
+static void	relax_edges(t_matrix *aj, t_matrix *path, int *d)
 {
 	int i;
 	int j;
@@ -44,7 +44,7 @@ static void relax_edges(t_matrix *aj, t_matrix *path, int *d)
 	}
 }
 
-int bellman_ford(t_matrix *aj, t_matrix *path, int start, int end)
+int			bellman_ford(t_matrix *aj, t_matrix *path, int start, int end)
 {
 	int i;
 	int d[aj->n]; //distances from start node //todo: malloc
@@ -57,15 +57,15 @@ int bellman_ford(t_matrix *aj, t_matrix *path, int start, int end)
 	return (d[end] != DISJ);
 }
 
-int bf_shortest_path(t_matrix *aj, t_matrix *path, int stat, int end)
+int			bf_shortest_path(t_matrix *aj, t_matrix *path, int stat, int end)
 {
-	int k;
-	int i;
-	t_matrix all_paths;
+	int			k;
+	int			i;
+	t_matrix	all_paths;
 
 	t_matrix_init_zero(&all_paths, aj->m, aj->n);
 	if (!bellman_ford(aj, &all_paths, stat, end))
-		return 0;
+		return (0);
 	t_matrix_init_zero(path, aj->m, aj->n);
 	k = end;
 	while (k != stat)
@@ -77,7 +77,7 @@ int bf_shortest_path(t_matrix *aj, t_matrix *path, int stat, int end)
 			{
 				path->data[i][k] = 1;
 				k = i;
-				break;
+				break ;
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/13 19:56:57 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 14:24:59 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ void	ft_calc_lems(t_matrix paths, t_lem_in lem_in,
 	int		i;
 	int		j;
 
-	(void)min;
 	j = -1;
 	i = 0;
-	min = 0;
 	lems = lem_in.ants;
 	*lems_in_rooms = (int*)malloc(sizeof(int) * paths.n);
 	while (++j < paths.n)
@@ -59,7 +57,6 @@ void	ft_calc_lems(t_matrix paths, t_lem_in lem_in,
 		}
 		i = 0;
 	}
-//	ft_free_matrix(&paths);
 }
 
 void	ft_move_leams_in_path(t_matrix *condition_of_ants,
@@ -68,7 +65,6 @@ void	ft_move_leams_in_path(t_matrix *condition_of_ants,
 	int i;
 
 	i = paths_table.n - 1;
-	//printf("%d\n", i);
 	while (i > 0)
 	{
 		if (paths_table.data[k][i] != DISJ)
@@ -76,7 +72,6 @@ void	ft_move_leams_in_path(t_matrix *condition_of_ants,
 		i--;
 	}
 	condition_of_ants->data[k][0] = 0;
-	//t_matrix_print(condition_of_ants);
 }
 
 void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
@@ -89,17 +84,7 @@ void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
 	t_matrix_init(&paths_table, aj.m, aj.n);
 	ft_crt_len_table(paths, lem_in, &paths_table, &len_table);
 	ft_calc_lems(paths, lem_in, len_table, &lems_in_rooms);
-/*
-	ft_putchar('\n');
-	ft_print_arr(len_table, aj.m);
-	ft_putchar('\n');
-	ft_print_arr(lems_in_rooms, aj.m);
-	ft_putchar('\n');
-*/
-//	ft_putnbr(len_table[max_path]);
-//	ft_putchar('\n');
 	i = ft_srch_max1(lems_in_rooms, aj.m);
-//	printf("|%d %d|\n", len_table[i], i);
 	ft_print_lems(lems_in_rooms, paths_table, lem_in, len_table[i]);
 	t_matrix_del(&paths_table);
 	free(len_table);

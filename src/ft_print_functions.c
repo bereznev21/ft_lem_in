@@ -6,12 +6,11 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:58:34 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/13 17:39:40 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 14:22:46 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include <stdio.h>
 #include "libft/includes/libft.h"
 
 void	ft_print_arr(int *lems_in_rooms, int n)
@@ -29,7 +28,6 @@ void	ft_print_arr(int *lems_in_rooms, int n)
 
 void	ft_print_ans(int num_len, char *room_name)
 {
-//	int		len;
 	char	*res;
 	char	*num;
 
@@ -73,7 +71,6 @@ void	ft_print_ants(t_matrix condition_of_ants,
 		}
 		j = 0;
 	}
-	//ft_putchar('\n');
 }
 
 void	ft_print_lems(int *lems_in_rooms,
@@ -87,14 +84,11 @@ void	ft_print_lems(int *lems_in_rooms,
 	ants = lem_in.ants;
 	lem_num = 0;
 	ft_putchar('\n');
-//	t_matrix_print(&paths_table);
 	t_matrix_init(&condition_of_ants, paths_table.m, paths_table.n);
 	while (ants > 0)
 	{
 		i = 0;
-		//while (i < paths_table.m)
 		while (paths_table.data[i][0] != DISJ)
-		//while (lems_in_rooms[i] > 0)
 		{
 			ft_move_leams_in_path(&condition_of_ants, paths_table, i);
 			if (lems_in_rooms[i] > 0 && ants > 0)
@@ -109,10 +103,7 @@ void	ft_print_lems(int *lems_in_rooms,
 		ft_print_ants(condition_of_ants, paths_table, lem_in);
 		max_path--;
 		ft_putchar('\n');
-	//	t_matrix_print(&condition_of_ants);
 	}
-//	printf("%d\n", max_path);
-//	ft_putnbr(max_path);
 	if (max_path > 0)
 		while (max_path >= 0)
 		{

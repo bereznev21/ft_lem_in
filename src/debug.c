@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   debug.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpoetess <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 14:28:22 by rpoetess          #+#    #+#             */
+/*   Updated: 2019/11/14 14:28:23 by rpoetess         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <libft.h>
 #include <lem_in.h>
 
-int path_step(t_matrix *path, int k);
+int			path_step(t_matrix *path, int k);
 
-void print_paths(t_matrix *paths, int start, int end)
+void		print_paths(t_matrix *paths, int start, int end)
 {
 	int j;
 	int k;
@@ -70,7 +82,6 @@ t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b)
 	}
 	return (r);
 }
-
 
 void		t_matrix_print_no_headers(t_matrix *m)
 {

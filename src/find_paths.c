@@ -6,13 +6,12 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/11 17:53:06 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 14:25:53 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lem_in.h"
-#include <stdio.h>
 
 void	ft_bminus(int **s, size_t n)
 {
@@ -23,7 +22,8 @@ void	ft_bminus(int **s, size_t n)
 		(*s)[i] = DISJ;
 }
 
-int	ft_restore_patch(t_matrix *least_patch, t_matrix *paths_map, t_startend se)
+int		ft_restore_patch(t_matrix *least_patch,
+			t_matrix *paths_map, t_startend se)
 {
 	int	i;
 	int	ends;
@@ -48,7 +48,6 @@ int	ft_restore_patch(t_matrix *least_patch, t_matrix *paths_map, t_startend se)
 			return (0);
 		}
 	}
-	//t_matrix_print(least_patch);
 	t_matrix_del(paths_map);
 	return (1);
 }
@@ -79,14 +78,11 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se)
 			break ;
 		while (i < aj->m)
 		{
-			if(used[i] == DISJ && aj->data[node][i] != DISJ)
+			if (used[i] == DISJ && aj->data[node][i] != DISJ)
 			{
-				//printf("%d %d\n", node, i);
-				//if (node >= 0 || )
 				ft_q_push(&q, i);
 				paths_map->data[node][i] = 1;
 				used[i] = 1;
-				//printf("%d\n", node);
 			}
 			i++;
 		}
@@ -96,11 +92,11 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se)
 	return (1);
 }
 
-int find_path(t_matrix *aj, t_matrix *paths, t_startend se)
+int		find_path(t_matrix *aj, t_matrix *paths, t_startend se)
 {
 	t_matrix ret;
 
 	t_matrix_init(&ret, aj->m, aj->n);
 	find_paths(aj, &ret, se);
-	return ft_restore_patch(paths, &ret, se);
+	return (ft_restore_patch(paths, &ret, se));
 }
