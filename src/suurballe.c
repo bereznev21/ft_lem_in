@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:43:48 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/14 14:13:38 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 19:22:04 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int		suurballe_next(t_matrix aj, t_matrix *all_paths, t_startend se)
 	suurballe_reverse_path(&aj, all_paths);
 	t_collapse_init(&c, aj.m);
 	split_paths_nodes(&aj, all_paths, &c, se);
-	if (!find_path(&aj, &path, se))//todo: find_path should delete free memory when path not found
+	if (!find_path(&aj, se))//todo: find_path should delete free memory when path not found
 	{
 		t_matrix_del(&aj);
 		t_array_del(&c.a);

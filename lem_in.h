@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:35:19 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/14 18:21:37 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 19:21:43 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void		ft_bminus(int **s, size_t n);
 int			suurballe_next(t_matrix aj, t_matrix *all_paths, t_startend se);
 
 int			find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se);
-int			find_path(t_matrix *aj, t_matrix *paths, t_startend se);
+int			*find_path(t_matrix *aj, t_startend se);
 int			path_step(t_matrix *path, int k);
 void		ft_free(t_lem_in *lem_in, t_matrix *aj, t_matrix *paths);
 void		ft_free_matrix(t_matrix *matrix);
