@@ -24,6 +24,8 @@ add_executable(lem_in
         src/lem_in_read.c
 		src/find_paths.c
 		src/suurballe.c
+		src/path.c
+		src/solve.c
 		src/node_collapse.c
 		src/bellman_ford.c
 		src/stack_functions.c
