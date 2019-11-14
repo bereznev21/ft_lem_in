@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/14 15:41:09 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 17:35:42 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,16 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se)
 
 int		find_path(t_matrix *aj, t_matrix *paths, t_startend se)
 {
+	
 	t_matrix ret;
 
 	t_matrix_init(&ret, aj->m, aj->n);
 	find_paths(aj, &ret, se);
 	return (ft_restore_patch(paths, &ret, se));
+	
+/*
+	int	*path;
+
+	paths = (int*)malloc(sizeof(int) * aj->m);
+	*/
 }
