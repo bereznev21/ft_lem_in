@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 18:29:13 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/12 18:58:19 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 14:50:32 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,5 +136,4 @@ int			get_next_line(const int fd, char **line)
 		gnl_state_remove(&state_lst, fd);
 	}
 	return (ret);
-
 }

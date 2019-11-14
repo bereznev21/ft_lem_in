@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:58:34 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/14 14:22:46 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 15:11:11 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,33 +73,40 @@ void	ft_print_ants(t_matrix condition_of_ants,
 	}
 }
 
+void	ft_print_lems1(t_matrix paths_table, t_matrix condition_of_ants,
+			int *lems_in_rooms, int *ants)
+{
+	int	lem_num;
+	int	i;
+
+	lem_num = 0;
+	i = 0;
+	while (paths_table.data[i][0] != DISJ)
+	{
+		ft_move_leams_in_path(&condition_of_ants, paths_table, i);
+		if (lems_in_rooms[i] > 0 && *ants > 0)
+		{
+			lem_num++;
+			condition_of_ants.data[i][0] = lem_num;
+			lems_in_rooms[i]--;
+			(*ants)--;
+		}
+		i++;
+	}
+}
+
 void	ft_print_lems(int *lems_in_rooms,
 			t_matrix paths_table, t_lem_in lem_in, int max_path)
 {
 	int			i;
-	int			lem_num;
 	int			ants;
 	t_matrix	condition_of_ants;
 
 	ants = lem_in.ants;
-	lem_num = 0;
-	ft_putchar('\n');
 	t_matrix_init(&condition_of_ants, paths_table.m, paths_table.n);
 	while (ants > 0)
 	{
-		i = 0;
-		while (paths_table.data[i][0] != DISJ)
-		{
-			ft_move_leams_in_path(&condition_of_ants, paths_table, i);
-			if (lems_in_rooms[i] > 0 && ants > 0)
-			{
-				lem_num++;
-				condition_of_ants.data[i][0] = lem_num;
-				lems_in_rooms[i]--;
-				ants--;
-			}
-			i++;
-		}
+		ft_print_lems1(paths_table, condition_of_ants, lems_in_rooms, &ants);
 		ft_print_ants(condition_of_ants, paths_table, lem_in);
 		max_path--;
 		ft_putchar('\n');
@@ -115,5 +122,5 @@ void	ft_print_lems(int *lems_in_rooms,
 				ft_putchar('\n');
 			max_path--;
 		}
-	//ft_free_matrix(&condition_of_ants);
+	ft_free_matrix(&condition_of_ants);
 }

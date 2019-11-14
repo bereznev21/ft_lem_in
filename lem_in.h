@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:35:19 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/14 14:41:57 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 15:39:34 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ typedef	struct		s_queue
 	int				data;
 	struct s_queue	*next;
 }					t_queue;
+
+typedef	struct		s_used
+{
+	int				*data;
+	t_startend		se;
+}					t_used;
 
 void		t_array_init(t_array *a, size_t item_size);
 void		*t_array_get(t_array *a, int i);

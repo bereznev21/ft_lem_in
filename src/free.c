@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:44:52 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/11 18:15:35 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 14:54:13 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_free_matrix(t_matrix *matrix)
 	while (++i < matrix->m)
 		free(matrix->data[i]);
 	free(matrix->data);
-//	free(matrix);
+	//free(matrix);
 }
 
 void	ft_free_q(t_queue **q)
