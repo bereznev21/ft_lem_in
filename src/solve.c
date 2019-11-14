@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-int		lem_in_count_steps(t_matrix *all_paths, t_lem_in lem_in)
+int		lem_in_count_steps(int **all_paths, t_lem_in lem_in)
 {
 	int			i;
 	int			max;
@@ -18,25 +18,28 @@ int		lem_in_count_steps(t_matrix *all_paths, t_lem_in lem_in)
 	return (max);
 }
 
-int		lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in)
+int		**lem_in_solve(t_matrix *aj, t_lem_in lem_in)
 {
 	int	steps;
 	int	steps_result;
-	int	status;
 	int i;
+	int **paths;
+	int **paths_new;
 
 	steps_result = INT_MAX;
-	t_matrix_init_zero(all_paths, aj->m, aj->n);
+	paths = malloc(sizeof(int*));
+	*paths = 0;
 	i = -1;
 	while (++i < lem_in.ants)
 	{
-		status = suurballe_next(*aj, all_paths, lem_in.se);
-		if (!status)
+		paths_new = suurballe_next(*aj, paths, lem_in.se);
+		if (!paths_new)
 			break ;
-		steps = lem_in_count_steps(all_paths, lem_in);
+		paths = paths_new;
+		steps = lem_in_count_steps(paths, lem_in);
 		if (steps_result < steps)
-			return (steps_result);
+			return (paths);
 		steps_result = steps;
 	}
-	return (steps_result);
+	return (paths);
 }

@@ -74,7 +74,7 @@ void	ft_move_leams_in_path(t_matrix *condition_of_ants,
 	condition_of_ants->data[k][0] = 0;
 }
 
-void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
+void	lem_in_output(int **paths, t_matrix aj, t_lem_in lem_in)
 {
 	int			i;
 	int			*len_table;

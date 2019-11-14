@@ -17,24 +17,22 @@ void	t_collapse_add(t_collapse *c, int k)
 	t_array_push(&c->a, &k);
 }
 
-void	t_collapse_do(t_collapse *c, t_matrix *paths)
+void	t_collapse_do(t_collapse *c, int *path, int size, t_startend se)
 {
-	int i;
-	int j;
 	int k;
+	int e;
 
-	i = c->a.count;
-	while (--i >= 0)
+	k = se.start;
+	while(k != se.end)
 	{
-		k = *(int *)t_array_get(&c->a, i);
-		j = paths->m;
-		while (--j >= 0)
+		if (path[k] >= size)
 		{
-			paths->data[j][k] += paths->data[j][i + c->size];
-			paths->data[k][j] += paths->data[i + c->size][j];
+			e = path[k];
+			while(e >= size)
+				e = path[e];
+			path[k] = e;
 		}
-		paths->m--;
-		paths->n--;
+		k = path[k];
 	}
 }
 

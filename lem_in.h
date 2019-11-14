@@ -102,18 +102,18 @@ int			round_up(int a);
 
 void		t_matrix_set(t_matrix *m, int i, int j, int v);
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in);
-void		lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in);
+void		lem_in_output(int **paths, t_matrix aj, t_lem_in lem_in);
 int			ft_srch_max_paths_in_rooms(int *len_table, int len);
 
 void		t_collapse_add(t_collapse *c, int k);
-void		t_collapse_do(t_collapse *c, t_matrix *paths);
+void		t_collapse_do(t_collapse *c, int *path, int size, t_startend se);
 void		t_collapse_init(t_collapse *c, int size);
 
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end);
 t_array		path_matrix_to_bit_masks(t_matrix *aj, int start, int end);
 void		ft_put_end(int **roads, int end);
 void		ft_bminus(int **s, size_t n);
-int			suurballe_next(t_matrix aj, t_matrix *all_paths, t_startend se);
+int			**suurballe_next(t_matrix aj, int **all_paths, t_startend se);
 
 int			find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se);
 int			find_path(t_matrix *aj, t_matrix *paths, t_startend se);
@@ -148,6 +148,6 @@ int			bf_shortest_path(t_matrix *aj,
 int			ft_srch_max(int *len_table, int len);
 int			ft_srch_max1(int *len_table, int len);
 int			ft_srch_min(int *len_table);
-int			lem_in_solve(t_matrix *aj, t_matrix *all_paths, t_lem_in lem_in);
+int			**lem_in_solve(t_matrix *aj, t_lem_in lem_in);
 
 #endif
