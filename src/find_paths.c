@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/14 19:21:19 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/14 21:26:20 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int		ft_restore_patch1(t_matrix *aj, int *short_path,
 	//while (ends != se.start)
 	{
 		i = -1;
-		while (i < aj->m)
+		while (++i < aj->m)
 		{
 			if (paths_map[i] == ends)
 			{
