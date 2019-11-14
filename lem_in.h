@@ -18,9 +18,9 @@
 # include <stdio.h>
 
 # define ULONG unsigned long
+# define UINT unsigned int
 # define DISJ INT_MAX
 # define MAT_ALLOC_STEP 512
-# define UINT unsigned int
 # define FLAG_PRINT_INPUT 1
 # define FLAG_DEBUG 2
 

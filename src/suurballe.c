@@ -52,6 +52,36 @@ void	remove_sym(int **paths)
 	}*/
 }
 
+static size_t get_size(int *path1, int *path2, t_startend se, int k)
+{
+
+}
+
+void	remove_inverse(int **path1, int **path2, t_startend se, int k)
+{
+	int *p1;
+	int *p2;
+	int i;
+	size_t size;
+
+	size = get_size(*path1, *path2, se, k);
+	p1 = malloc(sizeof(int) * size);
+	i = -1;
+	while(i < size)
+		p1[i++] = DISJ;
+
+	size = get_size(*path1, *path2, se, (*path1)[k]);
+	p2 = malloc(sizeof(int) * size);
+	i = -1;
+	while(i < size)
+		p2[i++] = DISJ;
+	k = se.start;
+	while(k != se.end)
+	{
+		k = (path1)
+	}
+}
+
 void	split_path_node(t_matrix *aj, int k, int prev, int next)
 {
 	int i;
