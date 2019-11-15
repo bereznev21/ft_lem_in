@@ -17,11 +17,9 @@ int			round_up(int a)
 {
 	return (((a - 1) / MAT_ALLOC_STEP + 1) * MAT_ALLOC_STEP);
 }
-
-void		t_matrix_init(t_matrix *mat, int m, int n)
+void		t_matrix_alloc(t_matrix *mat, int m, int n)
 {
 	int i;
-	int j;
 
 	mat->m = m;
 	mat->n = n;
@@ -30,35 +28,33 @@ void		t_matrix_init(t_matrix *mat, int m, int n)
 	mat->data = malloc(sizeof(int *) * mat->m_alloc);
 	i = -1;
 	while (++i < mat->m_alloc)
-	{
 		mat->data[i] = malloc(sizeof(int) * mat->n_alloc);
+}
+
+void		t_matrix_fill(t_matrix *mat, int v)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < mat->m)
+	{
 		j = -1;
 		while (++j < mat->n)
-			mat->data[i][j] = DISJ;
+			mat->data[i][j] = v;
 	}
+}
+
+void		t_matrix_init(t_matrix *mat, int m, int n)
+{
+	t_matrix_alloc(mat, m, n);
+	t_matrix_fill(mat, DISJ);
 }
 
 void		t_matrix_init_zero(t_matrix *mat, int m, int n)
 {
-	int i;
-	int j;
-	long *p;
-
-	mat->m = m;
-	mat->n = n;
-	mat->m_alloc = round_up(m);
-	mat->n_alloc = round_up(n);
-	mat->data = malloc(sizeof(int *) * mat->m_alloc);
-	i = -1;
-	while (++i < mat->m_alloc)
-	{
-		mat->data[i] = malloc(sizeof(int) * mat->n_alloc);
-		p = (long*)(mat->data[i]);
-		j = -1;
-		while (++j < mat->n / 2)
-			p[j] = 0;
-		mat->data[i][mat->n - 1] = 0;
-	}
+	t_matrix_alloc(mat, m, n);
+	t_matrix_fill(mat, 0);
 }
 
 void		t_matrix_init_identity(t_matrix *mat, int n)
@@ -77,7 +73,7 @@ t_matrix	t_matrix_copy(t_matrix *m)
 	int			j;
 	t_matrix	ret;
 
-	t_matrix_init(&ret, m->m, m->n);
+	t_matrix_alloc(&ret, m->m, m->n);
 	i = -1;
 	while (++i < ret.m)
 	{
