@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:05:13 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/15 18:10:37 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/15 19:41:03 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		lem_in_count_steps(int **all_paths, t_lem_in lem_in)
 	return (max);
 }
 */
-int		lem_in_count_steps(int **all_paths, t_matrix aj, t_lem_in lem_in)
+int		lem_in_count_steps(t_paths all_paths, t_matrix aj, t_lem_in lem_in)
 {
 	int	max_path;
 	int	*lems_in_rooms;
@@ -40,28 +40,27 @@ int		lem_in_count_steps(int **all_paths, t_matrix aj, t_lem_in lem_in)
 	return (max_path);
 }
 
-int		**lem_in_solve(t_matrix *aj, t_lem_in lem_in)
+t_paths	lem_in_solve(t_matrix *aj, t_lem_in lem_in)
 {
 	int	steps;
 	int	steps_result;
 	int i;
-	int **paths;
-	int **paths_new;
+	t_paths pp;
 
 	steps_result = INT_MAX;
-	paths = malloc(sizeof(int*));
-	*paths = 0;
+	pp.paths = malloc(sizeof(int*));
+	pp.paths[0] = 0;
+	pp.se = lem_in.se;
+	pp.size = aj->n;
 	i = -1;
 	while (++i < lem_in.ants)
 	{
-		paths_new = suurballe_next(*aj, paths, lem_in.se);
-		if (!paths_new)
+		if (!suurballe_next(*aj, pp))
 			break ;
-		paths = paths_new;
-		steps = lem_in_count_steps(paths, *aj, lem_in);
+		steps = lem_in_count_steps(pp, *aj, lem_in);
 		if (steps_result < steps)
-			return (paths);
+			return (pp);
 		steps_result = steps;
 	}
-	return (paths);
+	return (pp);
 }

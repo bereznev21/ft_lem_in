@@ -13,16 +13,18 @@
 #include "lem_in.h"
 #include "libft.h"
 
-void	suurballe_reverse_path(t_matrix *aj, int **all_paths, t_startend se)
+static void	suurballe_reverse_path(t_matrix *aj, t_paths pp)
 {
 	int k;
 	int prev;
 	int *path;
+	int i;
 
-	while((path = *all_paths++))
+	i = -1;
+	while((path = pp.paths[++i]))
 	{
-		k = se.start;
-		while(k != se.end)
+		k = pp.se.start;
+		while(k != pp.se.end)
 		{
 			prev = k;
 			k = path[prev];
@@ -51,19 +53,20 @@ void	split_path_node(t_matrix *aj, int k, int prev, int next)
 	aj->data[n][k] = 0;
 }
 
-void	split_paths_nodes(t_matrix *aj, int **all_paths,
-							t_collapse *c, t_startend se)
+void	split_paths_nodes(t_matrix *aj, t_paths pp, t_collapse *c)
 {
 	int k_prev;
 	int k_next;
 	int k;
 	int* path;
+	int i;
 
-	while((path = *all_paths++))
+	i = -1;
+	while((path = pp.paths[++i]))
 	{
-		k_prev = se.start;
+		k_prev = pp.se.start;
 		k = path[k_prev];
-		while(k != se.end){
+		while(k != pp.se.end){
 			k_next = path[k];
 			split_path_node(aj, k, k_prev, k_next);
 			t_collapse_add(c, k);
@@ -72,35 +75,36 @@ void	split_paths_nodes(t_matrix *aj, int **all_paths,
 		}
 	}
 }
+
 /*
 ** http://www.macfreek.nl/memory/Disjoint_Path_Finding
 */
 
-int		**suurballe_next(t_matrix aj, int **all_paths, t_startend se)
+int		suurballe_next(t_matrix aj, t_paths pp)
 {
-	t_collapse	c;
+	t_collapse 	c;
 	int			*path;
 	int			n;
 	int			size;
 
 	size = aj.n;
 	aj = t_matrix_copy(&aj);
-	suurballe_reverse_path(&aj, all_paths, se);
+	suurballe_reverse_path(&aj, pp);
 	t_collapse_init(&c, aj.m);
-	split_paths_nodes(&aj, all_paths, &c, se);
-	if (!(path = find_path(&aj, se)))//todo: find_path should delete free memory when path not found
+	split_paths_nodes(&aj, pp, &c);
+	if (!(path = find_path(&aj, pp.se)))//todo: find_path should delete free memory when path not found
 	{
 		t_matrix_del(&aj);
 		t_array_del(&c.a);
 		return (0);
 	}
-	t_collapse_do(&c, path, aj.n, se);
+	t_collapse_do(&c, path, size, pp.se);
 	t_array_del(&c.a);
-	n = ft_len((void**)all_paths);
-	all_paths = ft_realloc(all_paths, n + 1, n + 2); //todo: use t_array here?
-	all_paths[n + 1] = 0;
-	all_paths[n] = path;
-	remove_sym(all_paths, size, se);
+	n = ft_len((void**)pp.paths);
+	pp.paths = ft_realloc(pp.paths, n + 1, n + 2); //todo: use t_array here?
+	pp.paths[n + 1] = 0;
+	pp.paths[n] = path;
+	remove_sym(pp);
 	t_matrix_del(&aj);
-	return (all_paths);
+	return (1);
 }
