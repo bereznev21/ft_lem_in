@@ -73,16 +73,12 @@ void remove_sym(int **paths, int size, t_startend se)
 	while (paths[++i])
 	{
 		k = se.start;
-		while(k != se.end)
+		while((k = paths[i][k]) != se.end)
 		{
-			k = paths[i][k];
 			j = i;
 			while(paths[++j])
 				if (k == paths[j][paths[i][k]])
-				{
 					merge_paths(&paths[i], &paths[j], se, k, size);
-//					return;
-				}
 		}
 	}
 }

@@ -15,6 +15,7 @@ include_directories(headers)
 #add_library(libft.a
 include_directories(libft/includes)
 add_executable(lem_in
+#		tests/main.c
         src/main.c
         src/debug.c
 		src/error_handling.c
@@ -24,6 +25,7 @@ add_executable(lem_in
         src/lem_in_read.c
 		src/find_paths.c
 		src/suurballe.c
+		src/remove_inverse_pahts.c
 		src/path.c
 		src/solve.c
 		src/node_collapse.c
