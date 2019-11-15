@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 16:02:32 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/14 15:11:25 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/15 18:35:40 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int		*ft_srh_num_paths(int **paths, int *len, int num_patchs)
 	}
 	return (size_paths);
 }
-
-void	ft_calc_lems(t_matrix paths, t_lem_in lem_in,
+/*
+void	ft_calc_lems(int **paths, t_lem_in lem_in,
 			int *len_table, int **lems_in_rooms)
 {
 	int		lems;
@@ -58,6 +58,7 @@ void	ft_calc_lems(t_matrix paths, t_lem_in lem_in,
 		i = 0;
 	}
 }
+*/
 
 void	ft_move_leams_in_path(t_matrix *condition_of_ants,
 			t_matrix paths_table, int k)
@@ -73,8 +74,8 @@ void	ft_move_leams_in_path(t_matrix *condition_of_ants,
 	}
 	condition_of_ants->data[k][0] = 0;
 }
-
-void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
+/*
+void	lem_in_output(int **paths, t_matrix aj, t_lem_in lem_in)
 {
 	int			i;
 	int			*len_table;
@@ -91,3 +92,4 @@ void	lem_in_output(t_matrix paths, t_matrix aj, t_lem_in lem_in)
 	free(len_table);
 	free(lems_in_rooms);
 }
+*/

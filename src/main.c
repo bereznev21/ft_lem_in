@@ -19,21 +19,22 @@ void	lem_in_main(int fd, UINT flags)
 {
 	t_lem_in	lem_in;
 	t_matrix	aj;
-	t_matrix	paths;
-	int			n_paths;
+	int			**paths;
+	int			i;
 
 	lem_in.flags = flags;
 	aj = lem_in_read(fd, &lem_in);
 	if (flags & FLAG_DEBUG)
 		printf("Start: %d End: %d\n\n", lem_in.se.start, lem_in.se.end);
-	n_paths = lem_in_solve(&aj, &paths, lem_in);
-//	find_path(&aj, &paths, lem_in.se);
-//	suurballe_next(aj, &paths, lem_in.se);
+	paths = lem_in_solve(&aj, lem_in);
 	if (flags & FLAG_DEBUG)
-		printf("total steps: %d\n", n_paths);
+		printf("total steps: %lu\n", ft_len((void**)&paths));
 	lem_in_output(paths, aj, lem_in);
 	t_matrix_del(&aj);
-	t_matrix_del(&paths);
+	i = 0;
+	while(paths[i])
+		free(paths[i++]);
+	free(paths);
 	t_array_del(&lem_in.rooms);
 }
 
