@@ -32,6 +32,7 @@ add_executable(lem_in
 		src/bellman_ford.c
 		src/stack_functions.c
 		src/lem_in_output.c
+		src/lem_in_output1.c
 		src/arr_functions.c
 		src/free.c
 		src/crt_len_table.c
