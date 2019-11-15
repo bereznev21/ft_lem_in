@@ -239,7 +239,7 @@ int		*find_path(t_matrix *aj, t_startend se)
 	i = -1;
 	short_path = (int*)malloc(sizeof(int) * aj->m);
 	while (++i < aj->m)
-		short_path[i] = 0;
+		short_path[i] = DISJ;
 	t_matrix_init_zero(&ret, aj->m, aj->n);
 	find_paths(aj, &ret, se);
 	return (ft_restore_patch1(aj, short_path, &ret, se));

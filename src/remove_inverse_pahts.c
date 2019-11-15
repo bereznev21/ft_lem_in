@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lem_in.h"
+#include "lem_in.h"
 
 void remove_sym_old(t_matrix *path)
 {
@@ -31,6 +31,27 @@ void remove_sym_old(t_matrix *path)
 		}
 	}
 }
+
+void print_path(int *path, int size, t_startend se)
+{
+	int i;
+
+	for (i = 0; i < size; ++i)
+		if (path[i] == DISJ)
+			printf(". ");
+		else
+			printf("%d ", path[i]);
+	printf("\n");
+	i = se.start;
+	printf("%d", i);
+	while(i != se.end)
+	{
+		printf("->%d", (i = path[i]));
+	}
+	printf("\n");
+	printf("\n");
+}
+
 
 static void merge_paths(t_paths pp, int i, int j,  int n)
 {
@@ -68,6 +89,10 @@ void remove_sym(t_paths pp)
 	int j;
 	int k;
 
+	printf("remove sym\n");
+	i = -1;
+	while (pp.paths[++i])
+		print_path(pp.paths[i], pp.size, pp.se);
 	i = -1;
 	while (pp.paths[++i])
 	{
@@ -80,4 +105,8 @@ void remove_sym(t_paths pp)
 					merge_paths(pp, i, j, k);
 		}
 	}
+	printf("remove sym done\n");
+	i = -1;
+	while (pp.paths[++i])
+		print_path(pp.paths[i], pp.size, pp.se);
 }

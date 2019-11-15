@@ -43,7 +43,6 @@ int		**ft_init_arr_2_zero(int m, int n)
 
 int		ft_got_path1(int *path, t_lem_in lem_in, t_matrix aj)
 {
-	int	j;
 	int	begin;
 	int	len_path;
 
@@ -51,12 +50,8 @@ int		ft_got_path1(int *path, t_lem_in lem_in, t_matrix aj)
 	begin = lem_in.se.start;
 	while (begin != lem_in.se.end)
 	{
-		j = -1;
-		while (++j < aj.m)
-		{
-			begin = path[begin];
-			len_path++;
-		}
+		begin = path[begin];
+		len_path++;
 	}
 	return (len_path);
 }

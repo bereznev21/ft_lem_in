@@ -17,6 +17,7 @@ static void print_path(int *path, int size, t_startend se)
 		printf("->%d", (i = path[i]));
 	}
 	printf("\n");
+	printf("\n");
 }
 
 void test_remove_sym()

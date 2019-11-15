@@ -55,7 +55,7 @@ t_paths	lem_in_solve(t_matrix *aj, t_lem_in lem_in)
 	i = -1;
 	while (++i < lem_in.ants)
 	{
-		if (!suurballe_next(*aj, pp))
+		if (!suurballe_next(*aj, &pp))
 			break ;
 		steps = lem_in_count_steps(pp, *aj, lem_in);
 		if (steps_result < steps)

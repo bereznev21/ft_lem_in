@@ -80,7 +80,7 @@ void	split_paths_nodes(t_matrix *aj, t_paths pp, t_collapse *c)
 ** http://www.macfreek.nl/memory/Disjoint_Path_Finding
 */
 
-int		suurballe_next(t_matrix aj, t_paths pp)
+int		suurballe_next(t_matrix aj, t_paths *pp)
 {
 	t_collapse 	c;
 	int			*path;
@@ -89,22 +89,28 @@ int		suurballe_next(t_matrix aj, t_paths pp)
 
 	size = aj.n;
 	aj = t_matrix_copy(&aj);
-	suurballe_reverse_path(&aj, pp);
+	suurballe_reverse_path(&aj, *pp);
 	t_collapse_init(&c, aj.m);
-	split_paths_nodes(&aj, pp, &c);
-	if (!(path = find_path(&aj, pp.se)))//todo: find_path should delete free memory when path not found
+	split_paths_nodes(&aj, *pp, &c);
+	if (!(path = find_path(&aj, pp->se)))//todo: find_path should delete free memory when path not found
 	{
 		t_matrix_del(&aj);
 		t_array_del(&c.a);
 		return (0);
 	}
-	t_collapse_do(&c, path, size, pp.se);
+	printf("path found\n");
+	print_path(path, aj.m, pp->se);
+	t_collapse_do(&c, path, size, pp->se);
 	t_array_del(&c.a);
-	n = ft_len((void**)pp.paths);
-	pp.paths = ft_realloc(pp.paths, n + 1, n + 2); //todo: use t_array here?
-	pp.paths[n + 1] = 0;
-	pp.paths[n] = path;
-	remove_sym(pp);
+	n = ft_len((void**)pp->paths);
+	pp->paths = ft_realloc(pp->paths,
+			sizeof(int *) * (n + 1),
+			sizeof(int *) * (n + 2)); //todo: use t_array here?
+	pp->paths[n] = path;
+	pp->paths[n + 1] = 0;
+	printf("path collapsed\n");
+	print_path(path, pp->size, pp->se);
+	remove_sym(*pp);
 	t_matrix_del(&aj);
 	return (1);
 }

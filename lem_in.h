@@ -120,8 +120,9 @@ t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end);
 t_array		path_matrix_to_bit_masks(t_matrix *aj, int start, int end);
 void		ft_put_end(int **roads, int end);
 void		ft_bminus(int **s, size_t n);
-int			suurballe_next(t_matrix aj, t_paths pp);
+int			suurballe_next(t_matrix aj, t_paths *pp);
 void		remove_sym(t_paths pp);
+void		print_path(int *path, int size, t_startend se);
 
 int			find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se);
 int			*find_path(t_matrix *aj, t_startend se);

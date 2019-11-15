@@ -28,10 +28,13 @@ void	t_collapse_do(t_collapse *c, int *path, int size, t_startend se)
 	{
 		if (path[k] >= size)
 		{
-			e = path[k];
-			while(e >= size)
-				e = path[e];
-			path[k] = e;
+			e = path[path[k]];
+			path[k] = ((int*)c->a.data)[path[k] - c->size];
+			path[path[k]] = e;
+//			e = path[k];
+//			while(e >= size)
+//				e = path[e];
+//			path[k] = e;
 		}
 		k = path[k];
 	}
