@@ -75,11 +75,12 @@ typedef	struct		s_queue
 	struct s_queue	*next;
 }					t_queue;
 
-typedef struct		s_path
+typedef struct		s_paths
 {
-	int				*data;
+	int				**paths;
 	int				size;
-}					t_path;
+	t_startend		se;
+}					t_paths;
 
 typedef	struct		s_used
 {
@@ -112,7 +113,7 @@ void		lem_in_output(int **paths, t_matrix aj, t_lem_in lem_in);
 int			ft_srch_max_paths_in_rooms(int *len_table, int len);
 
 void		t_collapse_add(t_collapse *c, int k);
-void		t_collapse_do(t_collapse *c, int *path, int size, t_startend se);
+void		t_collapse_do(t_collapse *c, t_path *path);
 void		t_collapse_init(t_collapse *c, int size);
 
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end);
