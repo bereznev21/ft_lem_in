@@ -114,6 +114,7 @@ t_array		path_matrix_to_bit_masks(t_matrix *aj, int start, int end);
 void		ft_put_end(int **roads, int end);
 void		ft_bminus(int **s, size_t n);
 int			**suurballe_next(t_matrix aj, int **all_paths, t_startend se);
+void		remove_sym(int **paths, int size, t_startend se);
 
 int			find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se);
 int			*find_path(t_matrix *aj, t_startend se);

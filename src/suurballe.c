@@ -32,56 +32,6 @@ void	suurballe_reverse_path(t_matrix *aj, int **all_paths, t_startend se)
 	}
 }
 
-void	remove_sym(int **paths)
-{
-/*	int i;
-	int j;
-
-	i = -1;
-	while (++i < path->m)
-	{
-		j = i - 1;
-		while (++j < path->n)
-		{
-			if (path->data[i][j] == 1 && path->data[j][i] == 1)
-			{
-				path->data[i][j] = 0;
-				path->data[j][i] = 0;
-			}
-		}
-	}*/
-}
-
-static size_t get_size(int *path1, int *path2, t_startend se, int k)
-{
-
-}
-
-void	remove_inverse(int **path1, int **path2, t_startend se, int k)
-{
-	int *p1;
-	int *p2;
-	int i;
-	size_t size;
-
-	size = get_size(*path1, *path2, se, k);
-	p1 = malloc(sizeof(int) * size);
-	i = -1;
-	while(i < size)
-		p1[i++] = DISJ;
-
-	size = get_size(*path1, *path2, se, (*path1)[k]);
-	p2 = malloc(sizeof(int) * size);
-	i = -1;
-	while(i < size)
-		p2[i++] = DISJ;
-	k = se.start;
-	while(k != se.end)
-	{
-		k = (path1)
-	}
-}
-
 void	split_path_node(t_matrix *aj, int k, int prev, int next)
 {
 	int i;
@@ -129,10 +79,11 @@ void	split_paths_nodes(t_matrix *aj, int **all_paths,
 int		**suurballe_next(t_matrix aj, int **all_paths, t_startend se)
 {
 	t_collapse	c;
-	int	*path;
-	int n;
-	//all_paths: null-terminated array of paths;
+	int			*path;
+	int			n;
+	int			size;
 
+	size = aj.n;
 	aj = t_matrix_copy(&aj);
 	suurballe_reverse_path(&aj, all_paths, se);
 	t_collapse_init(&c, aj.m);
@@ -149,7 +100,7 @@ int		**suurballe_next(t_matrix aj, int **all_paths, t_startend se)
 	all_paths = ft_realloc(all_paths, n + 1, n + 2); //todo: use t_array here?
 	all_paths[n + 1] = 0;
 	all_paths[n] = path;
-	remove_sym(all_paths);
+	remove_sym(all_paths, size, se);
 	t_matrix_del(&aj);
 	return (all_paths);
 }
