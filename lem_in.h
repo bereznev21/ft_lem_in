@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:35:19 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/15 18:59:01 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/15 19:27:31 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,12 @@ typedef	struct		s_queue
 	struct s_queue	*next;
 }					t_queue;
 
-typedef struct		s_path
+typedef struct		s_paths
 {
-	int				*data;
+	int				**paths;
 	int				size;
-}					t_path;
+	t_startend		se;
+}					t_paths;
 
 typedef	struct		s_used
 {
@@ -108,11 +109,11 @@ int			round_up(int a);
 
 void		t_matrix_set(t_matrix *m, int i, int j, int v);
 t_matrix	lem_in_read(int fd, t_lem_in *lem_in);
-void		lem_in_output(int **paths, t_matrix aj, t_lem_in lem_in);
+void		lem_in_output(t_paths paths, t_matrix aj, t_lem_in lem_in);
 int			ft_srch_max_paths_in_rooms(int *len_table, int len);
 
 void		t_collapse_add(t_collapse *c, int k);
-void		t_collapse_do(t_collapse *c, int *path, int size, t_startend se);
+void		t_collapse_do(t_collapse *c, t_paths *path);
 void		t_collapse_init(t_collapse *c, int size);
 
 t_matrix	ft_trnsfr_paths(t_matrix paths_map, int start, int end);

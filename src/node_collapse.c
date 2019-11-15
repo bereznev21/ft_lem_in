@@ -22,7 +22,7 @@ void	t_collapse_do(t_collapse *c, int *path, int size, t_startend se)
 	int k;
 	int e;
 
-	(void)c;
+	size = c->size;
 	k = se.start;
 	while(k != se.end)
 	{
