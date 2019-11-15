@@ -6,11 +6,11 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 14:47:49 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/15 18:57:43 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/15 19:11:17 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../lem_in.h"
 #include "libft/includes/libft.h"
 
 void	ft_init_arr_1(int **arr, int len)

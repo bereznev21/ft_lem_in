@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   remove_inverse_pahts.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksticks <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 17:36:15 by ksticks           #+#    #+#             */
-/*   Updated: 2019/11/15 17:36:16 by ksticks          ###   ########.fr       */
+/*   Updated: 2019/11/15 19:05:56 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../lem_in.h"
 
 void remove_sym_old(t_matrix *path)
 {

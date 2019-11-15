@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:31:08 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/14 14:31:14 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/15 19:04:56 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_srch_min(int *len_table)
 	i = -1;
 	i_min = 0;
 	min = len_table[0];
-	while (len_table[++i] != -1)
+	while (len_table[++i] != DISJ)
 	{
 		if (len_table[i] < min)
 		{
