@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_collapse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksticks <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:58:26 by ksticks           #+#    #+#             */
-/*   Updated: 2019/11/12 17:58:27 by ksticks          ###   ########.fr       */
+/*   Updated: 2019/11/15 18:49:28 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	t_collapse_do(t_collapse *c, int *path, int size, t_startend se)
 	int k;
 	int e;
 
+	(void)c;
 	k = se.start;
 	while(k != se.end)
 	{
