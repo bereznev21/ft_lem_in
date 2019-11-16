@@ -20,7 +20,6 @@ void	lem_in_main(int fd, UINT flags)
 	t_lem_in	lem_in;
 	t_matrix	aj;
 	t_paths		paths;
-	int			i;
 
 	lem_in.flags = flags;
 	aj = lem_in_read(fd, &lem_in);
@@ -31,12 +30,7 @@ void	lem_in_main(int fd, UINT flags)
 		printf("total steps: %lu\n", ft_len((void**)&paths));
 	lem_in_output(paths, aj, lem_in);
 	t_matrix_del(&aj);
-	i = 0;
-	/*
-	while(paths[i])
-		free(paths[i++]);
-	free(paths);
-	*/
+	//todo: del paths
 	t_array_del(&lem_in.rooms);
 }
 

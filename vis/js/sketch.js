@@ -129,37 +129,49 @@ class Moves {
 
 class Graph {
     constructor(data) {
+        function* iter_rooms(data) {
+            let is_start = false;
+            let is_end = false;
+            for (const line of data.split('\n')) {
+                if (line.startsWith("##start"))
+                    is_start = true;
+                if (line.startsWith("##end"))
+                    is_end = true;
+                if (line.startsWith("#"))
+                    continue;
+                let split = line.split(' ');
+                if (split.length !== 3)
+                    continue;
+                yield [split[0], is_start, is_end];
+                is_start = false;
+                is_end = false;
+            }
+        }
+
+        function* iter_roads(data) {
+            for (const line of data.split('\n')) {
+                let split = line.split('-');
+                if (split.length === 2)
+                    yield split;
+            }
+        }
+
         this.nodes = [];
         this.nodes_per_name = {};
         this.edges = [];
         this.start = "";
         this.end = "";
-        let is_start = false;
-        let is_end = false;
-        for (const line of data.split("\n").slice(1)) {
-            if (line.startsWith("##start"))
-                is_start = true;
-            if (line.startsWith("##end"))
-                is_end = true;
-            if (line.startsWith("#"))
-                continue;
-            let split = line.split(" ");
-            if (split.length === 3) {
-                let node = new Node(split[0]);
-                if (is_start) {
-                    is_start = false;
-                    this.start = node.name;
-                }
-                if (is_end) {
-                    is_end = false;
-                    this.end = node.name;
-                }
-                this.nodes.push(node);
-                this.nodes_per_name[node.name] = node;
-                continue;
-            }
-            this.edges.push(line.split("-"));
+        for (const [room_name, is_start, is_end] of iter_rooms(data)) {
+            let node = new Node(room_name);
+            if (is_start)
+                this.start = node.name;
+            if (is_end)
+                this.end = node.name;
+            this.nodes.push(node);
+            this.nodes_per_name[node.name] = node;
         }
+        for (const edge of iter_roads(data))
+            this.edges.push(edge);
     }
 
     init_path_nodes(paths) {
@@ -180,6 +192,16 @@ class Graph {
     draw(sketch) {
         for (const e of this.edges) {
             let [a, b] = e;
+            /*            if (!this.nodes_per_name.hasOwnProperty(a)) {
+                            console.log("edges:", this.edges);
+                            console.log("bad node:", a);
+                            throw "node: " + a;
+                        }
+                        if (!this.nodes_per_name.hasOwnProperty(b)) {
+                            console.log("edges:", this.edges);
+                            console.log("bad node:", b);
+                            throw "node: " + b;
+                        }*/
             let n1 = this.nodes_per_name[a];
             let n2 = this.nodes_per_name[b];
             if (!n1.x)
