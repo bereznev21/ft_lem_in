@@ -6,13 +6,13 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 17:36:15 by ksticks           #+#    #+#             */
-/*   Updated: 2019/11/16 15:53:26 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/16 17:42:46 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void remove_sym_old(t_matrix *path)
+void		remove_sym_old(t_matrix *path)
 {
 	int i;
 	int j;
@@ -32,7 +32,7 @@ void remove_sym_old(t_matrix *path)
 	}
 }
 
-void print_path(int *path, int size, t_startend se)
+void		print_path(int *path, int size, t_startend se)
 {
 	int i;
 
@@ -44,7 +44,7 @@ void print_path(int *path, int size, t_startend se)
 	printf("\n");
 	i = se.start;
 	printf("%d", i);
-	while(i != se.end)
+	while (i != se.end)
 	{
 		printf("->%d", (i = path[i]));
 	}
@@ -52,12 +52,11 @@ void print_path(int *path, int size, t_startend se)
 	printf("\n");
 }
 
-
-static void merge_paths(t_paths pp, int i, int j,  int n)
+static void	merge_paths(t_paths pp, int i, int j, int n)
 {
-	int *p1;
-	int *p2;
-	int k;
+	int	*p1;
+	int	*p2;
+	int	k;
 
 	p1 = malloc(sizeof(int) * pp.size);
 	p2 = malloc(sizeof(int) * pp.size);
@@ -83,7 +82,7 @@ static void merge_paths(t_paths pp, int i, int j,  int n)
 	pp.paths[j] = p2;
 }
 
-void remove_sym(t_paths pp)
+void		remove_sym(t_paths pp)
 {
 	int i;
 	int j;
@@ -97,10 +96,10 @@ void remove_sym(t_paths pp)
 	while (pp.paths[++i])
 	{
 		k = pp.se.start;
-		while((k = pp.paths[i][k]) != pp.se.end)
+		while ((k = pp.paths[i][k]) != pp.se.end)
 		{
 			j = i;
-			while(pp.paths[++j])
+			while (pp.paths[++j])
 				if (k == pp.paths[j][pp.paths[i][k]])
 					merge_paths(pp, i, j, k);
 		}

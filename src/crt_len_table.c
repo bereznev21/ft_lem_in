@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:44:39 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/15 18:35:55 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/16 17:36:21 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,33 @@ int		ft_got_path(t_lem_in lem_in, t_matrix paths, int **paths_table, int i)
 	}
 	return (len_path);
 }
-/*
-void	ft_crt_len_table(int **paths, t_lem_in lem_in, t_matrix *paths_table, int **len_table)
-{
-	int j;
-	int	num_path;
 
-	j = -1;
-	num_path = 0;
-	(*len_table) = (int*)malloc(sizeof(int) * (paths_table->m));
-	while (++j < paths_table->m)
-		(*len_table)[j] = DISJ;
-	j = -1;
-	
-	while (++j < paths_table->m)
-		if (paths.data[lem_in.se.start][j] == 1)
+int		ft_calc_lems(t_paths paths, t_matrix aj,
+			int **lems_in_rooms, t_lem_in lem_in)
+{
+	int	i;
+	int	lems;
+	int	min;
+	int	max_path;
+	int	*len_table;
+
+	i = -1;
+	lems = lem_in.ants;
+	ft_crt_len_table(paths, &len_table, aj, lem_in);
+	*lems_in_rooms = (int*)malloc(sizeof(int) * aj.n);
+	while (++i < aj.n)
+		(*lems_in_rooms)[i] = 0;
+	while (lems)
+	{
+		i = -1;
+		while (++i < aj.m && lems)
 		{
-			(*len_table)[num_path] = ft_got_path(lem_in, paths, &paths_table->data[num_path], j);
-			num_path++;
+			min = ft_srch_min(len_table);
+			(*lems_in_rooms)[min]++;
+			len_table[min]++;
+			lems--;
 		}
-	
-//	printf("%d\n", num_path);
-	(*len_table)[num_path] = -1;
+	}
+	max_path = ft_srch_max1(*lems_in_rooms, aj.m);
+	return (len_table[max_path]);
 }
-*/

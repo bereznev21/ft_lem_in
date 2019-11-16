@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:43:48 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/16 15:54:09 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/16 17:40:20 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static void	suurballe_reverse_path(t_matrix *aj, t_paths pp)
 	int i;
 
 	i = -1;
-	while((path = pp.paths[++i]))
+	while ((path = pp.paths[++i]))
 	{
 		k = pp.se.start;
-		while(k != pp.se.end)
+		while (k != pp.se.end)
 		{
 			prev = k;
 			k = path[prev];
@@ -58,15 +58,16 @@ void	split_paths_nodes(t_matrix *aj, t_paths pp, t_collapse *c)
 	int k_prev;
 	int k_next;
 	int k;
-	int* path;
+	int	*path;
 	int i;
 
 	i = -1;
-	while((path = pp.paths[++i]))
+	while ((path = pp.paths[++i]))
 	{
 		k_prev = pp.se.start;
 		k = path[k_prev];
-		while(k != pp.se.end){
+		while (k != pp.se.end)
+		{
 			k_next = path[k];
 			split_path_node(aj, k, k_prev, k_next);
 			t_collapse_add(c, k);
@@ -82,7 +83,7 @@ void	split_paths_nodes(t_matrix *aj, t_paths pp, t_collapse *c)
 
 int		suurballe_next(t_matrix aj, t_paths *pp)
 {
-	t_collapse 	c;
+	t_collapse	c;
 	int			*path;
 	int			n;
 	int			size;

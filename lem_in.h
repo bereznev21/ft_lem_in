@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:35:19 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/15 19:39:52 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/16 17:49:52 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void		t_array_init(t_array *a, size_t item_size);
 void		*t_array_get(t_array *a, int i);
 void		*t_array_push(t_array *a, void *content);
 void		t_array_del(t_array *a);
+void		ft_init_arr_1(int **arr, int len);
+int			**ft_init_arr_2_zero(int m, int n);
 
 void		t_matrix_init(t_matrix *mat, int m, int n);
 void		t_matrix_init_identity(t_matrix *mat, int n);
@@ -136,15 +138,15 @@ void		ft_free_arr_char(char **map);
 void		ft_print_ans(int num_len, char *room_name);
 void		ft_print_matrix(int **map, int width);
 void		ft_print_arr(int *lems_in_rooms, int n);
-void		ft_print_lems(int *lems_in_rooms, t_matrix paths_table,
-				t_lem_in lem_in, int max_path);
+void		ft_print_lems(int *lems_in_rooms,
+				t_paths paths, t_lem_in lem_in, int max_path);
 
 void		ft_move_leams_in_path(t_matrix *condition_of_ants,
 				t_matrix paths_table, int k);
-void		ft_crt_len_table(int **paths, t_lem_in lem_in,
-				t_matrix *paths_table, int **len_table);
-void		ft_calc_lems(int **paths, t_lem_in lem_in,
-				int *len_table, int **lems_in_rooms);
+void		ft_crt_len_table(t_paths paths, int **len_table,
+				t_matrix aj, t_lem_in lem_in);
+int			ft_calc_lems(t_paths paths, t_matrix aj,
+				int **lems_in_rooms, t_lem_in lem_in);
 
 void		ft_q_push(t_queue **q, int node);
 int			ft_q_empty(t_queue *q);
@@ -160,6 +162,7 @@ int			ft_srch_max1(int *len_table, int len);
 int			ft_srch_min(int *len_table);
 t_paths		lem_in_solve(t_matrix *aj, t_lem_in lem_in);
 void		lem_in_output1(int **paths, t_matrix aj, t_lem_in lem_in);
-int			ft_calc_lems1(t_paths paths, t_matrix aj, int **lems_in_rooms, t_lem_in lem_in);
+int			ft_calc_lems1(t_paths paths, t_matrix aj,
+				int **lems_in_rooms, t_lem_in lem_in);
 
 #endif
