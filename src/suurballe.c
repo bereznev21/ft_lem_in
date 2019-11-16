@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:43:48 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/15 19:37:38 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/16 15:54:09 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ int		suurballe_next(t_matrix aj, t_paths *pp)
 		t_array_del(&c.a);
 		return (0);
 	}
-	printf("path found\n");
-	print_path(path, aj.m, pp->se);
+	//printf("path found\n");
+	//print_path(path, aj.m, pp->se);
 	t_collapse_do(&c, path, size, pp->se);
 	t_array_del(&c.a);
 	n = ft_len((void**)pp->paths);
@@ -108,8 +108,8 @@ int		suurballe_next(t_matrix aj, t_paths *pp)
 			sizeof(int *) * (n + 2)); //todo: use t_array here?
 	pp->paths[n] = path;
 	pp->paths[n + 1] = 0;
-	printf("path collapsed\n");
-	print_path(path, pp->size, pp->se);
+	//printf("path collapsed\n");
+	//print_path(path, pp->size, pp->se);
 	remove_sym(*pp);
 	t_matrix_del(&aj);
 	return (1);

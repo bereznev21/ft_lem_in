@@ -13,7 +13,6 @@ SRC = \
 		src/find_paths.c \
         src/lem_in_read.c \
 		src/lem_in_output.c \
-		src/lem_in_output1.c \
 		src/arr_functions.c \
 		src/crt_len_table.c \
 		src/stack_functions.c \
@@ -42,7 +41,7 @@ $(NAME): $(OBJ)
 	gcc $(FLS) $(OBJ) -o $(NAME) $(OPTIONS) -L libft -lft
 
 run : $(NAME)
-	@./$(NAME) -d maps/generated/big-superposition2.map
+	@./$(NAME) -d maps/qqq_ordered
 
 clean:
 	make clean -C libft
