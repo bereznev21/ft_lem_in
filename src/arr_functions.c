@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:31:08 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/15 19:04:56 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/16 17:49:15 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,32 @@ int		ft_srch_max1(int *len_table, int len)
 		i++;
 	}
 	return (max_i);
+}
+
+void	ft_init_arr_1(int **arr, int len)
+{
+	int	i;
+
+	i = -1;
+	*arr = (int*)malloc(sizeof(int) * (len));
+	while (++i < len)
+		(*arr)[i] = DISJ;
+}
+
+int		**ft_init_arr_2_zero(int m, int n)
+{
+	int	i;
+	int	j;
+	int	**tmp;
+
+	tmp = (int**)malloc(sizeof(int*) * (m));
+	i = -1;
+	while (++i < m)
+	{
+		tmp[i] = (int*)malloc(sizeof(int) * (n));
+		j = -1;
+		while (++j < n)
+			tmp[i][j] = DISJ;
+	}
+	return (tmp);
 }
