@@ -109,8 +109,8 @@ int		suurballe_next(t_matrix aj, t_paths *pp)
 			sizeof(int *) * (n + 2)); //todo: use t_array here?
 	pp->paths[n] = path;
 	pp->paths[n + 1] = 0;
-	printf("path collapsed\n");
-	print_path(path, pp->size, pp->se);
+//	printf("path collapsed\n");
+//	print_path(path, pp->size, pp->se);
 	remove_sym(*pp);
 	t_matrix_del(&aj);
 	return (1);

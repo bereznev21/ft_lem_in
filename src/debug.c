@@ -14,32 +14,6 @@
 #include <libft.h>
 #include <lem_in.h>
 
-int			path_step(t_matrix *path, int k);
-
-void		print_paths(t_matrix *paths, int start, int end)
-{
-	int j;
-	int k;
-	int size;
-
-	size = paths->m;
-	for (j = 0; j < size; ++j)
-	{
-		if (!paths->data[start][j])
-			continue;
-		printf("%d->", start);
-		k = j;
-		printf("%d->", k);
-		while (k != end)
-		{
-			k = path_step(paths, k);
-			printf("%d->", k);
-		}
-		printf("\n");
-	}
-	fflush(stdout);
-}
-
 void		t_matrix_t(t_matrix *a)
 {
 	int			i;

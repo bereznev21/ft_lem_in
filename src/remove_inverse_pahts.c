@@ -32,26 +32,6 @@ void		remove_sym_old(t_matrix *path)
 	}
 }
 
-void		print_path(int *path, int size, t_startend se)
-{
-	int i;
-
-	for (i = 0; i < size; ++i)
-		if (path[i] == DISJ)
-			printf(". ");
-		else
-			printf("%d ", path[i]);
-	printf("\n");
-	i = se.start;
-	printf("%d", i);
-	while (i != se.end)
-	{
-		printf("->%d", (i = path[i]));
-	}
-	printf("\n");
-	printf("\n");
-}
-
 static void	merge_paths(t_paths pp, int i, int j, int n)
 {
 	int	*p1;

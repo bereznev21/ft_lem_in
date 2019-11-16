@@ -28,7 +28,8 @@ void	lem_in_main(int fd, UINT flags)
 	paths = lem_in_solve(&aj, lem_in);
 	if (flags & FLAG_DEBUG)
 		printf("total steps: %lu\n", ft_len((void**)&paths));
-	lem_in_output(paths, aj, lem_in);
+	print_paths(paths);
+//	lem_in_output(paths, aj, lem_in);
 	t_matrix_del(&aj);
 	//todo: del paths
 	t_array_del(&lem_in.rooms);

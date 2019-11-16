@@ -41,7 +41,10 @@ $(NAME): $(OBJ)
 	gcc $(FLS) $(OBJ) -o $(NAME) $(OPTIONS) -L libft -lft
 
 run : $(NAME)
-	@./$(NAME) -d maps/qqq_ordered
+#	@./$(NAME) maps/qqq_ordered
+#	@./$(NAME) maps/generated/flow_one.map
+#	@./$(NAME) maps/generated/big-superposition3.map
+	@./$(NAME) eror_map
 
 clean:
 	make clean -C libft
