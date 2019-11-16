@@ -179,7 +179,7 @@ class Graph {
         nodes[this.start].set_pos(CENTER, TOP);
         nodes[this.end].set_pos(CENTER, BOTTOM);
         for (const [i, path] of paths.entries()) {
-            let w = WIDTH * (i / (paths.length - 1) - .5);
+            let w = (paths.length === 1) ? 0 : WIDTH * (i / (paths.length - 1) - .5);
             let vertical_step = SPAN / path.length;
             for (const [i, node_name] of path.entries()) {
                 let y = -SPAN / 2 + vertical_step * (i + 1);
