@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 14:47:49 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/16 17:48:34 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/16 19:51:47 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,35 @@ void	ft_crt_len_table(t_paths paths, int **len_table,
 		(*len_table)[i] = ft_got_path1(paths.paths[i], lem_in);
 }
 
-int		ft_srch_prev_room(int *path, int index)
+int		ft_srch_prev_room(int *path, int index, t_startend se, t_paths paths)
 {
 	int i;
 
 	i = 0;
-	while (path[i] != index)
+	(void)se;
+	while (i < paths.size && path[i] != index)
 		i++;
+	//if (index == se.start)
+	//	return (se.start);
 	return (i);
 }
 
 void	ft_move_lems_in_path1(int **condition_of_ants,
-			int **path, t_startend se)
+			int **path, t_startend se, t_paths paths)
 {
 	int	endl;
 	int	prev;
 
 	endl = se.end;
-	prev = ft_srch_prev_room(*path, endl);
-	while (endl != se.start)
+	prev = ft_srch_prev_room(*path, endl, se, paths);
+	while (1)
 	{
 		(*condition_of_ants)[endl] = (*condition_of_ants)[prev];
 		endl = prev;
-		if (prev != se.start)
-			prev = ft_srch_prev_room(*path, endl);
+		printf("%d\n", prev);
+		if (prev == se.start)
+			break;
+		prev = ft_srch_prev_room(*path, endl, se, paths);
 	}
 	(*condition_of_ants)[endl] = DISJ;
 }
@@ -111,7 +116,7 @@ void	ft_print_lems(int *lems_in_rooms,
 		while (paths.paths[++i])
 		{
 			ft_move_lems_in_path1(&condition_of_ants[i],
-				&paths.paths[i], paths.se);
+				&paths.paths[i], paths.se, paths);
 			if (lems_in_rooms[i] > 0 && ants > 0)
 			{
 				lem_num++;
@@ -130,7 +135,7 @@ void	ft_print_lems(int *lems_in_rooms,
 			i = -1;
 			while (paths.paths[++i])
 				ft_move_lems_in_path1(&condition_of_ants[i],
-					&paths.paths[i], paths.se);
+					&paths.paths[i], paths.se, paths);
 			ft_print_ants(condition_of_ants, paths.paths, lem_in);
 			max_path--;
 			if (max_path > 0)
