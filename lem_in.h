@@ -130,6 +130,8 @@ void		print_path(int *path, int size, t_startend se);
 void		t_paths_print(t_paths pp);
 void		t_paths_init(t_paths *pp, t_startend se, int size);
 void		t_paths_init_rev(t_paths *pp);
+t_paths		t_paths_copy(t_paths pp);
+void		t_paths_del(t_paths *pp);
 
 int			find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se);
 int			*find_path(t_matrix *aj, t_startend se);
