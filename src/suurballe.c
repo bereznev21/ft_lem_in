@@ -85,7 +85,6 @@ int			suurballe_next(t_matrix aj, t_paths *pp)
 {
 	t_collapse	c;
 	int			*path;
-	int			n;
 	int			size;
 
 	size = aj.n;
@@ -93,24 +92,15 @@ int			suurballe_next(t_matrix aj, t_paths *pp)
 	suurballe_reverse_path(&aj, *pp);
 	t_collapse_init(&c, aj.m);
 	split_paths_nodes(&aj, *pp, &c);
-	if (!(path = find_path(&aj, pp->se)))//todo: find_path should delete free memory when path not found
+	if (!(path = find_path(&aj, pp->se)))
 	{
 		t_matrix_del(&aj);
 		t_array_del(&c.a);
 		return (0);
 	}
-	//printf("path found\n");
-	//print_path(path, aj.m, pp->se);
 	t_collapse_do(&c, path, size, pp->se);
 	t_array_del(&c.a);
-	n = ft_len((void**)pp->paths);
-	pp->paths = ft_realloc(pp->paths,
-			sizeof(int *) * (n + 1),
-			sizeof(int *) * (n + 2)); //todo: use t_array here?
-	pp->paths[n] = path;
-	pp->paths[n + 1] = 0;
-//	printf("path collapsed\n");
-//	print_path(path, pp->size, pp->se);
+	pp->paths[ft_len((void**)pp->paths)] = path;
 	remove_sym(*pp);
 	t_matrix_del(&aj);
 	return (1);

@@ -3,8 +3,7 @@
 
 void		t_paths_init(t_paths *pp, t_startend se, int size)
 {
-	pp->paths = malloc(sizeof(int*));
-	pp->paths[0] = 0;
+	pp->paths = ft_memalloc(sizeof(int*) * 256);
 	pp->se = se;
 	pp->size = size;
 	pp->paths_rev = 0;
@@ -31,7 +30,7 @@ void		print_path(int *path, int size, t_startend se)
 	printf("\n");
 }
 
-void		print_paths(t_paths pp)
+void		t_paths_print(t_paths pp)
 {
 	int i;
 
@@ -47,7 +46,7 @@ void		t_paths_init_rev(t_paths *pp)
 
 	if (pp->paths_rev)
 		free(pp->paths_rev);
-	pp->paths_rev = malloc(sizeof(int *) * ft_len((void **)pp->paths));
+	pp->paths_rev = malloc(sizeof(int *) * (ft_len((void **)pp->paths)) + 1);
 	i = -1;
 	while(pp->paths[++i])
 	{
@@ -58,5 +57,33 @@ void		t_paths_init_rev(t_paths *pp)
 			pp->paths_rev[i][pp->paths[i][k]] = k;
 			k = pp->paths[i][k];
 		}
+	}
+	pp->paths_rev[i] = 0;
+}
+
+t_paths		t_paths_copy(t_paths pp)
+{
+	t_paths ret;
+	int i;
+
+	t_paths_init(&ret, pp.se, pp.size);
+	i = -1;
+	while(pp.paths[++i])
+		ret.paths[i] = ft_memdup(pp.paths[i], sizeof(int) * pp.size);
+	return (ret);
+}
+
+void		t_paths_del(t_paths *pp)
+{
+	int i;
+
+	i = -1;
+	while(pp->paths[++i])
+		free(pp->paths[i]);
+	if (pp->paths_rev)
+	{
+		i = -1;
+		while(pp->paths_rev[++i])
+			free(pp->paths_rev[i]);
 	}
 }
