@@ -3,8 +3,7 @@
 
 void		t_paths_init(t_paths *pp, t_startend se, int size)
 {
-	pp->paths = malloc(sizeof(int*));
-	pp->paths[0] = 0;
+	pp->paths = ft_memalloc(sizeof(int*) * 256);
 	pp->se = se;
 	pp->size = size;
 	pp->paths_rev = 0;
