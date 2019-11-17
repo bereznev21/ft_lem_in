@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 14:47:49 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/17 21:36:08 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/17 23:43:49 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,6 @@ int		ft_got_path1(int *path, t_lem_in lem_in)
 		len_path++;
 	}
 	return (len_path);
-}
-
-void	ft_crt_len_table(t_paths paths, int **len_table,
-			t_matrix aj, t_lem_in lem_in)
-{
-	int	i;
-
-	i = -1;
-	ft_init_arr_1(len_table, aj.m);
-	while (paths.paths[++i])
-		(*len_table)[i] = ft_got_path1(paths.paths[i], lem_in);
 }
 
 void	ft_move_lems_in_path1(int *condition_of_ants, int path_i, t_paths paths)
@@ -77,6 +66,25 @@ void	ft_print_ants(int **condition_of_ants, int **paths, t_lem_in lem_in)
 	}
 }
 
+void	ft_print_lems1(int max_path, t_paths paths,
+			int **condition_of_ants, t_lem_in lem_in)
+{
+	int	i;
+
+	if (max_path > 0)
+	while (max_path >= 0)
+	{
+		i = -1;
+		while (paths.paths[++i])
+			ft_move_lems_in_path1(condition_of_ants[i],
+				i, paths);
+		ft_print_ants(condition_of_ants, paths.paths, lem_in);
+		if (max_path > 1)
+			ft_putchar('\n');
+		max_path--;
+	}
+}
+
 void	ft_print_lems(int *lems_in_rooms,
 			t_paths paths, t_lem_in lem_in, int max_path)
 {
@@ -111,20 +119,8 @@ void	ft_print_lems(int *lems_in_rooms,
 		max_path--;
 		ft_putchar('\n');
 	}
-	if (max_path > 0)
-		while (max_path >= 0)
-		{
-			i = -1;
-			while (paths.paths[++i])
-				ft_move_lems_in_path1(condition_of_ants[i],
-					i, paths);
-			ft_print_ants(condition_of_ants, paths.paths, lem_in);
-			if (max_path > 1)
-				ft_putchar('\n');
-			max_path--;
-		}
-	//ft_free_arr_int(condition_of_ants, paths.size);
-	//free(condition_of_ants);
+	ft_print_lems1(max_path, paths, condition_of_ants, lem_in);
+	ft_free_arr_int(condition_of_ants, len);
 }
 
 void	lem_in_output(t_paths paths, t_matrix aj, t_lem_in lem_in)
@@ -135,5 +131,5 @@ void	lem_in_output(t_paths paths, t_matrix aj, t_lem_in lem_in)
 	max_path = ft_calc_lems(paths, aj, &lems_in_rooms, lem_in);
 	ft_putchar('\n');
 	ft_print_lems(lems_in_rooms, paths, lem_in, max_path);
-	//free(lems_in_rooms);
+	free(lems_in_rooms);
 }

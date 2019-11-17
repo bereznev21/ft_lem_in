@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 21:15:05 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/14 14:55:23 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/17 22:46:15 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ typedef struct		s_buff
 }					t_buff;
 
 int					t_buff_append(t_buff *b, void *data, size_t len);
-void                *t_buff_init(t_buff *b, size_t size);
+void				*t_buff_init(t_buff *b, size_t size);
 t_list				*ft_lstnew(const void *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));

@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/17 21:26:23 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/17 22:52:10 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int		find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se)
 	ft_q_push(&q, se.start);
 	used->data[se.start] = 1;
 	ft_go_queue(&q, used, paths_map, aj);
+	free(used->data);
+	free(used);
 	ft_free_q(&q);
 	return (1);
 }
@@ -97,6 +99,7 @@ int		*ft_restore_patch(t_matrix *aj, int *short_path,
 int		*find_path(t_matrix *aj, t_startend se)
 {
 	int			i;
+	int			*r;
 	int			*short_path;
 	t_matrix	ret;
 
@@ -106,5 +109,7 @@ int		*find_path(t_matrix *aj, t_startend se)
 		short_path[i] = DISJ;
 	t_matrix_init_zero(&ret, aj->m, aj->n);
 	find_paths(aj, &ret, se);
-	return (ft_restore_patch(aj, short_path, &ret, se));
+	r = ft_restore_patch(aj, short_path, &ret, se);
+	t_matrix_del(&ret);
+	return (r);
 }

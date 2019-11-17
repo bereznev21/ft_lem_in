@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:05:13 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/17 21:44:23 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/17 22:24:04 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		lem_in_count_steps(t_paths all_paths, t_matrix aj, t_lem_in lem_in)
 	int		*lems_in_rooms;
 
 	max_path = ft_calc_lems(all_paths, aj, &lems_in_rooms, lem_in);
+	free(lems_in_rooms);
 	return (max_path);
 }
 

@@ -9,7 +9,9 @@ SRC = \
 		src/error_handling.c \
         src/matrix.c \
 		src/matrix_init.c \
+		src/matrix_init1.c \
         src/array.c \
+        src/array1.c \
 		src/find_paths.c \
         src/lem_in_read.c \
 		src/lem_in_output.c \

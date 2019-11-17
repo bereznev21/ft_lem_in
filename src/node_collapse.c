@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:58:26 by ksticks           #+#    #+#             */
-/*   Updated: 2019/11/16 17:46:38 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/17 22:51:39 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ void	t_collapse_do(t_collapse *c, int *path, int size, t_startend se)
 			e = path[path[k]];
 			path[k] = ((int*)c->a.data)[path[k] - c->size];
 			path[path[k]] = e;
-//			e = path[k];
-//			while(e >= size)
-//				e = path[e];
-//			path[k] = e;
 		}
 		k = path[k];
 	}

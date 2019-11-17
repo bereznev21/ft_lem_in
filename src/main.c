@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/17 20:13:00 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/17 22:45:37 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "lem_in.h"
 
-void clean_rooms(t_array rooms)
+void	clean_rooms(t_array rooms)
 {
 	int i;
 

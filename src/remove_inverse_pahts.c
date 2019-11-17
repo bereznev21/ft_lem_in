@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 17:36:15 by ksticks           #+#    #+#             */
-/*   Updated: 2019/11/16 17:42:46 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/17 22:38:12 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,7 @@ void		remove_sym(t_paths pp)
 	int j;
 	int k;
 
-	//printf("remove sym\n");
 	i = -1;
-	//while (pp.paths[++i])
-	//	print_path(pp.paths[i], pp.size, pp.se);
 	i = -1;
 	while (pp.paths[++i])
 	{
@@ -84,8 +81,5 @@ void		remove_sym(t_paths pp)
 					merge_paths(pp, i, j, k);
 		}
 	}
-	//printf("remove sym done\n");
 	i = -1;
-	//while (pp.paths[++i])
-	//	print_path(pp.paths[i], pp.size, pp.se);
 }
