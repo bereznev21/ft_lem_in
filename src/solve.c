@@ -21,13 +21,24 @@ int		lem_in_count_steps(t_paths all_paths, t_matrix aj, t_lem_in lem_in)
 	return (max_path);
 }
 
-t_paths lem_in_solve(t_matrix *aj, t_lem_in lem_in)
+int		check_steps(int steps, int *steps_min, int *local_minimum_alert)
 {
-	int		steps;
-	int		steps_result;
+	if (*steps_min < steps)
+		return (1);
+	if (*steps_min > steps)
+		*local_minimum_alert = 1;
+	else if (++*local_minimum_alert >= 3)
+		return (1);
+	*steps_min = steps;
+	return (0);
+}
+
+t_paths	lem_in_solve(t_matrix *aj, t_lem_in lem_in)
+{
 	int		i;
 	t_paths	pp;
 	t_paths	pp_prev;
+	int		steps_result;
 	int		local_minimum_alert;
 
 	local_minimum_alert = 0;
@@ -38,20 +49,13 @@ t_paths lem_in_solve(t_matrix *aj, t_lem_in lem_in)
 	{
 		pp_prev = t_paths_copy(pp);
 		if (!suurballe_next(*aj, &pp))
-			break;
-		steps = lem_in_count_steps(pp, *aj, lem_in);
-		fprintf(stderr, "steps for i=%d : %d\n", i, steps);
-		if (steps_result < steps)
-		{
-			t_paths_del(&pp);
-			return (pp_prev);
-		}
-		t_paths_del(&pp_prev);
-		if (steps_result > steps)
-			local_minimum_alert = 1;
-		else if (++local_minimum_alert >= 3)
-			return (pp);
-		steps_result = steps;
+			break ;
+		fprintf(stderr, "steps for i=%d : %d\n", i,
+				lem_in_count_steps(pp, *aj, lem_in));
+		if (check_steps(lem_in_count_steps(pp, *aj, lem_in),
+				&steps_result, &local_minimum_alert))
+			break ;
 	}
-	return (pp);
+	t_paths_del(&pp);
+	return (pp_prev);
 }
