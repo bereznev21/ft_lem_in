@@ -65,7 +65,7 @@ void	ft_move_lems_in_path1(int **condition_of_ants,
 	{
 		(*condition_of_ants)[endl] = (*condition_of_ants)[prev];
 		endl = prev;
-		printf("%d\n", prev);
+		//printf("%d\n", prev);
 		if (prev == se.start)
 			break;
 		prev = ft_srch_prev_room(*path, endl, se, paths);
