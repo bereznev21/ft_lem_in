@@ -15,6 +15,16 @@
 #include "libft.h"
 #include "lem_in.h"
 
+void clean_rooms(t_array rooms)
+{
+	int i;
+
+	i = -1;
+	while (++i < rooms.count)
+		free(((t_room*)t_array_get(&rooms, i))->name);
+	t_array_del(&rooms);
+}
+
 void	lem_in_main(int fd, UINT flags)
 {
 	t_lem_in	lem_in;
@@ -32,7 +42,7 @@ void	lem_in_main(int fd, UINT flags)
 	lem_in_output(paths, aj, lem_in);
 	t_matrix_del(&aj);
 	t_paths_del(&paths);
-	t_array_del(&lem_in.rooms);
+	clean_rooms(lem_in.rooms);
 }
 
 int		parse_av(int ac, char **av, UINT *flags)
