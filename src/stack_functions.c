@@ -61,3 +61,21 @@ void	ft_q_pop(t_queue **q)
 	else
 		(*q)->data = DISJ;
 }
+
+void	ft_free_q(t_queue **q)
+{
+	t_queue	*tmp;
+	t_queue	*list;
+
+	list = *q;
+	while (list)
+	{
+		if (list->next)
+			tmp = list->next;
+		else
+			tmp = 0;
+		free(list);
+		list = tmp;
+	}
+	free(list);
+}
