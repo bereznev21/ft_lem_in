@@ -80,10 +80,12 @@ void		t_paths_del(t_paths *pp)
 	i = -1;
 	while(pp->paths[++i])
 		free(pp->paths[i]);
+	free(pp->paths);
 	if (pp->paths_rev)
 	{
 		i = -1;
 		while(pp->paths_rev[++i])
 			free(pp->paths_rev[i]);
+		free(pp->paths_rev);
 	}
 }

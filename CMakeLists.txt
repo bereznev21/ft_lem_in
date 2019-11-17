@@ -29,11 +29,9 @@ add_executable(lem_in
 		src/path.c
 		src/solve.c
 		src/node_collapse.c
-		src/bellman_ford.c
 		src/stack_functions.c
 		src/lem_in_output.c
 		src/arr_functions.c
-		src/free.c
 		src/crt_len_table.c
 		src/ft_print_functions.c
 

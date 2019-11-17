@@ -135,4 +135,5 @@ void	lem_in_output(t_paths paths, t_matrix aj, t_lem_in lem_in)
 	max_path = ft_calc_lems(paths, aj, &lems_in_rooms, lem_in);
 	ft_putchar('\n');
 	ft_print_lems(lems_in_rooms, paths, lem_in, max_path);
+	//free(lems_in_rooms);
 }
