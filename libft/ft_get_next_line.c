@@ -80,6 +80,7 @@ t_gnl_state	*gnl_state_get(t_list **lst, const int fd)
 		free(s);
 		return (0);
 	}
+	free(s);
 	ft_lstadd(lst, e);
 	return (e->content);
 }
