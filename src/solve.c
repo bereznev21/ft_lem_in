@@ -14,8 +14,8 @@
 
 int		lem_in_count_steps(t_paths all_paths, t_matrix aj, t_lem_in lem_in)
 {
-	int	max_path;
-	int	*lems_in_rooms;
+	int		max_path;
+	int		*lems_in_rooms;
 
 	max_path = ft_calc_lems(all_paths, aj, &lems_in_rooms, lem_in);
 	return (max_path);
@@ -29,10 +29,7 @@ t_paths	lem_in_solve(t_matrix *aj, t_lem_in lem_in)
 	t_paths pp;
 
 	steps_result = INT_MAX;
-	pp.paths = malloc(sizeof(int*));
-	pp.paths[0] = 0;
-	pp.se = lem_in.se;
-	pp.size = aj->n;
+	t_paths_init(&pp, lem_in.se, aj->n);
 	i = -1;
 	while (++i < lem_in.ants)
 	{

@@ -1,4 +1,14 @@
+#include "libft.h"
 #include "lem_in.h"
+
+void		t_paths_init(t_paths *pp, t_startend se, int size)
+{
+	pp->paths = malloc(sizeof(int*));
+	pp->paths[0] = 0;
+	pp->se = se;
+	pp->size = size;
+	pp->paths_rev = 0;
+}
 
 void		print_path(int *path, int size, t_startend se)
 {
@@ -28,4 +38,25 @@ void		print_paths(t_paths pp)
 	i = -1;
 	while(pp.paths[++i])
 		print_path(pp.paths[i], pp.size, pp.se);
+}
+
+void		t_paths_init_rev(t_paths *pp)
+{
+	int i;
+	int k;
+
+	if (pp->paths_rev)
+		free(pp->paths_rev);
+	pp->paths_rev = malloc(sizeof(int *) * ft_len((void **)pp->paths));
+	i = -1;
+	while(pp->paths[++i])
+	{
+		pp->paths_rev[i] = malloc(sizeof(int) * pp->size);
+		k = pp->se.start;
+		while(k != pp->se.end)
+		{
+			pp->paths_rev[i][pp->paths[i][k]] = k;
+			k = pp->paths[i][k];
+		}
+	}
 }
