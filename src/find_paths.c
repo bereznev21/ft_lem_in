@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 17:07:41 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/16 17:50:51 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/17 21:26:23 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int		*ft_restore_patch(t_matrix *aj, int *short_path,
 		if (i == aj->m)
 			return (0);
 	}
-	//t_matrix_del(paths_map);
 	return (short_path);
 }
 

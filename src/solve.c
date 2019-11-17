@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:05:13 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/16 17:46:12 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:45:56 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_paths lem_in_solve(t_matrix *aj, t_lem_in lem_in)
 		if (!suurballe_next(*aj, &pp))
 			break;
 		steps = lem_in_count_steps(pp, *aj, lem_in);
-		fprintf(stderr, "steps for i=%d : %d\n", i, steps);
+		//fprintf(stderr, "steps for i=%d : %d\n", i, steps);
 		if (steps_result < steps)
 		{
 			t_paths_del(&pp);
