@@ -45,7 +45,8 @@ int		ft_srch_prev_room(int *path, int index, t_startend se, t_paths paths)
 
 	i = 0;
 	(void)se;
-	while (i < paths.size && path[i] != index)
+	(void)paths;
+	while (path[i] != index)
 		i++;
 	//if (index == se.start)
 	//	return (se.start);
