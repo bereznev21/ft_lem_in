@@ -80,6 +80,7 @@ typedef struct		s_paths
 	int				**paths;
 	int				size;
 	t_startend		se;
+	int				**paths_rev;
 }					t_paths;
 
 typedef	struct		s_used
@@ -124,8 +125,11 @@ void		ft_put_end(int **roads, int end);
 void		ft_bminus(int **s, size_t n);
 int			suurballe_next(t_matrix aj, t_paths *pp);
 void		remove_sym(t_paths pp);
+
 void		print_path(int *path, int size, t_startend se);
 void		print_paths(t_paths pp);
+void		t_paths_init(t_paths *pp, t_startend se, int size);
+void		t_paths_init_rev(t_paths *pp);
 
 int			find_paths(t_matrix *aj, t_matrix *paths_map, t_startend se);
 int			*find_path(t_matrix *aj, t_startend se);

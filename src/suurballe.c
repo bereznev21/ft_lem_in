@@ -34,7 +34,7 @@ static void	suurballe_reverse_path(t_matrix *aj, t_paths pp)
 	}
 }
 
-void	split_path_node(t_matrix *aj, int k, int prev, int next)
+void		split_path_node(t_matrix *aj, int k, int prev, int next)
 {
 	int i;
 	int n;
@@ -53,7 +53,7 @@ void	split_path_node(t_matrix *aj, int k, int prev, int next)
 	aj->data[n][k] = 0;
 }
 
-void	split_paths_nodes(t_matrix *aj, t_paths pp, t_collapse *c)
+void		split_paths_nodes(t_matrix *aj, t_paths pp, t_collapse *c)
 {
 	int k_prev;
 	int k_next;
@@ -81,7 +81,7 @@ void	split_paths_nodes(t_matrix *aj, t_paths pp, t_collapse *c)
 ** http://www.macfreek.nl/memory/Disjoint_Path_Finding
 */
 
-int		suurballe_next(t_matrix aj, t_paths *pp)
+int			suurballe_next(t_matrix aj, t_paths *pp)
 {
 	t_collapse	c;
 	int			*path;

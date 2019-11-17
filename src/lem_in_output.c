@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 14:47:49 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/17 17:58:58 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/17 19:02:12 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,63 +39,21 @@ void	ft_crt_len_table(t_paths paths, int **len_table,
 		(*len_table)[i] = ft_got_path1(paths.paths[i], lem_in);
 }
 
-int		ft_srch_prev_room(int *path, int index, t_startend se, t_paths paths)
+void	ft_move_lems_in_path1(int *condition_of_ants, int path_i, t_paths paths)
 {
-	int i;
+	int	k;
+	int	k_prev;
 
-	i = 0;
-	(void)se;
-	(void)paths;
-	while (path[i] != index)
-		i++;
-	//if (index == se.start)
-	//	return (se.start);
-	return (i);
-}
-
-void	ft_move_lems_in_path1(int **condition_of_ants,
-			int **path, t_startend se, t_paths paths)
-{
-	int	endl;
-	int	prev;
-
-	endl = se.end;
-	prev = ft_srch_prev_room(*path, endl, se, paths);
-	while (1)
+	k = paths.se.end;
+	while (k != paths.se.start)
 	{
-		(*condition_of_ants)[endl] = (*condition_of_ants)[prev];
-		endl = prev;
-		//printf("%d\n", prev);
-		if (prev == se.start)
-			break;
-		prev = ft_srch_prev_room(*path, endl, se, paths);
+		k_prev = paths.paths_rev[path_i][k];
+		condition_of_ants[k] = condition_of_ants[k_prev];
+		k = k_prev;
 	}
-	(*condition_of_ants)[endl] = DISJ;
+	condition_of_ants[k] = DISJ;
 }
 
-/*
-void	ft_move_lems_in_path1(int **condition_of_ants,
-			int **path, t_startend se, t_paths paths)
-{
-	int	room1;
-	int	room2;
-	int	ant;
-
-	(void)paths;
-	room1 = se.start;
-	ant = (*condition_of_ants)[room1];
-	while (room1 != se.end)
-	{
-		(*condition_of_ants)[room1] = ant;
-		room2 = (*path)[room1];
-		ant = (*condition_of_ants)[room2];
-		(*condition_of_ants)[room2] = (*condition_of_ants)[room1];
-		room1 = room2;
-	}
-	//ft_print_arr(*condition_of_ants, paths.size);
-	(*condition_of_ants)[se.start] = DISJ;
-}
-*/
 void	ft_print_ants(int **condition_of_ants, int **paths, t_lem_in lem_in)
 {
 	int	begin;
@@ -139,8 +97,8 @@ void	ft_print_lems(int *lems_in_rooms,
 		i = -1;
 		while (paths.paths[++i])
 		{
-			ft_move_lems_in_path1(&condition_of_ants[i],
-				&paths.paths[i], paths.se, paths);
+			ft_move_lems_in_path1(condition_of_ants[i],
+				i, paths);
 			if (lems_in_rooms[i] > 0 && ants > 0)
 			{
 				lem_num++;
@@ -158,8 +116,8 @@ void	ft_print_lems(int *lems_in_rooms,
 		{
 			i = -1;
 			while (paths.paths[++i])
-				ft_move_lems_in_path1(&condition_of_ants[i],
-					&paths.paths[i], paths.se, paths);
+				ft_move_lems_in_path1(condition_of_ants[i],
+					i, paths);
 			ft_print_ants(condition_of_ants, paths.paths, lem_in);
 			max_path--;
 			if (max_path > 0)
