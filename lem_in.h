@@ -127,7 +127,7 @@ int			suurballe_next(t_matrix aj, t_paths *pp);
 void		remove_sym(t_paths pp);
 
 void		print_path(int *path, int size, t_startend se);
-void		print_paths(t_paths pp);
+void		t_paths_print(t_paths pp);
 void		t_paths_init(t_paths *pp, t_startend se, int size);
 void		t_paths_init_rev(t_paths *pp);
 

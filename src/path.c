@@ -30,7 +30,7 @@ void		print_path(int *path, int size, t_startend se)
 	printf("\n");
 }
 
-void		print_paths(t_paths pp)
+void		t_paths_print(t_paths pp)
 {
 	int i;
 
