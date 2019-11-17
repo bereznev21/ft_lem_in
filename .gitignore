@@ -10,3 +10,4 @@ cmake-build-debug
 *.gch
 profiling.txt
 vis/data.js
+callgrind.out.*
