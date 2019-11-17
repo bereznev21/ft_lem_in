@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 14:47:49 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/16 19:51:47 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/17 17:58:58 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,29 @@ void	ft_move_lems_in_path1(int **condition_of_ants,
 	(*condition_of_ants)[endl] = DISJ;
 }
 
+/*
+void	ft_move_lems_in_path1(int **condition_of_ants,
+			int **path, t_startend se, t_paths paths)
+{
+	int	room1;
+	int	room2;
+	int	ant;
+
+	(void)paths;
+	room1 = se.start;
+	ant = (*condition_of_ants)[room1];
+	while (room1 != se.end)
+	{
+		(*condition_of_ants)[room1] = ant;
+		room2 = (*path)[room1];
+		ant = (*condition_of_ants)[room2];
+		(*condition_of_ants)[room2] = (*condition_of_ants)[room1];
+		room1 = room2;
+	}
+	//ft_print_arr(*condition_of_ants, paths.size);
+	(*condition_of_ants)[se.start] = DISJ;
+}
+*/
 void	ft_print_ants(int **condition_of_ants, int **paths, t_lem_in lem_in)
 {
 	int	begin;

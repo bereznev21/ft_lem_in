@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/16 15:57:59 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/16 22:07:14 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	lem_in_main(int fd, UINT flags)
 	if (flags & FLAG_DEBUG)
 		printf("total steps: %lu\n", ft_len((void**)&paths));
 	print_paths(paths);
-//	lem_in_output(paths, aj, lem_in);
+	lem_in_output(paths, aj, lem_in);
 	t_matrix_del(&aj);
 	//todo: del paths
 	t_array_del(&lem_in.rooms);
