@@ -15,7 +15,6 @@
 
 # include <limits.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 # define ULONG unsigned long
 # define UINT unsigned int
@@ -146,16 +145,10 @@ void				t_paths_del(t_paths *pp);
 int					find_paths(t_matrix *aj, t_matrix *paths_map,
 						t_startend se);
 int					*find_path(t_matrix *aj, t_startend se);
-int					path_step(t_matrix *path, int k);
-void				ft_free(t_lem_in *lem_in, t_matrix *aj, t_matrix *paths);
-void				ft_free_matrix(t_matrix *matrix);
 void				ft_free_q(t_queue **q);
 void				ft_free_arr_int(int **str, int width);
-void				ft_free_arr_char(char **map);
 
 void				ft_print_ans(int num_len, char *room_name);
-void				ft_print_matrix(int **map, int width);
-void				ft_print_arr(int *lems_in_rooms, int n);
 void				ft_print_lems(int *lems_in_rooms,
 						t_paths paths, t_lem_in lem_in, int max_path);
 
@@ -174,8 +167,6 @@ void				ft_q_pop(t_queue **q);
 
 void				assert(int expr, const char *msg);
 void				error_exit(const char *msg);
-int					bf_shortest_path(t_matrix *aj,
-						t_matrix *paths_map, int stat, int end);
 int					ft_srch_max(int *len_table, int len);
 int					ft_srch_max1(int *len_table, int len);
 int					ft_srch_min(int *len_table);
