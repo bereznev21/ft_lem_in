@@ -46,16 +46,19 @@ t_paths	lem_in_solve(t_matrix *aj, t_lem_in lem_in)
 	steps_result = INT_MAX;
 	t_paths_init(&pp, lem_in.se, aj->n);
 	i = -1;
-	while (++i < lem_in.ants)
+	while (1)
 	{
+		if	(++i >= lem_in.ants)
+			return (pp);
 		pp_prev = t_paths_copy(pp);
 		if (!suurballe_next(*aj, &pp))
 			break ;
-	//	fprintf(stderr, "steps for i=%d : %d\n", i,
-	//			lem_in_count_steps(pp, *aj, lem_in));
+//		fprintf(stderr, "steps for i=%d : %d\n", i,
+//				lem_in_count_steps(pp, *aj, lem_in));
 		if (check_steps(lem_in_count_steps(pp, *aj, lem_in),
 				&steps_result, &local_minimum_alert))
 			break ;
+		t_paths_del(&pp_prev);
 	}
 	t_paths_del(&pp);
 	return (pp_prev);

@@ -20,8 +20,10 @@ add_executable(lem_in
         src/debug.c
 		src/error_handling.c
 		src/array.c
+		src/array1.c
         src/matrix.c
         src/matrix_init.c
+        src/matrix_init1.c
         src/lem_in_read.c
 		src/find_paths.c
 		src/suurballe.c
@@ -32,6 +34,7 @@ add_executable(lem_in
 		src/stack_functions.c
 		src/lem_in_output.c
 		src/arr_functions.c
+		src/arr_functions1.c
 		src/crt_len_table.c
 		src/ft_print_functions.c
 
