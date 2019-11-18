@@ -101,3 +101,18 @@ void		t_matrix_print(t_matrix *m)
 	printf("\n");
 	fflush(stdout);
 }
+
+void		print_path(int *path, int size, t_startend se)
+{
+	int i;
+
+	(void)size;
+	i = se.start;
+	printf("%d", i);
+	while (i != se.end)
+	{
+		printf("->%d", (i = path[i]));
+	}
+	printf("\n");
+	printf("\n");
+}

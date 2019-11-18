@@ -21,21 +21,6 @@ void		t_paths_init(t_paths *pp, t_startend se, int size)
 	pp->paths_rev = 0;
 }
 
-void		print_path(int *path, int size, t_startend se)
-{
-	int i;
-
-	(void)size;
-	i = se.start;
-	printf("%d", i);
-	while (i != se.end)
-	{
-		printf("->%d", (i = path[i]));
-	}
-	printf("\n");
-	printf("\n");
-}
-
 void		t_paths_print(t_paths pp)
 {
 	int i;
