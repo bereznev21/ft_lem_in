@@ -6,11 +6,10 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:44:39 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/18 14:25:26 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 15:54:02 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "lem_in.h"
 
 int		ft_got_path1(int *path, t_lem_in lem_in)

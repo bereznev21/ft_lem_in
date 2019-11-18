@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:35:19 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/18 14:37:33 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 15:43:27 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void				*t_array_push(t_array *a, void *content);
 void				t_array_del(t_array *a);
 void				ft_init_arr_1(int **arr, int len);
 int					**ft_init_arr_2_zero(int m, int n);
-int 				arr_2_len(int **arr);
+int					arr_2_len(int **arr);
 
 void				t_matrix_alloc(t_matrix *mat, int m, int n);
 void				t_matrix_init(t_matrix *mat, int m, int n);
@@ -146,6 +146,7 @@ void				ft_free_q(t_queue **q);
 void				ft_free_arr_int(int **str, int width);
 void				ft_free_arr_char(char **map);
 
+void				print_path(int *path, int size, t_startend se);
 void				ft_print_ans(int num_len, char *room_name);
 void				ft_print_matrix(int **map, int width);
 void				ft_print_arr(int *lems_in_rooms, int n);

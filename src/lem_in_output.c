@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 14:47:49 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/18 14:44:21 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 15:48:25 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ft_print_lems(int *lems_in_rooms,
 		{
 			ft_move_lems_in_path1(condition_of_ants[i],
 				i, paths);
-			if (lems_in_rooms[i] > 0 && lem_in.ants-- > 0)
+			if (lems_in_rooms[i] > 0 && lem_in.ants--)
 			{
 				condition_of_ants[i][paths.se.start] = ++lem_num;
 				lems_in_rooms[i]--;
