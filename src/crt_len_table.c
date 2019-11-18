@@ -6,21 +6,26 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:44:39 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/17 23:31:55 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 14:25:26 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "lem_in.h"
 
-void	ft_put_end(int **roads, int end)
+int		ft_got_path1(int *path, t_lem_in lem_in)
 {
-	int n;
+	int	begin;
+	int	len_path;
 
-	n = 0;
-	while ((*roads)[n] != DISJ)
-		n++;
-	(*roads)[n] = end;
+	len_path = 0;
+	begin = lem_in.se.start;
+	while (begin != lem_in.se.end)
+	{
+		begin = path[begin];
+		len_path++;
+	}
+	return (len_path);
 }
 
 void	ft_crt_len_table(t_paths paths, int **len_table,

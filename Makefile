@@ -16,6 +16,7 @@ SRC = \
         src/lem_in_read.c \
 		src/lem_in_output.c \
 		src/arr_functions.c \
+		src/arr_functions1.c \
 		src/crt_len_table.c \
 		src/stack_functions.c \
 		src/suurballe.c \

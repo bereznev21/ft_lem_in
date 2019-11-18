@@ -6,11 +6,21 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:43:23 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/08 15:53:32 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 14:26:16 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	ft_put_end(int **roads, int end)
+{
+	int n;
+
+	n = 0;
+	while ((*roads)[n] != DISJ)
+		n++;
+	(*roads)[n] = end;
+}
 
 void	ft_q_push(t_queue **q, int node)
 {
