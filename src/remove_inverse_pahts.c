@@ -62,8 +62,8 @@ static void	merger(t_paths pp, int i, int j, t_merger m)
 
 static void	merge_paths(t_paths pp, int i, int j, int n)
 {
-	int	k;
-	t_merger m;
+	int			k;
+	t_merger	m;
 
 	m.p1 = malloc(sizeof(int) * pp.size);
 	m.p2 = malloc(sizeof(int) * pp.size);
