@@ -33,6 +33,8 @@ void	lem_in_main(int fd, UINT flags)
 	lem_in.flags = flags;
 	aj = lem_in_read(fd, &lem_in);
 	paths = lem_in_solve(&aj, lem_in);
+	if (!ft_len((void**)paths.paths))
+		error_exit("graph is not connected");
 	t_paths_init_rev(&paths);
 	lem_in_output(paths, aj, lem_in);
 	if (flags & FLAG_PRINT_PATHS)
