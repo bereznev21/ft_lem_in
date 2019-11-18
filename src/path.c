@@ -52,7 +52,7 @@ void		t_paths_init_rev(t_paths *pp)
 
 	if (pp->paths_rev)
 		free(pp->paths_rev);
-	pp->paths_rev = malloc(sizeof(int *) * (ft_len((void **)pp->paths)) + 1);
+	pp->paths_rev = malloc(sizeof(int *) * (ft_len((void **)pp->paths) + 1));
 	i = -1;
 	while (pp->paths[++i])
 	{
