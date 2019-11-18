@@ -101,8 +101,7 @@ int		ft_calc_lems(t_paths paths, t_matrix aj,
 	while (++i < aj.n)
 		(*lems_in_rooms)[i] = 0;
 	ft_calc_lems1(len_table, lems_in_rooms, lem_in, aj);
-	max_path = ft_srch_max1(*lems_in_rooms, aj.m);
-	max_path = len_table[max_path];
+	max_path = len_table[ft_srch_max1(*lems_in_rooms, aj.m)] - 1;
 	free(len_table);
 	return (max_path);
 }

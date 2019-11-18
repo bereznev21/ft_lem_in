@@ -56,18 +56,14 @@ void	ft_print_lems1(int max_path, t_paths paths,
 {
 	int	i;
 
-	if (max_path > 0)
-		while (max_path >= 0)
-		{
-			i = -1;
-			while (paths.paths[++i])
-				ft_move_lems_in_path1(condition_of_ants[i],
-					i, paths);
-			ft_print_ants(condition_of_ants, paths.paths, lem_in);
-			if (max_path > 1)
-				ft_putchar('\n');
-			max_path--;
-		}
+	while (max_path-- > 0)
+	{
+		i = -1;
+		while (paths.paths[++i])
+			ft_move_lems_in_path1(condition_of_ants[i], i, paths);
+		ft_print_ants(condition_of_ants, paths.paths, lem_in);
+		ft_putstr("\n");
+	}
 }
 
 void	ft_print_lems(int *lems_in_rooms,
@@ -94,7 +90,7 @@ void	ft_print_lems(int *lems_in_rooms,
 		}
 		ft_print_ants(condition_of_ants, paths.paths, lem_in);
 		max_path--;
-		ft_putchar('\n');
+		ft_putstr("\n");
 	}
 	ft_print_lems1(max_path, paths, condition_of_ants, lem_in);
 	ft_free_arr_int(condition_of_ants, arr_2_len(paths.paths));
