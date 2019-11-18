@@ -6,12 +6,12 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 14:47:49 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/18 15:48:25 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:21:45 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lem_in.h"
-#include "libft/includes/libft.h"
+#include "lem_in.h"
+#include "libft.h"
 
 void	ft_move_lems_in_path1(int *condition_of_ants, int path_i, t_paths paths)
 {

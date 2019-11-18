@@ -6,13 +6,12 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:28:22 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/18 17:12:30 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:22:09 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <libft.h>
-#include <lem_in.h>
+#include "libft.h"
+#include "lem_in.h"
 
 void		t_matrix_t(t_matrix *a)
 {
@@ -55,51 +54,6 @@ t_matrix	t_matrix_mul(t_matrix *a, t_matrix *b)
 		}
 	}
 	return (r);
-}
-
-void		t_matrix_print_no_headers(t_matrix *m)
-{
-	int i;
-	int j;
-
-	i = -1;
-	while (++i < m->m)
-	{
-		j = -1;
-		while (++j < m->n)
-			printf("% 3d ", m->data[i][j]);
-		printf("\n");
-	}
-	printf("\n");
-}
-
-void		t_matrix_print(t_matrix *m)
-{
-	int i;
-	int j;
-
-	printf("  |");
-	j = -1;
-	while (++j < m->n)
-		printf("% 2d ", j);
-	printf("\n");
-	printf("--+");
-	j = -1;
-	while (++j < m->n)
-		printf("---");
-	printf("\n");
-	i = -1;
-	while (++i < m->m)
-	{
-		printf("% 2d|", i);
-		j = -1;
-		while (++j < m->n)
-			m->data[i][j] != DISJ ? printf("% 2d ", m->data[i][j]) : printf(
-					" . ");
-		printf("\n");
-	}
-	printf("\n");
-	fflush(stdout);
 }
 
 void		print_path(int *path, int size, t_startend se)

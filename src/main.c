@@ -6,12 +6,11 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/18 17:05:18 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:22:23 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include <stdio.h>
 #include "libft.h"
 #include "lem_in.h"
 
@@ -33,11 +32,7 @@ void	lem_in_main(int fd, UINT flags)
 
 	lem_in.flags = flags;
 	aj = lem_in_read(fd, &lem_in);
-	if (flags & FLAG_DEBUG)
-		printf("Start: %d End: %d\n\n", lem_in.se.start, lem_in.se.end);
 	paths = lem_in_solve(&aj, lem_in);
-	if (flags & FLAG_DEBUG)
-		printf("total steps: %lu\n", ft_len((void**)&paths));
 	t_paths_init_rev(&paths);
 	lem_in_output(paths, aj, lem_in);
 	if (flags & FLAG_PRINT_PATHS)
@@ -62,9 +57,7 @@ int		parse_av(int ac, char **av, UINT *flags)
 	while (ac--)
 	{
 		arg = *av++;
-		if (!ft_strcmp("-d", arg))
-			*flags |= FLAG_DEBUG;
-		else if (!ft_strcmp("-i", arg))
+		if (!ft_strcmp("-i", arg))
 			*flags ^= FLAG_PRINT_INPUT;
 		else if (!ft_strcmp("-p", arg))
 			*flags ^= FLAG_PRINT_PATHS;
