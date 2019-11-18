@@ -48,7 +48,7 @@ t_paths	lem_in_solve(t_matrix *aj, t_lem_in lem_in)
 	i = -1;
 	while (1)
 	{
-		if	(++i >= lem_in.ants)
+		if (++i >= lem_in.ants)
 			return (pp);
 		pp_prev = t_paths_copy(pp);
 		if (!suurballe_next(*aj, &pp))

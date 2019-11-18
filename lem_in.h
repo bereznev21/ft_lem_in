@@ -89,6 +89,13 @@ typedef	struct		s_used
 	t_startend		se;
 }					t_used;
 
+typedef struct		s_merger
+{
+	int	*p1;
+	int	*p2;
+	int	n;
+}					t_merger;
+
 void				t_array_init(t_array *a, size_t item_size);
 void				*t_array_get(t_array *a, int i);
 void				*t_array_push(t_array *a, void *content);

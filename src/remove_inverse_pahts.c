@@ -32,34 +32,53 @@ void		remove_sym_old(t_matrix *path)
 	}
 }
 
+static void	merger(t_paths pp, int i, int j, t_merger m)
+{
+	int k;
+
+	k = pp.se.start;
+	while (k != m.n)
+	{
+		m.p1[k] = pp.paths[i][k];
+		k = m.p1[k];
+	}
+	while (k != pp.se.end)
+	{
+		m.p1[k] = pp.paths[j][k];
+		k = m.p1[k];
+	}
+	k = pp.se.start;
+	while (k != pp.paths[i][m.n])
+	{
+		m.p2[k] = pp.paths[j][k];
+		k = m.p2[k];
+	}
+	while (k != pp.se.end)
+	{
+		m.p2[k] = pp.paths[i][k];
+		k = m.p2[k];
+	}
+}
+
 static void	merge_paths(t_paths pp, int i, int j, int n)
 {
-	int	*p1;
-	int	*p2;
 	int	k;
+	t_merger m;
 
-	p1 = malloc(sizeof(int) * pp.size);
-	p2 = malloc(sizeof(int) * pp.size);
+	m.p1 = malloc(sizeof(int) * pp.size);
+	m.p2 = malloc(sizeof(int) * pp.size);
+	m.n = n;
 	k = -1;
 	while (++k < pp.size)
 	{
-		p1[k] = DISJ;
-		p2[k] = DISJ;
+		m.p1[k] = DISJ;
+		m.p2[k] = DISJ;
 	}
-	k = pp.se.start;
-	while (k != n)
-		k = (p1[k] = pp.paths[i][k]);
-	while (k != pp.se.end)
-		k = (p1[k] = pp.paths[j][k]);
-	k = pp.se.start;
-	while (k != pp.paths[i][n])
-		k = (p2[k] = pp.paths[j][k]);
-	while (k != pp.se.end)
-		k = (p2[k] = pp.paths[i][k]);
+	merger(pp, i, j, m);
 	free(pp.paths[i]);
 	free(pp.paths[j]);
-	pp.paths[i] = p1;
-	pp.paths[j] = p2;
+	pp.paths[i] = m.p1;
+	pp.paths[j] = m.p2;
 }
 
 void		remove_sym(t_paths pp)
