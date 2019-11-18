@@ -103,7 +103,10 @@ t_matrix	lem_in_read(int fd, t_lem_in *lem_in)
 	char *line_buff;
 	char **line;
 	UINT print_input;
+	char *itoa;
 
+	lem_in->se.start = -1;
+	lem_in->se.end = -1;
 	print_input = lem_in->flags & FLAG_PRINT_INPUT;
 	line = &line_buff;
 	while (1)
@@ -116,6 +119,10 @@ t_matrix	lem_in_read(int fd, t_lem_in *lem_in)
 		free(*line);
 	}
 	lem_in->ants = ft_atoi(*line);
+	assert(!ft_strcmp((itoa = ft_itoa(lem_in->ants)), *line), "no ants found");
+	free(itoa);
 	lem_in->rooms = read_rooms(fd, &lem_in->se, line, print_input);
+	assert(lem_in->se.start >= 0, "start not found");
+	assert(lem_in->se.end >= 0, "end not found");
 	return (read_roads(fd, lem_in->rooms, line, print_input));
 }
