@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoetess <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:28:22 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/14 14:28:23 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:12:30 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,12 @@ void		print_path(int *path, int size, t_startend se)
 
 	(void)size;
 	i = se.start;
-	printf("%d", i);
+	ft_putchar('\n');
+	ft_putnbr(i);
 	while (i != se.end)
 	{
-		printf("->%d", (i = path[i]));
+		ft_putstr("->");
+		ft_putnbr(i = path[i]);
 	}
-	printf("\n");
-	printf("\n");
+	ft_putstr("\n");
 }
