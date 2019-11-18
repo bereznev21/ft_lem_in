@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 21:25:03 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/18 16:23:32 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:05:18 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ void	lem_in_main(int fd, UINT flags)
 	paths = lem_in_solve(&aj, lem_in);
 	if (flags & FLAG_DEBUG)
 		printf("total steps: %lu\n", ft_len((void**)&paths));
-//	t_paths_print(paths);
 	t_paths_init_rev(&paths);
 	lem_in_output(paths, aj, lem_in);
+	if (flags & FLAG_PRINT_PATHS)
+		t_paths_print(paths);
 	t_matrix_del(&aj);
 	t_paths_del(&paths);
 	clean_rooms(lem_in.rooms);
@@ -65,6 +66,8 @@ int		parse_av(int ac, char **av, UINT *flags)
 			*flags |= FLAG_DEBUG;
 		else if (!ft_strcmp("-i", arg))
 			*flags ^= FLAG_PRINT_INPUT;
+		else if (!ft_strcmp("-p", arg))
+			*flags ^= FLAG_PRINT_PATHS;
 		else if (!f_name)
 			f_name = arg;
 		else

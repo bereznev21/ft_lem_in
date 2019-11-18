@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:35:19 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/18 15:43:27 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:04:13 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define MAT_ALLOC_STEP 512
 # define FLAG_PRINT_INPUT 1
 # define FLAG_DEBUG 2
+# define FLAG_PRINT_PATHS 3
 
 typedef struct		s_startend
 {

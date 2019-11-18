@@ -6,7 +6,7 @@
 /*   By: rpoetess <rpoetess@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 22:34:24 by rpoetess          #+#    #+#             */
-/*   Updated: 2019/11/17 22:51:15 by rpoetess         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:06:01 by rpoetess         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		t_paths_init_rev(t_paths *pp)
 
 	if (pp->paths_rev)
 		free(pp->paths_rev);
-	pp->paths_rev = malloc(sizeof(int *) * (ft_len((void **)pp->paths)) + 1);
+	pp->paths_rev = malloc(sizeof(int *) * (ft_len((void **)pp->paths) + 1));
 	i = -1;
 	while (pp->paths[++i])
 	{
