@@ -11,4 +11,4 @@ An ant can only move once per turn.
 A cell can only contain up to one ant (except the start and end cells).
 The program must take less than 8 seconds (ours never takes more than 0.5 seconds). Therefore the algorithm has to avoid trafic jam and overlapping.
 
-https://github.com/fpetras/42-subjects/blob/master/lem-in.en.pdf
+Subject: https://github.com/fpetras/42-subjects/blob/master/lem-in.en.pdf
